@@ -1,8 +1,10 @@
 export default {
+	syntax: 'postcss-scss',
 	plugins: {
 		'postcss-import': {},
-		'tailwindcss/nesting': 'postcss-nesting',
 		tailwindcss: {},
+		'tailwindcss/nesting': 'postcss-nesting',
+		'postcss-flexbugs-fixes': {},
 		autoprefixer: {},
 	},
 }
