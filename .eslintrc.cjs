@@ -7,11 +7,14 @@ module.exports = {
 		'plugin:react-hooks/recommended',
 		'plugin:jsx-a11y/recommended',
 		'plugin:sonarjs/recommended',
+		'plugin:@tanstack/eslint-plugin-query/recommended',
 	],
 	ignorePatterns: ['dist', '.eslintrc.cjs'],
 	parser: '@typescript-eslint/parser',
-	plugins: ['react-refresh', 'jsx-a11y', 'sonarjs'],
+	plugins: ['react-refresh', 'jsx-a11y', 'sonarjs', '@tanstack/query'],
 	rules: {
 		'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
+		'@tanstack/query/exhaustive-deps': 'error',
+		'@tanstack/query/prefer-query-object-syntax': 'error',
 	},
 }
