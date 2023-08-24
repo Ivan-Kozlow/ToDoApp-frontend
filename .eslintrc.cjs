@@ -4,7 +4,6 @@ module.exports = {
 	extends: [
 		'eslint:recommended',
 		'plugin:@typescript-eslint/recommended',
-		'plugin:react-hooks/recommended',
 		'plugin:jsx-a11y/recommended',
 		'plugin:sonarjs/recommended',
 		'plugin:@tanstack/eslint-plugin-query/recommended',
