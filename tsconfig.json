@@ -8,11 +8,11 @@
 
 		"baseUrl": "./src/",
 		"paths": {
-			"./components/*": ["components/*"],
-			"./assets/*": ["assets/*"],
-			"./hooks/*": ["hooks/*"],
-			"./pages/*": ["pages/*"],
-			"./services/*": ["services/*"]
+			"components/*": ["components/*"],
+			"assets/*": ["assets/*"],
+			"hooks/*": ["hooks/*"],
+			"pages/*": ["pages/*"],
+			"services/*": ["services/*"]
 		},
 
 		/* Bundler mode */
