@@ -1,24 +1,35 @@
-import React, { FC, useState } from "react";
-import GridViewOutlinedIcon from "@mui/icons-material/GridViewOutlined";
-import PersonOutlineOutlinedIcon from "@mui/icons-material/PersonOutlineOutlined";
-import CalendarTodayOutlinedIcon from "@mui/icons-material/CalendarTodayOutlined";
+import React, { FC, useState } from 'react'
+import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined'
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined'
+import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined'
+import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined'
 
 const icons = [
-  <GridViewOutlinedIcon sx={{ fontSize: 22, color: "white" }} />,
-  <PersonOutlineOutlinedIcon sx={{ fontSize: 22, color: "white" }}/>,
-  <CalendarTodayOutlinedIcon sx={{ fontSize: 22, color: "white" }}/>,
-];
+	<GridViewOutlinedIcon sx={{ fontSize: 22, color: 'white' }} />,
+	<PersonOutlineOutlinedIcon sx={{ fontSize: 22, color: 'white' }} />,
+	<CalendarTodayOutlinedIcon sx={{ fontSize: 22, color: 'white' }} />,
+]
 const Sidebar: FC = () => {
-    const [isActive, setIsActive] = useState<boolean>(false)
-  return (
-    <div className="w-[90px] min-h-screen bg-secondary p-5">
-      {icons.map((icon, i) => (
-        <div key={i} onClick={() => setIsActive(prev => !prev)} className={`${isActive ? `bg-title rounded-full ` : ''} py-3 px-5 my-8 cursor-pointer flex justify-center items-center`}>
-          {icon}
-        </div>
-      ))}
-    </div>
-  );
-};
+	const [isActive, setIsActive] = useState<number>(0)
+	const activeHandle = (id: number) => setIsActive(id)
+	return (
+		<div className='w-[90px] min-h-screen bg-secondary p-5 relative'>
+			{icons.map((icon, i) => (
+				<button
+					key={i}
+					onClick={() => activeHandle(i)}
+					className={`${
+						isActive === i ? `bg-title rounded-full ` : ''
+					} py-3 px-5 my-8 flex justify-center items-center transition-all duration-75 hover:bg-title hover:rounded-full`}
+				>
+					{icon}
+				</button>
+			))}
+			<button className='absolute bottom-0 py-3 px-3 my-8 flex justify-center items-center transition-all duration-75 hover:bg-title hover:rounded-full'>
+				<LogoutOutlinedIcon sx={{ fontSize: 22, color: 'white' }} />
+			</button>
+		</div>
+	)
+}
 
-export { Sidebar };
+export { Sidebar }

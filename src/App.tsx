@@ -4,6 +4,7 @@ import React from 'react'
 import { useAppDispatch } from './hooks/redux'
 import { userActions } from './redux/slices/user/userSlice'
 import userService from './services/user.service'
+import { Container } from '@mui/material'
 
 function App() {
 	const dispatch = useAppDispatch()
@@ -16,9 +17,9 @@ function App() {
 	}, [data])
 
 	return (
-		<div className='bg-primary'>
+		<Container maxWidth={'lg'} className='bg-primary'>
 			<Sidebar />
-		</div>
+		</Container>
 	)
 }
 
