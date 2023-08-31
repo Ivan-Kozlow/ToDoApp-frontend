@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom'
 import style from './PageNotFound.module.scss'
 
-const PageNotFound = () => {
+const PageNotFound: React.FC = () => {
 	return (
 		<div className={style.wrapper}>
 			<div className={style.text}>

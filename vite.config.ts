@@ -10,6 +10,8 @@ export default defineConfig({
 			components: '/src/components/',
 			hooks: '/src/hooks/',
 			pages: '/src/pages/',
+			Redux: '/src/redux/',
+			assets: '/src/assets/',
 			services: '/src/services/',
 		},
 	},
