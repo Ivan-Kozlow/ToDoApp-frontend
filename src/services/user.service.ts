@@ -1,18 +1,17 @@
-import axios from 'axios'
-import { IUser } from 'redux/slices/user/typesUser'
-import { IPostResult, TypeLoginBody, TypeRegisterBody } from './types'
+import axios from '../../axios'
+import { IUserQueryResult, TypeLoginBody, TypeRegisterBody } from './types'
 
 const userService = {
 	async getMe() {
-		const { data } = await axios.get<IUser>('http://localhost:4444/auth/me')
+		const { data } = await axios.get<IUserQueryResult>('/auth/me')
 		return data
 	},
 	async register(body: TypeRegisterBody) {
-		const { data } = await axios.post<IPostResult>('http://localhost:4444/auth/register', body)
+		const { data } = await axios.post<IUserQueryResult>('/auth/register', body)
 		return data
 	},
 	async login(body: TypeLoginBody) {
-		const { data } = await axios.post<IPostResult>('http://localhost:4444/auth/register', body)
+		const { data } = await axios.post<IUserQueryResult>('/auth/login', body)
 		return data
 	},
 }
