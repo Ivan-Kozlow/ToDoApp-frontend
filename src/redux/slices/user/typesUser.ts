@@ -1,4 +1,5 @@
 export type IUser = {
+	_id: number
 	nickname: string
 	email: string
 	createdAt: Date
@@ -6,5 +7,5 @@ export type IUser = {
 }
 
 export type IInitStateUser = {
-	user: IUser
+	user: IUser | object
 }

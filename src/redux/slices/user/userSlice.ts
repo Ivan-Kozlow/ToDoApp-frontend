@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { IInitStateUser, IUser } from './typesUser'
 
 const initialState: IInitStateUser = {
-	user: { nickname: 'User', createdAt: new Date(), updateAt: new Date(), email: '' },
+	user: {},
 }
 
 export const userSlice = createSlice({
@@ -11,6 +11,10 @@ export const userSlice = createSlice({
 	reducers: {
 		saveUser(state, action: PayloadAction<IUser>) {
 			state.user = action.payload
+		},
+		removeUser(state) {
+			state.user = {}
+			localStorage.removeItem('token')
 		},
 	},
 })
