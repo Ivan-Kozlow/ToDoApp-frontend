@@ -4,9 +4,9 @@ import Header from 'components/Header'
 
 const MainPage = () => {
 	return (
-		<div>
+		<div className='flex'>
+			<Sidebar />
 			<Container maxWidth={'lg'} className='bg-primary'>
-				<Sidebar />
 				<Header />
 			</Container>
 		</div>
