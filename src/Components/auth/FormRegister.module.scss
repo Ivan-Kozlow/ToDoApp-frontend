@@ -1,5 +1,5 @@
 .page {
-	@apply flex flex-col items-center pt-[19vh];
+	@apply flex flex-col items-center pt-[18vh];
 }
 .wrapper {
 	display: flex;
@@ -31,7 +31,7 @@
 		.buttons {
 			@apply mt-8 flex justify-between;
 
-			& > * {
+			button {
 				border-radius: 5px;
 				text-transform: uppercase;
 				background-color: rgba(255, 255, 255, 0.13);
