@@ -7,5 +7,5 @@ export type IUser = {
 }
 
 export type IInitStateUser = {
-	user: IUser | object
+	user: IUser | null
 }
