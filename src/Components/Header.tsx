@@ -1,19 +1,20 @@
-import { useState } from 'react'
+import { FC, useState } from 'react'
+import Avatar from './Avatar'
+import { useAppSelector } from 'hooks/redux'
+
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined'
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined'
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined'
 import TextField from '@mui/material/TextField'
-import Avatar from './Avatar'
-import { useAppSelector } from 'hooks/redux'
 
-const Header = () => {
+const Header: FC = () => {
 	const [search, setSearch] = useState<boolean>(false)
 	const nickname = useAppSelector((state) => state.user.user?.nickname)
 	const date = new Date().toLocaleString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })
 
 	return (
 		<div className='py-7 text-[#FFFFFF80] flex justify-between items-center'>
-			<h1 className='text-[#fff] text-xl font-bold'>Welcome, {nickname ? ` back, ${nickname}` : ''}</h1>
+			<h1 className='text-[#fff] text-xl font-bold'>Welcome {nickname ? ` back, ${nickname}` : ''}</h1>
 			<div className='flex gap-x-5 items-center'>
 				{search ? (
 					<>
