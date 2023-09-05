@@ -2,7 +2,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { IInitStateUser, IUser } from './typesUser'
 
 const initialState: IInitStateUser = {
-	user: {},
+	user: null,
 }
 
 export const userSlice = createSlice({
@@ -13,7 +13,7 @@ export const userSlice = createSlice({
 			state.user = action.payload
 		},
 		removeUser(state) {
-			state.user = {}
+			state.user = null
 			localStorage.removeItem('token')
 		},
 	},

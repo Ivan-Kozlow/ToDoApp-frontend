@@ -12,7 +12,7 @@ import { IUserQueryResult } from 'services/types'
 import userService from 'services/user.service'
 
 // components
-import ErrorSnackbar from 'components/ErrorSnackbar'
+import MySnackbar from 'components/MySnackbar'
 import { IFormFields } from 'pages/AuthPage'
 import ErrorFields from './ErrorFields'
 import FormButtons from './FormButtons'
@@ -73,7 +73,7 @@ const AuthForm: React.FC<{ isRegistration: boolean }> = ({ isRegistration }) => 
 			/>
 			{fieldError.password && <ErrorFields errorText={fieldError.password.message || 'Некорректный пароль'} />}
 			{error && (
-				<ErrorSnackbar
+				<MySnackbar
 					slideDirection='down'
 					type='warning'
 					position={{ vertical: 'top', horizontal: 'center' }}

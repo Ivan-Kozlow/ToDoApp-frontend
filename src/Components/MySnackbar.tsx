@@ -7,7 +7,7 @@ interface IErrorSnackbarProps {
 	slideDirection: 'left' | 'right' | 'up' | 'down'
 }
 
-const ErrorSnackbar: React.FC<IErrorSnackbarProps> = ({ type, message, position, slideDirection }) => {
+const MySnackbar: React.FC<IErrorSnackbarProps> = ({ type, message, position, slideDirection }) => {
 	return (
 		<Snackbar
 			open={true}
@@ -22,4 +22,4 @@ const ErrorSnackbar: React.FC<IErrorSnackbarProps> = ({ type, message, position,
 	)
 }
 
-export default ErrorSnackbar
+export default MySnackbar

@@ -2,13 +2,13 @@ import React from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { Route, Routes } from 'react-router-dom'
 
-import { userActions } from './Redux/slices/user/userSlice'
+import { userActions } from 'Redux/slices/user/userSlice'
 import { useAppDispatch } from './hooks/redux'
 import userService from './services/user.service'
 
+import PageNotFound from './components/PageNotFound/PageNotFound'
 import AuthPage from './pages/AuthPage'
 import MainPage from './pages/MainPage'
-import PageNotFound from './components/PageNotFound/PageNotFound'
 
 const App: React.FC = () => {
 	const dispatch = useAppDispatch()

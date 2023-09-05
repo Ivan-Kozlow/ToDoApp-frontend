@@ -3,7 +3,8 @@ import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined'
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined'
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined'
-import {useAppSelector} from '../hooks/redux'
+import { useAppSelector } from 'hooks/redux'
+
 const icons = [
 	<GridViewOutlinedIcon sx={{ fontSize: 22, color: 'white' }} />,
 	<PersonOutlineOutlinedIcon sx={{ fontSize: 22, color: 'white' }} />,
@@ -11,7 +12,7 @@ const icons = [
 ]
 const Sidebar: FC = () => {
 	const [isActive, setIsActive] = useState<number>(0)
-	// const isAuth = useAppSelector(state => state.user.isAuth)
+	const isAuth = useAppSelector((state) => state.user.isAuth)
 	const activeHandle = (id: number) => setIsActive(id)
 	return (
 		<div className='w-[90px] min-h-screen bg-secondary p-5 relative'>
@@ -26,10 +27,13 @@ const Sidebar: FC = () => {
 					{icon}
 				</button>
 			))}
-			{}
-			<button className='absolute bottom-0 py-3 px-4 mb-8 flex justify-center items-center transition-all duration-75 hover:bg-title hover:rounded-full'>
-				<LogoutOutlinedIcon sx={{ fontSize: 22, color: 'white' }} />
-			</button>
+			{isAuth ? (
+				<button className='absolute bottom-0 py-3 px-4 mb-8 flex justify-center items-center transition-all duration-75 hover:bg-title hover:rounded-full'>
+					<LogoutOutlinedIcon sx={{ fontSize: 22, color: 'white' }} />
+				</button>
+			) : (
+				''
+			)}
 		</div>
 	)
 }

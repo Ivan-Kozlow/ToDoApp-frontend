@@ -1,16 +1,19 @@
-import React, { useState } from 'react'
-import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined'
-import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined'
+import { useState } from 'react'
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined'
-import Avatar from './Avatar'
+import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined'
+import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined'
 import TextField from '@mui/material/TextField'
+import Avatar from './Avatar'
+import { useAppSelector } from 'hooks/redux'
 
 const Header = () => {
 	const [search, setSearch] = useState<boolean>(false)
+	const nickname = useAppSelector((state) => state.user.user?.nickname)
 	const date = new Date().toLocaleString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })
+
 	return (
 		<div className='py-7 text-[#FFFFFF80] flex justify-between items-center'>
-			<h1 className='text-[#fff] text-xl font-bold'>Welcome back, Vincent</h1>
+			<h1 className='text-[#fff] text-xl font-bold'>Welcome, {nickname ? ` back, ${nickname}` : ''}</h1>
 			<div className='flex gap-x-5 items-center'>
 				{search ? (
 					<>
@@ -28,12 +31,12 @@ const Header = () => {
 					<NotificationsOutlinedIcon />
 				</button>
 				<div className='flex items-center gap-2'>
-					<button>
-						<CalendarTodayOutlinedIcon />
-					</button>
+					<CalendarTodayOutlinedIcon />
 					<p className='font-[600]'>{date}</p>
 				</div>
-				<Avatar />
+				<button>
+					<Avatar />
+				</button>
 			</div>
 		</div>
 	)
