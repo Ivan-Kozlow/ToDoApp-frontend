@@ -13,11 +13,15 @@ const Header = () => {
 
 	return (
 		<div className='py-7 text-[#FFFFFF80] flex justify-between items-center'>
-			<h1 className='text-[#fff] text-xl font-bold'>Welcome, {nickname ? ` back, ${nickname}` : ''}</h1>
+			<h1 className='text-[#fff] text-xl font-bold'>Welcome {nickname ? ` back, ${nickname}` : ''}</h1>
 			<div className='flex gap-x-5 items-center'>
 				{search ? (
 					<>
-						<TextField sx={{ color: 'white', p: 0, borderColor: 'white', height: 35 }} size='small' />
+						<TextField
+							className='text-[#fff]'
+							sx={{ color: 'white', p: 0, borderColor: 'white', height: 35 }}
+							size='small'
+						/>
 						<button>
 							<SearchOutlinedIcon onClick={() => setSearch(false)} />
 						</button>
