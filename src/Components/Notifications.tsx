@@ -1,8 +1,8 @@
-import React, { useState } from 'react'
+import React from 'react'
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined'
 
-const Notifications = () => {
-	const [isNotifications, setIsNotifications] = useState(true)
+const Notifications: React.FC = () => {
+	const [isNotifications, setIsNotifications] = React.useState(true)
 	return (
 		<div className='relative'>
 			<button onClick={() => setIsNotifications(!isNotifications)} className='relative'>

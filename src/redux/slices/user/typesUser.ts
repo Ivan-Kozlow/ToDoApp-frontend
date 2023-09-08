@@ -1,4 +1,4 @@
-export type IUser = {
+export interface IUser {
 	_id: number
 	nickname: string
 	email: string
@@ -6,6 +6,6 @@ export type IUser = {
 	updateAt: Date
 }
 
-export type IInitStateUser = {
+export interface IInitStateUser {
 	user: IUser | null
 }
