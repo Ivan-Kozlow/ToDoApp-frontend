@@ -6,8 +6,9 @@ const MainPage = () => {
 	return (
 		<div className='flex'>
 			<Sidebar />
-			<Container maxWidth={'lg'} className='bg-primary'>
+			<Container maxWidth={'lg'}>
 				<Header />
+				<main></main>
 			</Container>
 		</div>
 	)
