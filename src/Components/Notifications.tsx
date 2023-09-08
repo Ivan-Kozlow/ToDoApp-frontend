@@ -3,6 +3,7 @@ import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined
 
 const Notifications = () => {
 	const [isNotifications, setIsNotifications] = useState(true)
+
 	return (
 		<div className='relative'>
 			<button onClick={() => setIsNotifications(!isNotifications)} className='relative'>
@@ -11,8 +12,8 @@ const Notifications = () => {
 			</button>
 			<div
 				className={`${
-					isNotifications ? 'ml-[500px]' : ''
-				} transition-all absolute p-3 bg-title rounded-md mt-[18px] min-w-[210px]`}
+					isNotifications ? 'popup' : ''
+				} transition-all absolute p-3 bg-title rounded-md mt-[18px] min-w-[180px]`}
 			>
 				У вас нет уведомлений!
 			</div>
