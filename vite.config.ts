@@ -12,6 +12,7 @@ export default defineConfig({
 			pages: '/src/pages/',
 			Redux: '/src/redux/',
 			assets: '/src/assets/',
+			consts: '/src/consts/',
 			services: '/src/services/',
 		},
 	},

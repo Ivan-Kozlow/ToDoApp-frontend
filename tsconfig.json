@@ -13,6 +13,7 @@
 			"hooks/*": ["hooks/*"],
 			"pages/*": ["pages/*"],
 			"Redux/*": ["redux/*"],
+			"consts/*": ["consts/*"],
 			"services/*": ["services/*"]
 		},
 

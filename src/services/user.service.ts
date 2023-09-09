@@ -1,21 +1,24 @@
 import axios from '../../axios'
+import { authMePath, authRegisterPath } from 'consts/URL'
 import { IUserQueryResult, TypeLoginBody, TypeRegisterBody, TypeUpdateUserData, TypeUserGetMeResult } from './types'
 
+// TODO add cookie, instead localStorage
 const userService = {
 	async getMe() {
-		const { data } = await axios.get<TypeUserGetMeResult>('auth/me')
+		const { data } = await axios.get<TypeUserGetMeResult>(authMePath)
 		return data
 	},
 	async register(body: TypeRegisterBody) {
-		const { data } = await axios.post<IUserQueryResult>('auth/register', body)
+		const { data } = await axios.post<IUserQueryResult>(authRegisterPath, body)
 		return data
 	},
 	async login(body: TypeLoginBody) {
-		const { data } = await axios.post<IUserQueryResult>('auth/login', body)
+		const { data } = await axios.post<IUserQueryResult>(authRegisterPath, body)
 		return data
 	},
 	async update(body: TypeUpdateUserData) {
-		const { data } = await axios.post<{ message: string }>('user', body)
+		const userId = localStorage.getItem('userId') || ''
+		const { data } = await axios.patch<{ message: string }>(`user${userId}`, body)
 		return data
 	},
 }
