@@ -1,5 +1,5 @@
 import axios from '../../axios'
-import { authMePath, authRegisterPath } from 'consts/URL'
+import { authLoginPath, authMePath, authRegisterPath } from 'consts/URL'
 import { IUserQueryResult, TypeLoginBody, TypeRegisterBody, TypeUpdateUserData, TypeUserGetMeResult } from './types'
 
 // TODO add cookie, instead localStorage
@@ -13,7 +13,7 @@ const userService = {
 		return data
 	},
 	async login(body: TypeLoginBody) {
-		const { data } = await axios.post<IUserQueryResult>(authRegisterPath, body)
+		const { data } = await axios.post<IUserQueryResult>(authLoginPath, body)
 		return data
 	},
 	async update(body: TypeUpdateUserData) {

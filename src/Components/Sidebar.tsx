@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 import { authLoginPath, calendarPath, profilePath } from 'consts/URL'
 import { useAppDispatch } from 'hooks/redux'
@@ -21,12 +21,20 @@ const paths = ['/', profilePath, calendarPath]
 const BtnStyle = `p-3 my-4 flex justify-center items-center transition-all duration-75 hover:bg-primary hover:rounded-full active:bg-box`
 const Sidebar: React.FC = () => {
 	const dispatch = useAppDispatch()
+	const navigate = useNavigate()
 	const { pathname } = useLocation()
 	const [isActive, setIsActive] = React.useState<number>(() => {
 		if (pathname === profilePath) return 1
 		else if (pathname === calendarPath) return 2
 		else return 0
 	})
+
+	const handlerLogout = () => {
+		if (window.confirm('Хотите выйти из аккаунта?')) {
+			dispatch(userActions.removeUser())
+			navigate('/')
+		}
+	}
 
 	return (
 		<aside className='w-[90px] min-h-screen flex flex-col bg-secondary p-5'>
@@ -42,12 +50,7 @@ const Sidebar: React.FC = () => {
 				</Link>
 			))}
 			{localStorage.getItem('token') ? (
-				<button
-					className={BtnStyle + ' mt-auto'}
-					onClick={() => dispatch(userActions.removeUser())}
-					title='Logout'
-					type='button'
-				>
+				<button className={BtnStyle + ' mt-auto'} onClick={handlerLogout} title='Logout' type='button'>
 					<LogoutOutlinedIcon sx={{ fontSize: 22, color: 'white' }} />
 				</button>
 			) : (
