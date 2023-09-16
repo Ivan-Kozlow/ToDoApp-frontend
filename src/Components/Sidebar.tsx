@@ -1,6 +1,7 @@
-import React, { FC, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import React from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
+import { authLoginPath, calendarPath, profilePath } from 'consts/URL'
 import { useAppDispatch } from 'hooks/redux'
 import { userActions } from 'Redux/slices/user/userSlice'
 
@@ -19,49 +20,48 @@ const icons = [
 	<PersonOutlineOutlinedIcon sx={{ fontSize: 22, color: 'white' }} />,
 	<CalendarTodayOutlinedIcon sx={{ fontSize: 22, color: 'white' }} />,
 ]
+const paths = ['/', profilePath, calendarPath]
 
-const Sidebar: FC = () => {
-	const [isActive, setIsActive] = useState<number>(0)
-	const [isAuth, setIsAuth] = useState(false)
-	const [open, setOpen] = useState(true)
+const Sidebar: React.FC = () => {
+	const BtnStyle = `p-3 my-4 flex justify-center items-center transition-all duration-75 hover:bg-primary hover:rounded-full active:bg-box`
+	const [open, setOpen] = React.useState(false)
 	const dispatch = useAppDispatch()
 	const navigate = useNavigate()
-
-	React.useLayoutEffect(() => {
-		setIsAuth(!!localStorage.getItem('token'))
-	}, [])
+	const { pathname } = useLocation()
+	const [isActive, setIsActive] = React.useState<number>(() => {
+		if (pathname === profilePath) return 1
+		else if (pathname === calendarPath) return 2
+		else return 0
+	})
 
 	const handlerLogout = () => {
-		dispatch(userActions.removeUser())
-		setIsAuth(false)
+		if (window.confirm('Хотите выйти из аккаунта?')) {
+			dispatch(userActions.removeUser())
+			navigate('/')
+		}
 	}
+
 	return (
-		<div className={`${open ? 'open' : ''} transition-all w-[90px] h-screen bg-secondary p-5 fixed`}>
+		<aside className={`${open ? 'open' : ''} transition-all w-[90px] h-screen bg-secondary p-5 fixed`}>
 			{icons.map((icon, i) => (
-				<button
+				<Link
+					to={paths[i]}
+					title={paths[i]}
 					key={i}
 					onClick={() => setIsActive(i)}
-					className={`${
-						isActive === i ? `bg-title rounded-full ` : ''
-					} py-3 px-3 my-8 flex justify-center items-center transition-all duration-75 hover:bg-title hover:rounded-full`}
+					className={`${isActive === i && 'bg-title rounded-full'} ${BtnStyle}`}
 				>
 					{icon}
-				</button>
+				</Link>
 			))}
-			{isAuth ? (
-				<button
-					onClick={() => handlerLogout()}
-					className='absolute bottom-0 py-3 px-3 mb-8 flex justify-center items-center transition-all duration-75 hover:bg-title hover:rounded-full'
-				>
+			{localStorage.getItem('token') ? (
+				<button className={BtnStyle + ' mt-auto'} onClick={handlerLogout} title='Logout' type='button'>
 					<LogoutOutlinedIcon sx={{ fontSize: 22, color: 'white' }} />
 				</button>
 			) : (
-				<button
-					onClick={() => navigate('/auth/login')}
-					className='absolute bottom-0 py-3 px-3 mb-8 flex justify-center items-center transition-all duration-75 hover:bg-title hover:rounded-full'
-				>
+				<Link to={authLoginPath} className={BtnStyle + ' mt-auto'} title='Login'>
 					<LoginIcon sx={{ fontSize: 22, color: 'white' }} />
-				</button>
+				</Link>
 			)}
 			<button
 				onClick={() => setOpen(!open)}
@@ -69,7 +69,7 @@ const Sidebar: FC = () => {
 			>
 				<MoreVertOutlinedIcon sx={{ fontSize: 30, color: 'white' }} />
 			</button>
-		</div>
+		</aside>
 	)
 }
 

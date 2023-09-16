@@ -1,0 +1,5 @@
+export const authMePath = 'auth/me'
+export const profilePath = '/profile'
+export const calendarPath = '/calendar'
+export const authLoginPath = '/auth/login'
+export const authRegisterPath = '/auth/register'
