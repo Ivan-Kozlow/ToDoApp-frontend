@@ -1,15 +1,14 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined'
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined'
 
 type ThemeType = 'dark' | 'light'
 
-const Avatar = () => {
+const Avatar = ({ popup, setPopup }) => {
 	const [theme, setTheme] = useState<ThemeType>('dark')
-	const [popup, setPopup] = useState(true)
 	return (
-		<>
+		<button className='z-10'>
 			<div onClick={() => setPopup(!popup)} className='w-[36px] h-[36px] rounded-full bg-title relative'></div>
 			<div
 				className={`${
@@ -23,7 +22,7 @@ const Avatar = () => {
 					<LightModeOutlinedIcon onClick={() => setTheme('dark')} />
 				)}
 			</div>
-		</>
+		</button>
 	)
 }
 

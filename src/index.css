@@ -83,14 +83,43 @@ h6 {
 /*-------------------*/
 body {
   @apply bg-primary;
+  overflow: hidden;
 }
 
 body {
   font-family: "Exo 2", sans-serif;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .popup {
   transform: translate(500%);
   visibility: hidden;
+}
+
+.open {
+  transform: translate(-100%);
+}
+
+.border-view {
+  display: flex;
+  align-items: center;
+  -moz-column-gap: 8px;
+       column-gap: 8px;
+  padding-bottom: 18px;
+}
+
+.border-view-border {
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1019607843);
+}
+
+.border-view-border-2 {
+  border-bottom: 2px solid #757888;
+  width: 100%;
+  max-width: 137px;
+}
+
+.todo-text {
+  color: rgba(255, 255, 255, 0.5019607843);
+  font-size: 14px;
 }/*# sourceMappingURL=index.css.map */

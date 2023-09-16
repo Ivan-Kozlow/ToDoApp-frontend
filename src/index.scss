@@ -5,9 +5,31 @@
 @import './styles/nullstyle.scss';
 body {
 	font-family: 'Exo 2', sans-serif;
-	overflow: hidden;
+	overflow-x: hidden;
+	overflow-y: auto;
 }
 .popup {
 	transform: translate(500%);
 	visibility: hidden;
+}
+.open {
+	transform: translate(-100%);
+}
+.border-view {
+	display: flex;
+	align-items: center;
+	column-gap: 8px;
+	padding-bottom: 18px;
+}
+.border-view-border {
+	border-bottom: 2px solid #ffffff1a;
+}
+.border-view-border-2 {
+	border-bottom: 2px solid #757888;
+	width: 100%;
+	max-width: 137px;
+}
+.todo-text {
+	color: #ffffff80;
+	font-size: 14px;
 }

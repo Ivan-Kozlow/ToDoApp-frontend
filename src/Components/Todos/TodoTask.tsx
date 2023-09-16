@@ -1,0 +1,57 @@
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
+import RadioButtonCheckedOutlinedIcon from '@mui/icons-material/RadioButtonCheckedOutlined'
+import CheckBoxIcon from '@mui/icons-material/CheckBox'
+import FactCheckOutlinedIcon from '@mui/icons-material/FactCheckOutlined'
+import { FC } from 'react'
+import { TypeProgress } from './TodoBox'
+
+type TypeTodoTask = {
+	title: string
+	subTitle: string
+	progress: TypeProgress
+}
+const TodoTask: FC<TypeTodoTask> = ({ title, subTitle, progress }) => {
+	const date = new Date().toLocaleString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })
+
+	return (
+		<div className='bg-taskBox rounded-md p-5'>
+			<div className='flex items-start gap-x-1 justify-between mb-1'>
+				<h2 className='font-bold text-base'>{title}</h2>
+				<button className='transition-all duration-100 hover:bg-title hover:rounded-full'>
+					<MoreHorizIcon />
+				</button>
+			</div>
+			<p className='todo-text mb-4 max-w-[250px]'>{subTitle}</p>
+			<div className='mb-4 flex items-center justify-between'>
+				<FactCheckOutlinedIcon />
+				<div
+					className={`h-1 ${
+						progress === 'start'
+							? 'bg-title'
+							: progress === 'inProgress'
+							? 'bg-progressCenter'
+							: progress === 'done'
+							? 'bg-progressFull'
+							: ''
+					} w-full max-w-[99px] rounded-full`}
+				></div>
+				<RadioButtonCheckedOutlinedIcon />
+				<div
+					className={`h-1 ${
+						progress === 'done' ? 'bg-progressFull' : 'bg-title'
+					} w-full max-w-[99px] rounded-full`}
+				></div>
+				<CheckBoxIcon />
+			</div>
+			<div className='flex items-center justify-between'>
+				<p className='todo-text px-4 py-2 bg-[#FFFFFF0F] rounded-full'>{date}</p>
+				<button>
+					<CheckCircleOutlineIcon />
+				</button>
+			</div>
+		</div>
+	)
+}
+
+export default TodoTask
