@@ -1,8 +1,7 @@
 import { FC } from 'react'
-import SortByAlphaIcon from '@mui/icons-material/SortByAlpha'
 import TodoTask from './TodoTask'
 import { TypeTasks } from 'pages/MainPage'
-
+import FilterIcon from 'assets/FilterIcon.svg'
 type TypeTodoBox = {
 	title: string
 	tasks: TypeTasks[]
@@ -19,7 +18,7 @@ const TodoBox: FC<TypeTodoBox> = ({ title, tasks }) => {
 					{title} ({count})
 				</h3>
 				<button>
-					<SortByAlphaIcon />
+					<img src={FilterIcon} alt='Filter' />
 				</button>
 			</div>
 			<ul className='flex gap-3 flex-col'>

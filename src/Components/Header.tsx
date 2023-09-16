@@ -25,7 +25,9 @@ const Header: FC<{ full?: boolean }> = ({ full = true }) => {
 
 				<Notifications isNotifications={isNotifications} setIsNotifications={setIsNotifications} />
 				<div className='flex items-center gap-2'>
-					<CalendarTodayOutlinedIcon />
+					<button>
+						<CalendarTodayOutlinedIcon />
+					</button>
 					<p className='font-[600]'>{date}</p>
 				</div>
 				<Avatar popup={popup} setPopup={setPopup} />

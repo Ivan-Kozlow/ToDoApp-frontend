@@ -37,7 +37,7 @@ const MainPage = () => {
 			<Sidebar />
 			<div className='w-full max-w-6xl mx-auto'>
 				<Header />
-				<main>
+				<main className='px-4'>
 					<section className='border-view-border mb-5'>
 						<div className='border-view border-view-border-2'>
 							<DnsOutlinedIcon sx={{ fontSize: 22, color: 'white' }} />

@@ -1,10 +1,10 @@
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import RadioButtonCheckedOutlinedIcon from '@mui/icons-material/RadioButtonCheckedOutlined'
-import CheckBoxIcon from '@mui/icons-material/CheckBox'
-import FactCheckOutlinedIcon from '@mui/icons-material/FactCheckOutlined'
 import { FC } from 'react'
 import { TypeProgress } from './TodoBox'
+import CheckBox from 'assets/CheckBox.svg'
+import TaskIcon from 'assets/TaskIcon.svg'
 
 type TypeTodoTask = {
 	title: string
@@ -24,7 +24,7 @@ const TodoTask: FC<TypeTodoTask> = ({ title, subTitle, progress }) => {
 			</div>
 			<p className='todo-text mb-4 max-w-[250px]'>{subTitle}</p>
 			<div className='mb-4 flex items-center justify-between'>
-				<FactCheckOutlinedIcon />
+				<img src={TaskIcon} alt='TaskIcon' />
 				<div
 					className={`h-1 ${
 						progress === 'start'
@@ -36,13 +36,13 @@ const TodoTask: FC<TypeTodoTask> = ({ title, subTitle, progress }) => {
 							: ''
 					} w-full max-w-[99px] rounded-full`}
 				></div>
-				<RadioButtonCheckedOutlinedIcon />
+				<RadioButtonCheckedOutlinedIcon sx={{fontSize:20}} />
 				<div
 					className={`h-1 ${
 						progress === 'done' ? 'bg-progressFull' : 'bg-title'
 					} w-full max-w-[99px] rounded-full`}
 				></div>
-				<CheckBoxIcon />
+				<img src={CheckBox} alt='Checkbox' />
 			</div>
 			<div className='flex items-center justify-between'>
 				<p className='todo-text px-4 py-2 bg-[#FFFFFF0F] rounded-full'>{date}</p>

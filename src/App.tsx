@@ -6,7 +6,7 @@ import { userActions } from 'Redux/slices/user/userSlice'
 import { useAppDispatch } from './hooks/redux'
 import userService from './services/user.service'
 
-import PageNotFound from './components/PageNotFound/PageNotFound'
+// import PageNotFound from './components/PageNotFound/PageNotFound'
 import AuthPage from './pages/AuthPage'
 import MainPage from './pages/MainPage'
 
@@ -26,7 +26,7 @@ const App: React.FC = () => {
 			<Route path='/' element={<MainPage />}></Route>
 			<Route path='/auth/register' element={<AuthPage isRegistration={true} />}></Route>
 			<Route path='/auth/login' element={<AuthPage isRegistration={false} />}></Route>
-			<Route path='/*' element={<PageNotFound />}></Route>
+			{/* <Route path='/*' element={<PageNotFound />}></Route> */}
 		</Routes>
 	)
 }
