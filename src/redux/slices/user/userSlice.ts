@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
-import { IInitStateUser, IUser } from './typesUser'
+import { IUserQueryResult } from 'services/types'
+import { IInitStateUser } from './typesUser'
 
 const initialState: IInitStateUser = {
 	user: null,
@@ -9,8 +10,10 @@ export const userSlice = createSlice({
 	name: 'user',
 	initialState,
 	reducers: {
-		saveUser(state, action: PayloadAction<IUser>) {
+		saveUser(state, action: PayloadAction<IUserQueryResult>) {
 			state.user = action.payload
+			localStorage.setItem('token', action.payload.token)
+			localStorage.setItem('userId', `${action.payload._id}`)
 		},
 		removeUser(state) {
 			state.user = null
