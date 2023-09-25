@@ -7,15 +7,18 @@
 body {
 	@apply bg-primary;
 	font-family: 'Exo 2', sans-serif;
-	overflow-x: hidden;
-	overflow-y: auto;
+	overflow: hidden;
 }
 .popup {
-	transform: translate(500%);
+	transform: translate(100%);
 	visibility: hidden;
 }
 .open {
 	transform: translate(-100%);
+	visibility: hidden;
+}
+.openBtn {
+	visibility: visible;
 }
 .border-view {
 	display: flex;

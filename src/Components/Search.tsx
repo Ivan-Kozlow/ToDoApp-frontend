@@ -8,7 +8,11 @@ const Search = () => {
 	const ref = useRef<HTMLInputElement>(null)
 	const inputSearch = () => {
 		setSearch(!search)
-		ref.current.focus()
+		ref.current?.focus()
+	}
+	const clearSearchValue = () => {
+		setValue('')
+		ref.current?.focus()
 	}
 	return (
 		<div className='flex gap-2'>
@@ -16,14 +20,16 @@ const Search = () => {
 				<input
 					ref={ref}
 					value={value}
-					onChange={(e) => setValue(e.target.value)}
+					onChange={(e) => {
+						if (search) setValue(e.target.value)
+					}}
 					type='text'
 					className={`${
 						search ? 'opacity-100' : ''
 					} opacity-0 transition-all text-[#fff] bg-title outline-none p-2 rounded-md rounded-r-none w-full max-w-[200px]`}
 				/>
 				<button
-					onClick={() => setValue('')}
+					onClick={() => clearSearchValue()}
 					className={`bg-title rounded-md rounded-l-none opacity-0 transition-all ${search ? 'opacity-100' : ''}`}
 				>
 					<ClearOutlinedIcon />

@@ -6,12 +6,10 @@ import { useAppDispatch } from 'hooks/redux'
 import { userActions } from 'Redux/slices/user/userSlice'
 
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined'
-import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined'
 import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined'
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined'
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined'
-
-import { useAppSelector } from 'hooks/redux'
+import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined'
 
 import LoginIcon from '@mui/icons-material/Login'
 
@@ -24,7 +22,10 @@ const paths = ['/', profilePath, calendarPath]
 
 const Sidebar: React.FC = () => {
 	const BtnStyle = `p-3 my-4 flex justify-center items-center transition-all duration-75 hover:bg-primary hover:rounded-full active:bg-box`
-	const [open, setOpen] = React.useState(false)
+	const [open, setOpen] = React.useState(JSON.parse(localStorage.getItem('isOpen')) || false)
+	React.useEffect(() => {
+		localStorage.setItem('isOpen', JSON.stringify(open))
+	}, [open])
 	const dispatch = useAppDispatch()
 	const navigate = useNavigate()
 	const { pathname } = useLocation()
@@ -65,7 +66,7 @@ const Sidebar: React.FC = () => {
 			)}
 			<button
 				onClick={() => setOpen(!open)}
-				className='absolute top-[50%] translate-y-[-50%] -right-6 bg-secondary rounded-md py-4'
+				className='absolute top-[50%] translate-y-[-50%] -right-6 openBtn bg-secondary rounded-md py-4'
 			>
 				<MoreVertOutlinedIcon sx={{ fontSize: 30, color: 'white' }} />
 			</button>

@@ -23,6 +23,7 @@ const TodoTask: FC<TypeTodoTask> = ({ title, subTitle, progress }) => {
 				</button>
 			</div>
 			<p className='todo-text mb-4 max-w-[250px]'>{subTitle}</p>
+			<p className='mb-1 text-sm text-[#FFFFFF80]'>Progress</p>
 			<div className='mb-4 flex items-center justify-between'>
 				<img src={TaskIcon} alt='TaskIcon' />
 				<div
