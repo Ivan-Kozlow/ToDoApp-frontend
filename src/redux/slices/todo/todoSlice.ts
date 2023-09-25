@@ -1,7 +1,11 @@
 import { createSlice } from '@reduxjs/toolkit'
 import { IInitStateTodo } from './typesTodo'
 
-const initialState: IInitStateTodo = { todos: [] }
+const initialState: IInitStateTodo = {
+	todos: [
+		// add todos into this array
+	],
+}
 
 export const todoSlice = createSlice({
 	name: 'todo',

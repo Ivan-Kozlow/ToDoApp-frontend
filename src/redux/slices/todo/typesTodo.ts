@@ -1,10 +1,12 @@
 export interface ITodo {
-	id: number
+	id: string
 	title: string
 	body: string
-	complete: number
+	complete: 0 | 1 | 2
+	createdAt: string
+	updatedAt: string
 }
 
 export interface IInitStateTodo {
-	todos: ITodo[]
+	todos: ITodo[] | null
 }
