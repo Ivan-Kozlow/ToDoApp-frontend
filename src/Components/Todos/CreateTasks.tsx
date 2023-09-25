@@ -9,7 +9,7 @@ const CreateTasks = () => {
 	const date = new Date().toLocaleString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })
 
 	const [value, setValue] = useState({ title: '', subTitle: '' })
-	const [createTask, setCreateTask] = useState(false)
+	const [createTask, setCreateTask] = useState(true)
 	const ref = useRef<HTMLInputElement>(null)
 	const ref2 = useRef<HTMLInputElement>(null)
 
