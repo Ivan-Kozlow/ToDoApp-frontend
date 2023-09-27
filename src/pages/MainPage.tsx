@@ -2,45 +2,55 @@ import DnsOutlinedIcon from '@mui/icons-material/DnsOutlined'
 import Header from 'components/Header'
 import { Sidebar } from 'components/Sidebar'
 import CreateTasks from 'components/Todos/CreateTasks'
-import TodoBox, { TypeProgress } from 'components/Todos/TodoBox'
+import TodoBox from 'components/Todos/TodoBox'
+
+export enum EnumProgress {
+	done = 'done',
+	start = 'start',
+	inProgress = 'inProgress',
+}
 
 export type TypeTasks = {
+	_id: string
 	title: string
 	subTitle: string
-	progress: TypeProgress
+	progress: EnumProgress
 }
 
 const tasks: TypeTasks[] = [
-	{ title: 'sAdd product to the market', subTitle: 'Ui8 marketplace', progress: 'start' },
-	{ title: 'idd product to the market', subTitle: 'Ui8 marketplace', progress: 'start' },
-	{ title: 'zAdd product to the market', subTitle: 'Ui8 marketplace', progress: 'start' },
+	{ _id: '1', title: 'Add product to the market', subTitle: 'Ui8 marketplace', progress: EnumProgress.start },
+	{ _id: '2', title: 'Add product to the market', subTitle: 'Ui8 marketplace', progress: EnumProgress.start },
+	{ _id: '3', title: 'Add product to the market', subTitle: 'Ui8 marketplace', progress: EnumProgress.start },
+	{ _id: '4', title: 'Add product to the market', subTitle: 'Ui8 marketplace', progress: EnumProgress.start },
 	{
-		title: 'zhAdd product to the market',
+		_id: '5',
+		title: 'Add product to the market',
 		subTitle: 'Ui8 m asdflj asdlfajsdlkfj al;sdkfj argjoasdn asdiasodvnaarketplace',
-		progress: 'start',
+		progress: EnumProgress.start,
 	},
 	{
-		title: 'pdd product to the mar jkjlkjl lkjlkjl asdfasdf asdf asd fas dfa ads fa dsf asdf ket',
+		_id: '6',
+		title: 'Add product to the mar jkjlkjl lkjlkjl asdfasdf asdf asd fas dfa ads fa dsf asdf ket',
 		subTitle: 'Ui8 marketplace',
-		progress: 'inProgress',
+		progress: EnumProgress.inProgress,
 	},
-	{ title: 'bAdd product to the market', subTitle: 'Ui8 marketplace', progress: 'inProgress' },
-	{ title: ' product to the market', subTitle: 'Ui8 marketplace', progress: 'inProgress' },
-	{ title: 'zAdd product to the market', subTitle: 'Ui8 marketplace', progress: 'done' },
-	{ title: ' tAdd product to the market', subTitle: 'Ui8 marketplace', progress: 'done' },
-	{ title: 'mAdd product to the market', subTitle: 'Ui8 marketplace', progress: 'done' },
+	{ _id: '7', title: 'Add product to the market', subTitle: 'Ui8 marketplace', progress: EnumProgress.done },
+	{ _id: '8', title: 'Add product to the market', subTitle: 'Ui8 marketplace', progress: EnumProgress.inProgress },
+	{ _id: '9', title: 'Add product to the market', subTitle: 'Ui8 marketplace', progress: EnumProgress.done },
+	{ _id: '10', title: 'Add product to the market', subTitle: 'Ui8 marketplace', progress: EnumProgress.done },
 ]
 
-const MainPage = () => {
-	const filterTasksByProgress = (progress: TypeProgress) => tasks.filter((task) => task.progress === progress)
+const MainPage: React.FC = () => {
+	const filterTasksByProgress = (progress: EnumProgress) => tasks.filter((task) => task.progress === progress)
+
 	return (
 		<div className='flex text-[#fff]'>
 			<Sidebar />
 			<div className='w-full max-w-6xl mx-auto px-4'>
 				<Header />
-				<main>
+				<main className='overflow-auto h-[80vh]'>
 					<section className='border-view-border mb-5'>
-						<div className='border-view border-view-border-2'>
+						<div className='border-view border-view-border-2 mb-[-2px]'>
 							<DnsOutlinedIcon sx={{ fontSize: 22, color: 'white' }} />
 							<span>Board view</span>
 						</div>
@@ -48,18 +58,18 @@ const MainPage = () => {
 					<div className='flex gap-5'>
 						{tasks.length ? (
 							<>
-								{filterTasksByProgress('start').length ? (
-									<TodoBox title={'Todo'} tasks={filterTasksByProgress('start')} />
+								{filterTasksByProgress(EnumProgress.start).length ? (
+									<TodoBox title={'Todo'} tasks={filterTasksByProgress(EnumProgress.start)} />
 								) : (
 									''
 								)}
-								{filterTasksByProgress('inProgress').length ? (
-									<TodoBox title={'In Progress'} tasks={filterTasksByProgress('inProgress')} />
+								{filterTasksByProgress(EnumProgress.inProgress).length ? (
+									<TodoBox title={'In Progress'} tasks={filterTasksByProgress(EnumProgress.inProgress)} />
 								) : (
 									''
 								)}
-								{filterTasksByProgress('done').length ? (
-									<TodoBox title={'Done'} tasks={filterTasksByProgress('done')} />
+								{filterTasksByProgress(EnumProgress.done).length ? (
+									<TodoBox title={'Done'} tasks={filterTasksByProgress(EnumProgress.done)} />
 								) : (
 									''
 								)}
