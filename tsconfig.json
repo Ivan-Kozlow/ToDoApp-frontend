@@ -12,6 +12,7 @@
 			"assets/*": ["assets/*"],
 			"hooks/*": ["hooks/*"],
 			"pages/*": ["pages/*"],
+			"utils/*": ["utils/*"],
 			"Redux/*": ["redux/*"],
 			"consts/*": ["consts/*"],
 			"services/*": ["services/*"]
