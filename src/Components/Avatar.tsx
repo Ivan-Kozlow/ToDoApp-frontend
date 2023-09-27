@@ -4,12 +4,16 @@ import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined'
 
 type ThemeType = 'dark' | 'light'
+interface IAvatarProps {
+	popup: boolean
+	setPopup: React.Dispatch<React.SetStateAction<boolean>>
+}
 
-const Avatar = ({ popup, setPopup }) => {
+const Avatar: React.FC<IAvatarProps> = ({ popup, setPopup }) => {
 	const [theme, setTheme] = useState<ThemeType>('dark')
 	return (
-		<button className='z-10'>
-			<div onClick={() => setPopup(!popup)} className='w-[36px] h-[36px] rounded-full bg-title relative'></div>
+		<div className='z-10'>
+			<button onClick={() => setPopup(!popup)} className='w-[36px] h-[36px] rounded-full bg-title relative'></button>
 			<div
 				className={`${
 					popup ? 'popup' : ''
@@ -22,7 +26,7 @@ const Avatar = ({ popup, setPopup }) => {
 					<LightModeOutlinedIcon onClick={() => setTheme('dark')} />
 				)}
 			</div>
-		</button>
+		</div>
 	)
 }
 

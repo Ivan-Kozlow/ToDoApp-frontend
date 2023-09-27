@@ -15,14 +15,21 @@ const TodoTask: FC<TypeTodoTask> = ({ title, subTitle, progress }) => {
 	const date = new Date().toLocaleString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })
 
 	return (
-		<div className='bg-taskBox rounded-md p-5'>
+		<article className='bg-taskBox rounded-md p-5'>
 			<div className='flex items-start gap-x-1 justify-between mb-1'>
-				<h2 className='font-bold text-base'>{title}</h2>
-				<button className='transition-all duration-100 hover:bg-title hover:rounded-full'>
+				{/* TODO add ellipse on 2 string */}
+				<h2 className='font-bold text-base truncate' title={title}>
+					{title}
+				</h2>
+				<button
+					aria-controls={`${title} more`}
+					title='more'
+					className='transition-all duration-100 hover:bg-title hover:rounded-full'
+				>
 					<MoreHorizIcon />
 				</button>
 			</div>
-			<p className='todo-text mb-4 max-w-[250px]'>{subTitle}</p>
+			<p className='todo-text mb-4 max-w-[250px] truncate'>{subTitle}</p>
 			<p className='mb-1 text-sm text-[#FFFFFF80]'>Progress</p>
 			<div className='mb-4 flex items-center justify-between'>
 				<img src={TaskIcon} alt='TaskIcon' />
@@ -37,7 +44,7 @@ const TodoTask: FC<TypeTodoTask> = ({ title, subTitle, progress }) => {
 							: ''
 					} w-full max-w-[99px] rounded-full`}
 				></div>
-				<RadioButtonCheckedOutlinedIcon sx={{fontSize:20}} />
+				<RadioButtonCheckedOutlinedIcon sx={{ fontSize: 20 }} />
 				<div
 					className={`h-1 ${
 						progress === 'done' ? 'bg-progressFull' : 'bg-title'
@@ -47,11 +54,11 @@ const TodoTask: FC<TypeTodoTask> = ({ title, subTitle, progress }) => {
 			</div>
 			<div className='flex items-center justify-between'>
 				<p className='todo-text px-4 py-2 bg-[#FFFFFF0F] rounded-full'>{date}</p>
-				<button>
+				<button title='complete this'>
 					<CheckCircleOutlineIcon />
 				</button>
 			</div>
-		</div>
+		</article>
 	)
 }
 

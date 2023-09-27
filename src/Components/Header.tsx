@@ -1,10 +1,14 @@
-import { FC, useEffect, useState } from 'react'
-import Avatar from './Avatar'
+import { FC, useState } from 'react'
+import { Link } from 'react-router-dom'
+
+// utils
 import { useAppSelector } from 'hooks/redux'
+import { calendarPath } from 'consts/URL'
 
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined'
-import Search from './Search'
 import Notifications from './Notifications'
+import Avatar from './Avatar'
+import Search from './Search'
 
 const Header: FC<{ full?: boolean }> = ({ full = true }) => {
 	const nickname = useAppSelector((state) => state.user.user?.nickname)
@@ -25,9 +29,9 @@ const Header: FC<{ full?: boolean }> = ({ full = true }) => {
 
 				<Notifications isNotifications={isNotifications} setIsNotifications={setIsNotifications} />
 				<div className='flex items-center gap-2'>
-					<button>
+					<Link to={calendarPath}>
 						<CalendarTodayOutlinedIcon />
-					</button>
+					</Link>
 					<p className='font-[600]'>{date}</p>
 				</div>
 				<Avatar popup={popup} setPopup={setPopup} />

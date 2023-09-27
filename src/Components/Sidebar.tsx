@@ -20,20 +20,21 @@ const icons = [
 ]
 const paths = ['/', profilePath, calendarPath]
 
+const BtnStyle = `p-3 my-4 flex justify-center items-center transition-all duration-75 hover:bg-primary hover:rounded-full active:bg-box`
 const Sidebar: React.FC = () => {
-	const BtnStyle = `p-3 my-4 flex justify-center items-center transition-all duration-75 hover:bg-primary hover:rounded-full active:bg-box`
-	const [open, setOpen] = React.useState(JSON.parse(localStorage.getItem('isOpen')) || false)
-	React.useEffect(() => {
-		localStorage.setItem('isOpen', JSON.stringify(open))
-	}, [open])
-	const dispatch = useAppDispatch()
 	const navigate = useNavigate()
 	const { pathname } = useLocation()
+	const dispatch = useAppDispatch()
+	const [open, setOpen] = React.useState<boolean>(JSON.parse(localStorage.getItem('sidebarIsOpen') || 'false'))
 	const [isActive, setIsActive] = React.useState<number>(() => {
 		if (pathname === profilePath) return 1
 		else if (pathname === calendarPath) return 2
 		else return 0
 	})
+
+	React.useEffect(() => {
+		localStorage.setItem('sidebarIsOpen', JSON.stringify(open))
+	}, [open])
 
 	const handlerLogout = () => {
 		if (window.confirm('Хотите выйти из аккаунта?')) {
@@ -43,14 +44,14 @@ const Sidebar: React.FC = () => {
 	}
 
 	return (
-		<aside className={`${open ? 'open' : ''} transition-all w-[90px] h-screen bg-secondary p-5 fixed`}>
+		<aside className={`${open ? 'open' : ''} transition-all w-[90px] flex flex-col h-screen bg-secondary p-5 fixed`}>
 			{icons.map((icon, i) => (
 				<Link
 					to={paths[i]}
-					title={paths[i]}
 					key={i}
-					onClick={() => setIsActive(i)}
 					className={`${isActive === i && 'bg-title rounded-full'} ${BtnStyle}`}
+					onClick={() => setIsActive(i)}
+					title={paths[i]}
 				>
 					{icon}
 				</Link>
