@@ -2,14 +2,13 @@ import { FC } from 'react'
 import TodoTask from './TodoTask'
 import { TypeTasks } from 'pages/MainPage'
 import FilterIcon from 'assets/FilterIcon.svg'
+
 import CreateTasks from './CreateTasks'
 
 type TypeTodoBox = {
 	title: string
 	tasks: TypeTasks[]
 }
-
-export type TypeProgress = 'start' | 'inProgress' | 'done'
 
 const TodoBox: FC<TypeTodoBox> = ({ title, tasks }) => {
 	const filterTaskByTitle = tasks.sort((a, b) => {
@@ -18,7 +17,7 @@ const TodoBox: FC<TypeTodoBox> = ({ title, tasks }) => {
 		return 0
 	})
 	return (
-		<section className='bg-box p-4 w-full max-w-[352px] rounded-md mb-8 overflow-y-auto max-h-[675px]'>
+		<section className='bg-box p-4 w-full max-w-[352px] rounded-md mb-2 overflow-y-auto max-h-[675px]'>
 			<div className='flex justify-between items-center pb-4'>
 				<h3 className='todo-text font-semibold'>
 					{title} ({tasks.length})
@@ -28,13 +27,11 @@ const TodoBox: FC<TypeTodoBox> = ({ title, tasks }) => {
 				</button>
 			</div>
 			{title === 'Todo' ? <CreateTasks /> : ''}
-			<ul className='flex gap-3 flex-col'>
-				{tasks.map(({ title, subTitle, progress }, i) => (
-					<li key={i}>
-						<TodoTask title={title} subTitle={subTitle} progress={progress} />
-					</li>
+			<section className='flex gap-3 flex-col'>
+				{tasks.map(({ title, subTitle, progress, _id }) => (
+					<TodoTask key={_id} title={title} subTitle={subTitle} progress={progress} />
 				))}
-			</ul>
+			</section>
 		</section>
 	)
 }

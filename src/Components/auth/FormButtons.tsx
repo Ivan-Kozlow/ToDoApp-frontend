@@ -1,18 +1,27 @@
 import React from 'react'
-import style from './FormRegister.module.scss'
+import { UseFormClearErrors } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
+import style from './FormRegister.module.scss'
 
-import { Button, Popover } from '@mui/material'
 import ArrowBackRoundedIcon from '@mui/icons-material/ArrowBackRounded'
-import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
+import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
+import { Button, Popover } from '@mui/material'
+import { authLoginPath, authRegisterPath } from 'consts/URL'
+import { IFormFields } from 'pages/AuthPage'
 
-const FormButtons: React.FC<{ buttonText: 'Зарегистрироваться' | 'Войти' }> = ({ buttonText }) => {
+interface IFormButtonsProps {
+	buttonText: 'Зарегистрироваться' | 'Войти'
+	isSubmitting: boolean
+	clearErrors: UseFormClearErrors<IFormFields>
+}
+
+const FormButtons: React.FC<IFormButtonsProps> = ({ buttonText, clearErrors, isSubmitting }) => {
 	const [open, setOpen] = React.useState(false)
 	const btnRef = React.useRef<HTMLButtonElement>(null)
 	const navigate = useNavigate()
 
-	const inverseButtonText = buttonText === 'Зарегистрироваться' ? 'Войти' : 'Зарегистрироваться'
+	const inverseBtnTextForSwitch = buttonText === 'Зарегистрироваться' ? 'Войти' : 'Зарегистрироваться'
 	const isSmallButton = buttonText.length <= 7
 	const btnStyle = {
 		padding: `${isSmallButton ? '7px 12px' : '8px 8px'}`,
@@ -31,13 +40,15 @@ const FormButtons: React.FC<{ buttonText: 'Зарегистрироваться'
 			</Button>
 
 			<div>
-				<Button title={buttonText} sx={btnStyle} type='submit'>
+				<Button disabled={isSubmitting} title={buttonText} sx={btnStyle} type='submit'>
 					{buttonText}
 				</Button>
+
+				{/* 👇 Popover 👇 */}
 				<button
 					ref={btnRef}
 					className='px-[4px] py-[7px] ml-2'
-					title={inverseButtonText}
+					title={inverseBtnTextForSwitch}
 					type='button'
 					onClick={() => setOpen(true)}
 				>
@@ -65,11 +76,12 @@ const FormButtons: React.FC<{ buttonText: 'Зарегистрироваться'
 						}}
 						variant='outlined'
 						onClick={() => {
+							clearErrors('nickname')
 							setOpen(false)
-							navigate(`${buttonText === 'Войти' ? '/auth/register' : '/auth/login'}`)
+							navigate(`${buttonText === 'Войти' ? authRegisterPath : authLoginPath}`)
 						}}
 					>
-						{inverseButtonText}
+						{inverseBtnTextForSwitch}
 					</Button>
 				</Popover>
 			</div>

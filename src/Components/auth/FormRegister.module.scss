@@ -11,9 +11,11 @@
 		display: flex;
 		flex-direction: column;
 		gap: 20px;
+		overflow: auto;
+		height: 100dvh;
+		padding: 10px 0 220px;
 
-		margin-top: 25px;
-		margin-bottom: 30px;
+		margin: 25px 0 30px;
 		min-width: 250px;
 
 		@media (min-width: 330px) {
