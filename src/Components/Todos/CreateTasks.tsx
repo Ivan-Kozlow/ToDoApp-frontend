@@ -25,50 +25,53 @@ const CreateTasks = () => {
 	return (
 		<>
 			{createTask ? (
-				<button onClick={() => setCreateTask(!createTask)} className='bg-box rounded-md w-full mb-3 max-w-[352px]'>
+				<button onClick={() => setCreateTask(!createTask)} className='bg-box rounded-md w-full mb-3 max-w-[320px]'>
 					<h2 className='text-[#FFFFFF80] flex justify-center items-center border-dashed border-[2px] rounded-md h-44'>
 						Create tasks
 					</h2>
 				</button>
 			) : (
-				<div className='bg-taskBox rounded-md p-5 mb-3'>
-					<div className='flex items-center gap-x-1 justify-between mb-1'>
-						<h2 className='font-bold text-base flex'>
+				<div className='bg-taskBox rounded-md w-full max-w-[320px] p-5 mb-3'>
+					<form action=''>
+						<div className='flex items-center gap-x-1 justify-between mb-1'>
+							<h2 className='font-bold flex'>
+								<input
+									placeholder='Title'
+									ref={ref}
+									className='text-[#fff] text-sm bg-title outline-none p-[3px] rounded-md rounded-r-none'
+									type='text'
+									value={value.title}
+									onChange={(e) => setValue({ ...value, title: e.target.value })}
+								/>
+								<button
+									onClick={() => clearInputValue(ref, value.title)}
+									className='bg-title rounded-md rounded-l-none'
+								>
+									<ClearOutlinedIcon />
+								</button>
+							</h2>
+							<button className='transition-all duration-100 hover:bg-title hover:rounded-full'>
+								<MoreHorizIcon />
+							</button>
+						</div>
+						<div className='font-bold flex my-3'>
 							<input
-								placeholder='Title'
-								ref={ref}
-								className='text-[#fff] bg-title outline-none p-[3px] rounded-md rounded-r-none'
+								placeholder='SubTitle'
+								ref={ref2}
+								className='text-[#FFFFFF90] text-sm bg-title outline-none p-[3px] rounded-md rounded-r-none'
 								type='text'
-								value={value.title}
-								onChange={(e) => setValue({ ...value, title: e.target.value })}
+								value={value.subTitle}
+								onChange={(e) => setValue({ ...value, subTitle: e.target.value })}
 							/>
 							<button
-								onClick={() => clearInputValue(ref, value.title)}
+								onClick={() => clearInputValue(ref2, value.subTitle)}
 								className='bg-title rounded-md rounded-l-none'
 							>
 								<ClearOutlinedIcon />
 							</button>
-						</h2>
-						<button className='transition-all duration-100 hover:bg-title hover:rounded-full'>
-							<MoreHorizIcon />
-						</button>
-					</div>
-					<div className='font-bold text-base flex my-3'>
-						<input
-							placeholder='SubTitle'
-							ref={ref2}
-							className='text-[#FFFFFF90] bg-title outline-none p-[3px] rounded-md rounded-r-none'
-							type='text'
-							value={value.subTitle}
-							onChange={(e) => setValue({ ...value, subTitle: e.target.value })}
-						/>
-						<button
-							onClick={() => clearInputValue(ref2, value.subTitle)}
-							className='bg-title rounded-md rounded-l-none'
-						>
-							<ClearOutlinedIcon />
-						</button>
-					</div>
+						</div>
+					</form>
+
 					<p className='mb-1 text-sm text-[#FFFFFF80]'>Progress</p>
 					<div className='mb-4 flex items-center justify-between'>
 						<img src={TaskIcon} alt='TaskIcon' />

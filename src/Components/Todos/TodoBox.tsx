@@ -9,7 +9,7 @@ type TypeTodoBox = {
 	tasks: TypeTasks[]
 }
 
-export type TypeProgress = 'start' | 'inProgress' | 'done'
+export type Typecompleted = 0 | 1 | 2
 
 const TodoBox: FC<TypeTodoBox> = ({ title, tasks }) => {
 	const filterTaskByTitle = tasks.sort((a, b) => {
@@ -29,9 +29,9 @@ const TodoBox: FC<TypeTodoBox> = ({ title, tasks }) => {
 			</div>
 			{title === 'Todo' ? <CreateTasks /> : ''}
 			<ul className='flex gap-3 flex-col'>
-				{tasks.map(({ title, subTitle, progress }, i) => (
+				{tasks.map(({ title, subTitle, completed }, i) => (
 					<li key={i}>
-						<TodoTask title={title} subTitle={subTitle} progress={progress} />
+						<TodoTask title={title} subTitle={subTitle} completed={completed} />
 					</li>
 				))}
 			</ul>

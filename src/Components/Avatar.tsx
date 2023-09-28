@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined'
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined'
@@ -6,7 +6,8 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 type ThemeType = 'dark' | 'light'
 
 const Avatar = ({ popup, setPopup }) => {
-	const [theme, setTheme] = useState<ThemeType>('dark')
+	const [theme, setTheme] = useState<ThemeType>(JSON.parse(localStorage.getItem('theme')) || 'dark')
+	useEffect(() => localStorage.setItem('theme', JSON.stringify(theme)), [theme])
 	return (
 		<button className='z-10'>
 			<div onClick={() => setPopup(!popup)} className='w-[36px] h-[36px] rounded-full bg-title relative'></div>

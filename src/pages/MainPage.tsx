@@ -2,41 +2,41 @@ import DnsOutlinedIcon from '@mui/icons-material/DnsOutlined'
 import Header from 'components/Header'
 import { Sidebar } from 'components/Sidebar'
 import CreateTasks from 'components/Todos/CreateTasks'
-import TodoBox, { TypeProgress } from 'components/Todos/TodoBox'
+import TodoBox, { Typecompleted } from 'components/Todos/TodoBox'
 
 export type TypeTasks = {
 	title: string
 	subTitle: string
-	progress: TypeProgress
+	completed: Typecompleted
 }
 
 const tasks: TypeTasks[] = [
-	{ title: 'sAdd product to the market', subTitle: 'Ui8 marketplace', progress: 'start' },
-	{ title: 'idd product to the market', subTitle: 'Ui8 marketplace', progress: 'start' },
-	{ title: 'zAdd product to the market', subTitle: 'Ui8 marketplace', progress: 'start' },
+	{ title: 'sAdd product to the market', subTitle: 'Ui8 marketplace', completed: 0 },
+	{ title: 'idd product to the market', subTitle: 'Ui8 marketplace', completed: 0 },
+	{ title: 'zAdd product to the market', subTitle: 'Ui8 marketplace', completed: 0 },
 	{
 		title: 'zhAdd product to the market',
 		subTitle: 'Ui8 m asdflj asdlfajsdlkfj al;sdkfj argjoasdn asdiasodvnaarketplace',
-		progress: 'start',
+		completed: 0,
 	},
 	{
 		title: 'pdd product to the mar jkjlkjl lkjlkjl asdfasdf asdf asd fas dfa ads fa dsf asdf ket',
 		subTitle: 'Ui8 marketplace',
-		progress: 'inProgress',
+		completed: 1,
 	},
-	{ title: 'bAdd product to the market', subTitle: 'Ui8 marketplace', progress: 'inProgress' },
-	{ title: ' product to the market', subTitle: 'Ui8 marketplace', progress: 'inProgress' },
-	{ title: 'zAdd product to the market', subTitle: 'Ui8 marketplace', progress: 'done' },
-	{ title: ' tAdd product to the market', subTitle: 'Ui8 marketplace', progress: 'done' },
-	{ title: 'mAdd product to the market', subTitle: 'Ui8 marketplace', progress: 'done' },
+	{ title: 'bAdd product to the market', subTitle: 'Ui8 marketplace', completed: 1 },
+	{ title: ' product to the market', subTitle: 'Ui8 marketplace', completed: 1 },
+	{ title: 'zAdd product to the market', subTitle: 'Ui8 marketplace', completed: 2 },
+	{ title: ' tAdd product to the market', subTitle: 'Ui8 marketplace', completed: 2 },
+	{ title: 'mAdd product to the market', subTitle: 'Ui8 marketplace', completed: 2 },
 ]
 
 const MainPage = () => {
-	const filterTasksByProgress = (progress: TypeProgress) => tasks.filter((task) => task.progress === progress)
+	const filterTasksBycompleted = (completed: Typecompleted) => tasks.filter((task) => task.completed === completed)
 	return (
 		<div className='flex text-[#fff]'>
 			<Sidebar />
-			<div className='w-full max-w-6xl mx-auto px-4'>
+			<div className='w-full max-w-6xl mx-auto px-4 pb-4'>
 				<Header />
 				<main>
 					<section className='border-view-border mb-5'>
@@ -48,26 +48,24 @@ const MainPage = () => {
 					<div className='flex gap-5'>
 						{tasks.length ? (
 							<>
-								{filterTasksByProgress('start').length ? (
-									<TodoBox title={'Todo'} tasks={filterTasksByProgress('start')} />
+								{filterTasksBycompleted(0).length ? (
+									<TodoBox title={'Todo'} tasks={filterTasksBycompleted(0)} />
 								) : (
 									''
 								)}
-								{filterTasksByProgress('inProgress').length ? (
-									<TodoBox title={'In Progress'} tasks={filterTasksByProgress('inProgress')} />
+								{filterTasksBycompleted(1).length ? (
+									<TodoBox title={'In completed'} tasks={filterTasksBycompleted(1)} />
 								) : (
 									''
 								)}
-								{filterTasksByProgress('done').length ? (
-									<TodoBox title={'Done'} tasks={filterTasksByProgress('done')} />
+								{filterTasksBycompleted(2).length ? (
+									<TodoBox title={'Done'} tasks={filterTasksBycompleted(2)} />
 								) : (
 									''
 								)}
 							</>
 						) : (
-							<section className='p-4'>
-								<CreateTasks />
-							</section>
+							<CreateTasks />
 						)}
 					</div>
 				</main>
