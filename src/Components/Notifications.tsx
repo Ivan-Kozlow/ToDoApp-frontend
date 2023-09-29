@@ -1,6 +1,11 @@
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined'
 
-const Notifications: React.FC = ({ isNotifications, setIsNotifications }) => {
+interface INotificationsProps {
+	isNotifications: boolean
+	setIsNotifications: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const Notifications: React.FC<INotificationsProps> = ({ isNotifications, setIsNotifications }) => {
 	return (
 		<div className='relative z-10'>
 			<button onClick={() => setIsNotifications(!isNotifications)} className='relative'>
