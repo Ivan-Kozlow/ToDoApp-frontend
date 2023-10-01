@@ -8,3 +8,7 @@ export type TypeForm = {
 	setCreateTask: Dispatch<SetStateAction<boolean>>
 	children: React.ReactNode
 }
+export interface IFormInput {
+	title: string
+	subTitle: string
+}
