@@ -5,7 +5,7 @@ import { TypeCompleted } from 'types/types'
 
 const TodoProgressBar: React.FC<{ completed: TypeCompleted }> = ({ completed }) => {
 	return (
-		<div className='mb-4 flex items-center justify-between'>
+		<div className='mb-4 flex gap-1 items-center justify-between'>
 			<img src={TaskIcon} alt='TaskIcon' />
 			<div
 				className={`h-1 ${

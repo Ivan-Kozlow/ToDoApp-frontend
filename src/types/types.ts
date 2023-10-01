@@ -10,5 +10,5 @@ export type TypeForm = {
 }
 export interface IFormInput {
 	title: string
-	subTitle: string
+	body: string
 }
