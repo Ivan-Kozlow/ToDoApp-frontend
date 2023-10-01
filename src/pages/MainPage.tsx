@@ -1,5 +1,5 @@
 import DnsOutlinedIcon from '@mui/icons-material/DnsOutlined'
-import Header from 'components/Header'
+import Header from 'components/Header/Header'
 import { Sidebar } from 'components/Sidebar'
 import CreateTasks from 'components/Todos/CreateTasks'
 import TodoBox from 'components/Todos/TodoBox'

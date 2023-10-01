@@ -11,10 +11,6 @@ body {
 	width: 100vw;
 	overflow: hidden;
 }
-.popup {
-	transform: translate(100%);
-	visibility: hidden;
-}
 .open {
 	transform: translate(-100%);
 	visibility: hidden;

@@ -3,9 +3,6 @@ import { FC } from 'react'
 import { Typecompleted } from 'types/types'
 import TodoProgressBar from './Form/TodoProgressBar'
 import MorePopover from 'components/MorePopover'
-import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
-import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
-import MultipleStopOutlinedIcon from '@mui/icons-material/MultipleStopOutlined'
 
 type TypeTodoTask = {
 	title: string
@@ -22,24 +19,9 @@ const TodoTask: FC<TypeTodoTask> = ({ title, subTitle, completed }) => {
 				<h2 className='font-bold text-base truncate' title={title}>
 					{title}
 				</h2>
-				<MorePopover>
-					<section className='p-1 flex gap-y-1 flex-col text-sm font-semibold bg-primary text-[#fff] w-[90px]'>
-						<button className='flex items-center justify-between gap-1 hover:bg-title transition-all duration-150 rounded-md p-1'>
-							<span>Delete</span>
-							<DeleteOutlineOutlinedIcon />
-						</button>
-						<button className='flex items-center justify-between gap-1 hover:bg-title transition-all duration-150 rounded-md p-1'>
-							<span>Edit</span>
-							<EditOutlinedIcon />
-						</button>
-						<button className='flex items-center justify-between gap-1 hover:bg-title transition-all duration-150 rounded-md p-1'>
-							<span>Move</span>
-							<MultipleStopOutlinedIcon />
-						</button>
-					</section>
-				</MorePopover>
+				<MorePopover/>
 			</div>
-			<p className='todo-text mb-4 max-w-[250px] truncate'>{subTitle}</p>
+			{subTitle && <p className='todo-text mb-4 max-w-[250px] truncate'>{subTitle}</p>}
 			<p className='mb-1 text-sm text-[#FFFFFF80]'>Progress</p>
 			<TodoProgressBar completed={completed} />
 			<div className='flex items-center justify-between'>
