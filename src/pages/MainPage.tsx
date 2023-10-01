@@ -1,69 +1,18 @@
+import { useAppSelector } from 'hooks/redux'
+import { TypeCompleted } from 'types/types'
+import { EnumTodoTitle } from 'consts/enums'
 import DnsOutlinedIcon from '@mui/icons-material/DnsOutlined'
 import Header from 'components/Header'
 import { Sidebar } from 'components/Sidebar'
 import CreateTasks from 'components/Todos/CreateTasks'
 import TodoBox from 'components/Todos/TodoBox'
-import { TypeTasks } from 'types/types'
 
-export enum EnumProgress {
-	done = 'done',
-	start = 'start',
-	inProgress = 'inProgress',
-}
-
-export enum EnumTodoTitle {
-	start = 'Todo',
-	inProgress = 'In Progress',
-	end = 'Done',
-}
-const tasks: TypeTasks[] = [
-	{
-		_id: '1',
-		title: 'Add product to the market',
-		subTitle: 'Ui8 marketplace',
-		completed: 0,
-		progress: EnumProgress.start,
-	},
-	{
-		_id: '2',
-		title: 'Add product to the market',
-		subTitle: 'Ui8 marketplace',
-		completed: 0,
-		progress: EnumProgress.start,
-	},
-	{
-		_id: '3',
-		title: 'Add product to the market',
-		subTitle: 'Ui8 marketplace',
-		completed: 2,
-		progress: EnumProgress.done,
-	},
-	{
-		_id: '4',
-		title: 'Add product to the market',
-		subTitle: 'Ui8 marketplace',
-		completed: 0,
-		progress: EnumProgress.start,
-	},
-	{
-		_id: '5',
-		title: 'Add product to the market',
-		subTitle: 'Ui8 m asdflj asdlfajsdlkfj al;sdkfj argjoasdn asdiasodvnaarketplace',
-		completed: 1,
-		progress: EnumProgress.inProgress,
-	},
-	{
-		_id: '6',
-		title: 'Add product to the mar jkjlkjl lkjlkjl asdfasdf asdf asd fas dfa ads fa dsf asdf ket',
-		subTitle: 'Ui8 marketplace',
-		completed: 1,
-		progress: EnumProgress.inProgress,
-	},
-]
-
-const MainPage = () => {
-	// const tasks = useAppSelector(s => s.todo.todos)
-	const filterTasksByProgress = (progress: EnumProgress) => tasks.filter((task) => task.progress === progress)
+const MainPage: React.FC = () => {
+	const tasks = useAppSelector((s) => s.todo.todos)
+	// TODO create array of tasks completed, which in redux
+	// and map this new array using filterTasksByProgress()
+	const filterTasksByProgress = (completed: TypeCompleted) =>
+		tasks?.length ? tasks?.filter((task) => task.completed === completed) : []
 
 	return (
 		<div className='flex text-[#fff]'>
@@ -78,29 +27,16 @@ const MainPage = () => {
 						</div>
 					</section>
 					<div className='flex gap-5'>
-						{tasks.length ? (
+						{tasks?.length ? (
 							<>
-								{filterTasksByProgress(EnumProgress.start).length ? (
-									<TodoBox title={EnumTodoTitle.start} tasks={filterTasksByProgress(EnumProgress.start)} />
-								) : (
-									''
-								)}
-								{filterTasksByProgress(EnumProgress.inProgress).length ? (
-									<TodoBox
-										title={EnumTodoTitle.inProgress}
-										tasks={filterTasksByProgress(EnumProgress.inProgress)}
-									/>
-								) : (
-									''
-								)}
-								{filterTasksByProgress(EnumProgress.done).length ? (
-									<TodoBox title={EnumTodoTitle.end} tasks={filterTasksByProgress(EnumProgress.done)} />
-								) : (
-									''
-								)}
+								<TodoBox title={EnumTodoTitle.start} tasks={filterTasksByProgress(0)} />
+								<TodoBox title={EnumTodoTitle.inProgress} tasks={filterTasksByProgress(1)} />
+								<TodoBox title={EnumTodoTitle.end} tasks={filterTasksByProgress(2)} />
 							</>
 						) : (
-							<CreateTasks />
+							<div className='flex flex-col w-[25%]'>
+								<span className='my-5'>У вас пока нет заметок</span> <CreateTasks />
+							</div>
 						)}
 					</div>
 				</main>

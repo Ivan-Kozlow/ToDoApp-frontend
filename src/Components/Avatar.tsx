@@ -12,8 +12,8 @@ interface IAvatarProps {
 }
 
 const Avatar: React.FC<IAvatarProps> = ({ popup, setPopup }) => {
-	const [theme, setTheme] = useState<ThemeType>(JSON.parse(localStorage.getItem('theme')) || 'dark')
-	useEffect(() => localStorage.setItem('theme', JSON.stringify(theme)), [theme])
+	const [theme, setTheme] = useState<ThemeType>((localStorage.getItem('theme') as 'light') || 'dark')
+	useEffect(() => localStorage.setItem('theme', theme), [theme])
 
 	return (
 		<div className='z-10'>

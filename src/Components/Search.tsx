@@ -1,7 +1,7 @@
 import { useRef, useState } from 'react'
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined'
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined'
-import { useAppSelector } from 'hooks/redux'
+// import { useAppSelector } from 'hooks/redux'
 
 const Search = () => {
 	// const tasks = useAppSelector((s) => s.todo.todos)

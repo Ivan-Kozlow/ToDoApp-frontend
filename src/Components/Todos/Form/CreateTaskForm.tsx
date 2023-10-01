@@ -4,10 +4,10 @@ import { TypeForm } from 'types/types'
 
 interface IFormInput {
 	title: string
-	subTitle: string
+	body: string
 }
 
-const CreateTaskForm = ({ createTask, setCreateTask, children }: TypeForm) => {
+const CreateTaskForm: React.FC<TypeForm> = ({ createTask, setCreateTask, children }) => {
 	const date = new Date().toLocaleString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })
 
 	const {
@@ -20,7 +20,7 @@ const CreateTaskForm = ({ createTask, setCreateTask, children }: TypeForm) => {
 	} = useForm<IFormInput>({
 		defaultValues: {
 			title: '',
-			subTitle: '',
+			body: '',
 		},
 	})
 

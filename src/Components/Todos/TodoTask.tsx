@@ -1,18 +1,15 @@
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import { FC } from 'react'
-import { Typecompleted } from 'types/types'
+import { ITodo } from 'Redux/slices/todo/typesTodo'
 import TodoProgressBar from './Form/TodoProgressBar'
 import MorePopover from 'components/MorePopover'
 import DeleteOutlineOutlinedIcon from '@mui/icons-material/DeleteOutlineOutlined'
 import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import MultipleStopOutlinedIcon from '@mui/icons-material/MultipleStopOutlined'
 
-type TypeTodoTask = {
-	title: string
-	subTitle: string
-	completed: Typecompleted
-}
-const TodoTask: FC<TypeTodoTask> = ({ title, subTitle, completed }) => {
+type TypeTodoTaskProps = Pick<ITodo, 'title' | 'body' | 'completed'>
+
+const TodoTask: FC<TypeTodoTaskProps> = ({ title, body, completed }) => {
 	const date = new Date().toLocaleString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })
 
 	return (
@@ -39,7 +36,7 @@ const TodoTask: FC<TypeTodoTask> = ({ title, subTitle, completed }) => {
 					</section>
 				</MorePopover>
 			</div>
-			<p className='todo-text mb-4 max-w-[250px] truncate'>{subTitle}</p>
+			<p className='todo-text mb-4 max-w-[250px] truncate'>{body}</p>
 			<p className='mb-1 text-sm text-[#FFFFFF80]'>Progress</p>
 			<TodoProgressBar completed={completed} />
 			<div className='flex items-center justify-between'>
