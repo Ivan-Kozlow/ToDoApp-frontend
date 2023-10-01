@@ -1,6 +1,7 @@
 import axios from '../../axios'
 import { authLoginPath, authMePath, authRegisterPath } from 'consts/URL'
 import { IUserQueryResult, TypeLoginBody, TypeRegisterBody, TypeUpdateUserData, TypeUserGetMeResult } from './types'
+import { LSKeys } from 'consts/localStorKey'
 
 // TODO add cookie instead localStorage
 const userService = {
@@ -14,7 +15,7 @@ const userService = {
 		return (await axios.post<IUserQueryResult>(authLoginPath, body)).data
 	},
 	async update(body: TypeUpdateUserData) {
-		const userId = localStorage.getItem('userId') || ''
+		const userId = localStorage.getItem(LSKeys.userId) || ''
 		let i: keyof TypeUpdateUserData
 		for (i in body) body[i] === '' && delete body[i] // <== delete empty values
 

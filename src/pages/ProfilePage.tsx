@@ -5,6 +5,7 @@ import { Navigate, useNavigate } from 'react-router-dom'
 // utils
 import { authLoginPath } from 'consts/URL'
 import { useAppSelector } from 'hooks/redux'
+import { LSKeys } from 'consts/localStorKey'
 
 import BrushOutlinedIcon from '@mui/icons-material/BrushOutlined'
 import { Container } from '@mui/material'
@@ -14,9 +15,8 @@ import { Sidebar } from 'components/Sidebar'
 import MutateEditUserContainer from 'components/Profile/MutateEditUserContainer'
 
 const ProfilePage: React.FC = () => {
-	if (!localStorage.getItem('token')) return <Navigate to={authLoginPath} />
 	const navigate = useNavigate()
-	const user = useAppSelector((state) => state.user.user)
+	const user = useAppSelector((state) => state.user.user) // FIXME change on reselect
 	const createdDate = (user && new Date(user.createdAt).toLocaleDateString()) || 'Нет информации'
 	const updateDate = (user && new Date(user.updatedAt).toLocaleDateString()) || 'Нет информации'
 
@@ -27,6 +27,7 @@ const ProfilePage: React.FC = () => {
 		return () => clearTimeout(t)
 	}, [user?._id])
 
+	if (!localStorage.getItem(LSKeys.token)) return <Navigate to={authLoginPath} />
 	if (!user) return <Loader />
 	return (
 		<div className='flex'>
