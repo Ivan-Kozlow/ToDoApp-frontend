@@ -2,7 +2,7 @@ import { SubmitHandler, useForm } from 'react-hook-form'
 import { IFormInput, TypeForm } from 'types/types'
 import FormInput from './FormInput'
 
-const CreateTaskForm = ({ createTask, setCreateTask, children }: TypeForm) => {
+const CreateTaskForm: React.FC<TypeForm> = ({ createTask, setCreateTask, children }) => {
 	const date = new Date().toLocaleString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })
 
 	const {
@@ -15,7 +15,7 @@ const CreateTaskForm = ({ createTask, setCreateTask, children }: TypeForm) => {
 	} = useForm<IFormInput>({
 		defaultValues: {
 			title: '',
-			subTitle: '',
+			body: '',
 		},
 	})
 

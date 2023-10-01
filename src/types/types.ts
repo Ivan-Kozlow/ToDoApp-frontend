@@ -1,14 +1,8 @@
-import { EnumProgress } from 'pages/MainPage'
+import { ITodo } from 'Redux/slices/todo/typesTodo'
 import { Dispatch, SetStateAction } from 'react'
 
-export type Typecompleted = 0 | 1 | 2
-export type TypeTasks = {
-	_id: string
-	title: string
-	subTitle: string
-	completed: Typecompleted
-	progress: EnumProgress
-}
+export type TypeCompleted = ITodo['completed']
+
 export type TypeForm = {
 	createTask: boolean
 	setCreateTask: Dispatch<SetStateAction<boolean>>

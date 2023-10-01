@@ -6,6 +6,7 @@ const initialState: IInitStateUser = {
 	user: null,
 }
 
+// FIXME add createSelector getNickname() -email() -user()
 export const userSlice = createSlice({
 	name: 'user',
 	initialState,

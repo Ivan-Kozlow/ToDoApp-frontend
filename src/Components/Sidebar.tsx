@@ -1,16 +1,17 @@
 import React from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 
+// utils
 import { authLoginPath, calendarPath, profilePath } from 'consts/URL'
 import { useAppDispatch } from 'hooks/redux'
 import { userActions } from 'Redux/slices/user/userSlice'
+import { LSKeys } from 'consts/localStorKey'
 
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined'
 import GridViewOutlinedIcon from '@mui/icons-material/GridViewOutlined'
 import LogoutOutlinedIcon from '@mui/icons-material/LogoutOutlined'
 import MoreVertOutlinedIcon from '@mui/icons-material/MoreVertOutlined'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined'
-
 import LoginIcon from '@mui/icons-material/Login'
 
 const icons = [
@@ -25,7 +26,7 @@ const Sidebar: React.FC = () => {
 	const navigate = useNavigate()
 	const { pathname } = useLocation()
 	const dispatch = useAppDispatch()
-	const [open, setOpen] = React.useState<boolean>(JSON.parse(localStorage.getItem('sidebarIsOpen') || 'false'))
+	const [open, setOpen] = React.useState<boolean>(JSON.parse(localStorage.getItem(LSKeys.sidebarIsOpen) || 'false'))
 	const [isActive, setIsActive] = React.useState<number>(() => {
 		if (pathname === profilePath) return 1
 		else if (pathname === calendarPath) return 2
@@ -33,7 +34,7 @@ const Sidebar: React.FC = () => {
 	})
 
 	React.useEffect(() => {
-		localStorage.setItem('sidebarIsOpen', JSON.stringify(open))
+		localStorage.setItem(LSKeys.sidebarIsOpen, JSON.stringify(open))
 	}, [open])
 
 	const handlerLogout = () => {
@@ -56,7 +57,7 @@ const Sidebar: React.FC = () => {
 					{icon}
 				</Link>
 			))}
-			{localStorage.getItem('token') ? (
+			{localStorage.getItem(LSKeys.token) ? (
 				<button className={BtnStyle + ' mt-auto'} onClick={handlerLogout} title='Logout' type='button'>
 					<LogoutOutlinedIcon sx={{ fontSize: 22, color: 'white' }} />
 				</button>

@@ -2,6 +2,7 @@ import style from 'components/auth/FormRegister.module.scss'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import AuthForm from 'components/auth/AuthForm'
 import { Navigate } from 'react-router-dom'
+import { LSKeys } from 'consts/localStorKey'
 
 export interface IFormFields {
 	nickname: string
@@ -10,7 +11,7 @@ export interface IFormFields {
 }
 
 const AuthPage: React.FC<{ isRegistration: boolean }> = ({ isRegistration }) => {
-	if (localStorage.getItem('token')) return <Navigate to={'/'} />
+	if (localStorage.getItem(LSKeys.token)) return <Navigate to={'/'} />
 
 	return (
 		<div className={style.page}>
