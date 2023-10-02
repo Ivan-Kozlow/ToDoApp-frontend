@@ -3,18 +3,18 @@ import { IInitStateTodo } from './typesTodo'
 
 const initialState: IInitStateTodo = {
 	todos: [
-		{ _id: '1', title: 'hello', body: 'hello body 1', completed: 1, createdAt: '', updatedAt: '' },
-		{ _id: '1', title: 'hello', body: 'hello body 2', completed: 1, createdAt: '', updatedAt: '' },
-		{ _id: '1', title: 'hello', body: 'hello body 3', completed: 2, createdAt: '', updatedAt: '' },
-		{ _id: '1', title: 'hello', body: 'hello body 4', completed: 2, createdAt: '', updatedAt: '' },
-		{ _id: '1', title: 'hello', body: 'hello body 5', completed: 2, createdAt: '', updatedAt: '' },
-		{ _id: '2', title: 'hello 2', body: 'hello body 2', completed: 0, createdAt: '', updatedAt: '' },
-		{ _id: '2', title: 'hello 2', body: 'hello body 3', completed: 0, createdAt: '', updatedAt: '' },
-		{ _id: '2', title: 'hello 2', body: 'hello body 4', completed: 0, createdAt: '', updatedAt: '' },
-		{ _id: '2', title: 'hello 2', body: 'hello body 5', completed: 0, createdAt: '', updatedAt: '' },
-		{ _id: '2', title: 'hello 2', body: 'hello body 6', completed: 0, createdAt: '', updatedAt: '' },
-		{ _id: '2', title: 'hello 2', body: 'hello body 7', completed: 0, createdAt: '', updatedAt: '' },
-		{ _id: '2', title: 'hello 2', body: 'hello body 8', completed: 0, createdAt: '', updatedAt: '' },
+		{ _id: '1', title: 'lorem', body: 'hello body 1', completed: 1, createdAt: '22.04.2023', updatedAt: '' },
+		{ _id: '2', title: 'ipsum', body: 'hello body 2', completed: 1, createdAt: '', updatedAt: '' },
+		{ _id: '3', title: 'dolor', body: 'hello body 3', completed: 2, createdAt: '', updatedAt: '' },
+		{ _id: '4', title: 'sit ', body: 'hello body 4', completed: 2, createdAt: '', updatedAt: '' },
+		{ _id: '5', title: ' amet ', body: 'hello body 5', completed: 2, createdAt: '', updatedAt: '' },
+		{ _id: '6', title: 'consectetur 2', body: 'hello body 2', completed: 0, createdAt: '', updatedAt: '' },
+		{ _id: '7', title: 'adipisicing ', body: 'hello body 3', completed: 0, createdAt: '', updatedAt: '' },
+		{ _id: '8', title: 'elit', body: 'hello body 4', completed: 0, createdAt: '', updatedAt: '' },
+		{ _id: '9', title: '2', body: 'hello body 5', completed: 0, createdAt: '', updatedAt: '' },
+		{ _id: '10', title: 'name2', body: 'hello body 6', completed: 0, createdAt: '', updatedAt: '' },
+		{ _id: '11', title: 'sope', body: 'hello body 7', completed: 0, createdAt: '', updatedAt: '' },
+		{ _id: '12', title: 'hello 2', body: 'hello body 8', completed: 0, createdAt: '', updatedAt: '' },
 	],
 }
 

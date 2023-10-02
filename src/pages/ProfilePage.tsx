@@ -9,7 +9,7 @@ import { LSKeys } from 'consts/localStorKey'
 
 import BrushOutlinedIcon from '@mui/icons-material/BrushOutlined'
 import { Container } from '@mui/material'
-import Header from 'components/Header'
+import Header from 'components/Header/Header'
 import Loader from 'components/Loader'
 import { Sidebar } from 'components/Sidebar'
 import MutateEditUserContainer from 'components/Profile/MutateEditUserContainer'

@@ -32,11 +32,10 @@ const CreateTaskForm: React.FC<TypeForm> = ({ createTask, setCreateTask, childre
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-2'>
-			<FormInput focusInput={focusInput} register={register} name={'title'} textColor='title' />
+			<FormInput focusInput={focusInput} require register={register} name={'title'} textColor='title' />
 			{errors.title && <p className='mb-1 text-[red]'>{errors.title.message}</p>}
 
-			<FormInput focusInput={focusInput} register={register} name={'subTitle'} textColor='[#FFFFFF90]' />
-			{errors.subTitle && <p className='mb-1 text-[red]'>{errors.subTitle.message}</p>}
+			<FormInput focusInput={focusInput} require={false} register={register} name={'body'} textColor='[#FFFFFF90]' />
 
 			{children}
 			<div className='flex justify-between gap-1 items-center'>

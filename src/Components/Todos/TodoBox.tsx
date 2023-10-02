@@ -29,8 +29,8 @@ const TodoBox: FC<TypeTodoBox> = ({ title, tasks }) => {
 			</div>
 			{title === EnumTodoTitle.start && <CreateTasks />}
 			<section className='flex gap-3 flex-col'>
-				{tasks.map(({ title, body, completed, _id }) => (
-					<TodoTask key={_id} title={title} body={body} completed={completed} />
+				{tasks.map((task) => (
+					<TodoTask key={task._id} {...task} />
 				))}
 			</section>
 		</section>
