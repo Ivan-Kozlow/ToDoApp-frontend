@@ -1,0 +1,15 @@
+.input {
+	@apply text-[#fff] bg-title outline-none p-2 rounded-md rounded-r-none w-full max-w-[200px];
+	position: absolute;
+	top: -2px;
+	right: -3px;
+	z-index: -1;
+	opacity: 0;
+	padding: 5px 8px;
+	transition: all 0.3s ease 0s;
+
+	&.visible {
+		position: static;
+		opacity: 100;
+	}
+}

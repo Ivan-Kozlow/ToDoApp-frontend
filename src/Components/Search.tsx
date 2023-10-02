@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined'
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined'
+import style from './Search.module.scss'
 // import { useAppSelector } from 'hooks/redux'
 
 const Search = () => {
@@ -21,7 +22,7 @@ const Search = () => {
 	}
 	return (
 		<div className='flex gap-2'>
-			<div className='flex gap-0'>
+			<div className='flex gap-0 relative'>
 				<input
 					ref={ref}
 					value={value}
@@ -30,9 +31,8 @@ const Search = () => {
 						// searchByTitle()
 					}}
 					type='text'
-					className={`opacity-0 invisible transition-all text-[#fff] bg-title outline-none p-2 rounded-md rounded-r-none w-full max-w-[200px] ${
-						search ? 'opacity-100 !visible' : ''
-					}`}
+					placeholder='Search is...'
+					className={`${style.input} ${search ? style.visible : ''}`}
 				/>
 				<button
 					onClick={() => clearSearchValue()}
@@ -43,7 +43,7 @@ const Search = () => {
 					<ClearOutlinedIcon />
 				</button>
 			</div>
-			<button onClick={inputSearch}>
+			<button onClick={inputSearch} title='Search'>
 				<SearchOutlinedIcon />
 			</button>
 		</div>
