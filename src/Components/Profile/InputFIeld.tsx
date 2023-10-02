@@ -14,25 +14,19 @@ export interface IInputBlockProps {
 }
 
 const InputField: React.FC<IInputBlockProps> = ({ label, value, type = 'text', name }) => {
-	const inputRef = React.useRef<HTMLInputElement | null>(null)
-	const { register } = useFormContext<IFormFields>()
-	const { ref, ...rest } = register(name, { ...validations.withoutRequiredField[name] })
+	const { register, setFocus } = useFormContext<IFormFields>()
 	const autoComplete = name === 'nickname' ? '' : `current-${name}`
 
 	return (
 		<div className={style.form__elem}>
 			<span>{label} - </span>
 			<input
-				{...rest}
-				ref={(e) => {
-					ref(e)
-					inputRef.current = e
-				}}
+				{...register(name, { ...validations.withoutRequiredField[name] })}
 				placeholder={value || 'Sorry, not info'}
 				type={type}
 				autoComplete={autoComplete}
 			/>
-			<button type='button' onClick={() => inputRef.current?.focus()}>
+			<button type='button' onClick={() => setFocus(name)}>
 				<img src={penInputEdit} width='20' height='20' alt='Edit logo' />
 			</button>
 		</div>
