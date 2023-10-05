@@ -17,7 +17,7 @@ const MainPage: React.FC = () => {
 	return (
 		<div className='flex text-[#fff]'>
 			<Sidebar />
-			<div className='w-full max-w-6xl mx-auto px-4 pb-4'>
+			<div className='w-full max-w-6xl mx-auto px-4'>
 				<Header />
 				<main className='overflow-auto h-[90vh]'>
 					<section className='border-view-border mb-5'>
@@ -26,7 +26,7 @@ const MainPage: React.FC = () => {
 							<span>Board view</span>
 						</div>
 					</section>
-					<div className='flex gap-5'>
+					<div className='flex gap-5 pb-4'>
 						{tasks?.length ? (
 							<>
 								<TodoBox title={EnumTodoTitle.start} tasks={filterTasksByProgress(0)} />
