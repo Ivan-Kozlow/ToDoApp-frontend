@@ -29,7 +29,7 @@ const Search = () => {
 						if (search) setValue(e.target.value)
 					}}
 					type='text'
-					placeholder='Search is...'
+					placeholder='Search to...'
 					className={`${style.input} ${search ? style.visible : ''}`}
 				/>
 				<button

@@ -19,8 +19,8 @@ type ThemeType = 'dark' | 'light'
 const Header: FC<{ full?: boolean }> = ({ full = true }) => {
 	const nickname = useAppSelector((state) => state.user.user?.nickname)
 	const date = new Date().toLocaleString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })
-	const [theme, setTheme] = useState<ThemeType>(JSON.parse(localStorage.getItem('theme')) || 'dark')
-	useEffect(() => localStorage.setItem('theme', JSON.stringify(theme)), [theme])
+	const [theme, setTheme] = useState<ThemeType>(() => (localStorage.getItem('theme') as ThemeType) || 'dark')
+	useEffect(() => localStorage.setItem('theme', theme), [theme])
 
 	const notifications = (
 		<div className='relative'>
