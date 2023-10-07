@@ -3,7 +3,8 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
 import MultipleStopOutlinedIcon from '@mui/icons-material/MultipleStopOutlined'
 import { Popover } from '@mui/material'
-import { deleteTask } from 'Redux/slices/todo/todoSlice'
+import { deleteTask, moveTodo } from 'Redux/slices/todo/todoSlice'
+import { EnumTodoTitle } from 'consts/enums'
 import { useAppDispatch } from 'hooks/redux'
 import { Dispatch, FC, SetStateAction, useState } from 'react'
 
@@ -60,6 +61,26 @@ const MorePopover: FC<TypeMorePopover> = ({ setCreateTask, createTask, _id }) =>
 						<span>Перем.</span>
 						<MultipleStopOutlinedIcon />
 					</button>
+					<div className='flex gap-2'>
+						<button
+							onClick={() => dispatch(moveTodo({ _id, completed: 0 }))}
+							className='p-1 hover:bg-title transition-all duration-150 rounded-md'
+						>
+							{EnumTodoTitle.start}
+						</button>
+						<button
+							onClick={() => dispatch(moveTodo({ _id, completed: 1 }))}
+							className='p-1 hover:bg-title transition-all duration-150 rounded-md'
+						>
+							{EnumTodoTitle.inProgress}
+						</button>
+						<button
+							onClick={() => dispatch(moveTodo({ _id, completed: 2 }))}
+							className='p-1 hover:bg-title transition-all duration-150 rounded-md'
+						>
+							{EnumTodoTitle.end}
+						</button>
+					</div>
 				</section>
 			</Popover>
 		</>

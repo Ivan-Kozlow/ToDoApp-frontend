@@ -41,7 +41,7 @@ const TodoTask: FC<TypeTodoTaskProps> = ({ title, body, completed, createdAt, _i
 						<TodoProgressBar completed={completed} />
 					</div>
 					<div className='flex items-center justify-between'>
-						<p className='todo-text px-4 py-2 font-semibold bg-[#FFFFFF0F] rounded-full'>{createdAt}</p>
+						<p className='todo-text px-4 py-2 bg-[#FFFFFF0F] rounded-full'>{createdAt}</p>
 						{completed === 2 ? (
 							<button onClick={() => dispatch(deleteTask({ _id }))} title='Удалить'>
 								<RemoveCircleOutlineOutlinedIcon />

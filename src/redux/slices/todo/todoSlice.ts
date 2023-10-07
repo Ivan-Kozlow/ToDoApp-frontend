@@ -1,5 +1,6 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 import { IInitStateTodo, ITodo } from './typesTodo'
+import { IFormInput } from 'types'
 
 const initialState: IInitStateTodo = {
 	todos: [
@@ -22,32 +23,36 @@ export const todoSlice = createSlice({
 	name: 'todo',
 	initialState,
 	reducers: {
-		addTask: (state, action: PayloadAction<ITodo>) => {
+		addTask: (state, action: PayloadAction<Omit<ITodo, 'updatedAt' | 'user'>>) => {
 			const todo = {
-				_id: (Math.random() * 100).toString(),
+				_id: action.payload._id,
 				title: action.payload.title,
 				body: action.payload.body,
-				completed: 0,
 				createdAt: action.payload.createdAt,
+				completed: action.payload.completed,
 			}
 			state.todos?.unshift(todo)
 		},
-		deleteTask: (state, action: PayloadAction<ITodo>) => {
+		deleteTask: (state, action: PayloadAction<Pick<ITodo, '_id'>>) => {
 			const newTodos = state.todos?.filter((todo) => todo._id !== action.payload._id)
 			if (newTodos) state.todos = newTodos
 		},
-		updateStatus: (state, action: PayloadAction<ITodo>) => {
+		updateStatus: (state, action: PayloadAction<Pick<ITodo, '_id'>>) => {
 			const todo = state.todos?.find((todo) => todo._id === action.payload._id)
 			if (todo && todo.completed < 2) todo.completed += 1
 		},
-		editTask: (state, action) => {
+		editTask: (state, action: PayloadAction<IFormInput>) => {
 			const todo = state.todos?.find((todo) => todo._id === action.payload._id)
 			if (todo) {
 				todo.title = action.payload.title
 				todo.body = action.payload.body
 			}
 		},
+		moveTodo: (state, action: PayloadAction<Pick<ITodo, '_id' | 'completed'>>) => {
+			const todo = state.todos?.find((todo) => todo._id === action.payload._id)
+			if (todo) todo.completed = action.payload.completed
+		},
 	},
 })
-export const { addTask, deleteTask, updateStatus, editTask } = todoSlice.actions
+export const { addTask, deleteTask, updateStatus, editTask, moveTodo } = todoSlice.actions
 export const { reducer: todoReducer, actions: todoActions } = todoSlice

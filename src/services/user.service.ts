@@ -14,6 +14,7 @@ const userService = {
 	async login(body: TypeLoginBody) {
 		return (await axios.post<IUserQueryResult>(authLoginPath, body)).data
 	},
+	// FIXME Add avatar logic
 	async update(body: TypeUpdateUserData) {
 		const userId = localStorage.getItem(LSKeys.userId) || ''
 		let i: keyof TypeUpdateUserData

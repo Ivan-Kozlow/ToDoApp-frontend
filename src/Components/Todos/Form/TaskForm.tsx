@@ -3,6 +3,7 @@ import { useAppDispatch } from 'hooks/redux'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { IFormInput, TypeForm } from 'types'
 import FormInput from './FormInput'
+import { useId } from 'react'
 
 const CreateTaskForm: React.FC<TypeForm> = ({ createTask, create, setCreateTask, children, _id, btnName }) => {
 	const date = new Date().toLocaleString('ru-RU', { day: 'numeric', month: 'numeric', year: 'numeric' })
@@ -20,8 +21,9 @@ const CreateTaskForm: React.FC<TypeForm> = ({ createTask, create, setCreateTask,
 			body: '',
 		},
 	})
+	const id = useId()
 
-	const focusInput = (name: string) => {
+	const focusInput = (name: keyof IFormInput) => {
 		resetField(name)
 		setFocus(name)
 	}
@@ -30,9 +32,11 @@ const CreateTaskForm: React.FC<TypeForm> = ({ createTask, create, setCreateTask,
 		dispatch(
 			create
 				? addTask({
+						_id: id,
 						title: data.title,
 						body: data.body,
-						createdAt: date.toString(),
+						createdAt: date,
+						completed: 0,
 				  })
 				: editTask({
 						_id,
@@ -67,7 +71,7 @@ const CreateTaskForm: React.FC<TypeForm> = ({ createTask, create, setCreateTask,
 
 			{children}
 			<div className='flex justify-between gap-1 mt-2 items-center'>
-				<p className='todo-text font-semibold px-4 py-2 bg-[#FFFFFF0F] rounded-full'>{date}</p>
+				<p className='todo-text px-4 py-2 bg-[#FFFFFF0F] rounded-full'>{date}</p>
 				<button type='submit' className={`p-2 bg-[#FFFFFF0F] rounded-md`}>
 					{btnName}
 				</button>

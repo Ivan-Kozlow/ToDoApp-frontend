@@ -12,6 +12,7 @@ export type TypeForm = {
 	btnName: string
 }
 export interface IFormInput {
+	_id?: string
 	title: string
 	body: string
 }

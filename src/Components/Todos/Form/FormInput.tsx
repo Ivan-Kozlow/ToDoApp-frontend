@@ -4,9 +4,9 @@ import { IFormInput } from 'types'
 
 type TypeFormInput = {
 	register: UseFormRegister<IFormInput>
-	focusInput: () => string
+	focusInput: (name: keyof IFormInput) => void
 	require: boolean
-	name: string
+	name: keyof IFormInput
 	textColor: string
 	placeholder: string
 }
@@ -15,7 +15,7 @@ const FormInput = ({ register, focusInput, require, name, textColor, placeholder
 		<div className='flex'>
 			<input
 				type='text'
-				{...register(name, require && { required: `Это поле обязательное!` })}
+				{...register(name, require ? { required: 'Это поле обязательное!' } : undefined)}
 				placeholder={placeholder}
 				className={`text-${textColor} font-semibold bg-title outline-none p-1 rounded-md rounded-r-none`}
 			/>
