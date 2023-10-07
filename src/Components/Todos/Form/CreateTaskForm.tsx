@@ -19,7 +19,7 @@ const CreateTaskForm: React.FC<TypeForm> = ({ createTask, setCreateTask, childre
 		},
 	})
 
-	const focusInput = (name: string) => {
+	const focusInput = (name: keyof IFormInput) => {
 		resetField(name)
 		setFocus(name)
 	}

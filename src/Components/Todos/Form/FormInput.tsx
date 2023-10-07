@@ -4,9 +4,9 @@ import { IFormInput } from 'types/types'
 
 type TypeFormInput = {
 	register: UseFormRegister<IFormInput>
-	focusInput: () => string
+	focusInput: (name: keyof IFormInput) => void
 	require: boolean
-	name: string
+	name: keyof IFormInput
 	textColor: string
 }
 const FormInput = ({ register, focusInput, require, name, textColor }: TypeFormInput) => {
@@ -16,9 +16,9 @@ const FormInput = ({ register, focusInput, require, name, textColor }: TypeFormI
 				type='text'
 				{...register(
 					name,
-					require ? { required: `${name[0].toUpperCase() + name.slice(1)} is require field!` } : ''
+					require ? { required: `${name[0].toUpperCase() + name.substring(1)} is require field!` } : undefined
 				)}
-				placeholder={name[0].toUpperCase() + name.slice(1)}
+				placeholder={name[0].toUpperCase() + name.substring(1)}
 				className={`text-${textColor} font-bold bg-title outline-none p-1 rounded-md rounded-r-none`}
 			/>
 			<button

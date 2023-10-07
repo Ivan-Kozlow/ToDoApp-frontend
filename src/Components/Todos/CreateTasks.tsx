@@ -4,6 +4,7 @@ import TodoProgressBar from './Form/TodoProgressBar'
 
 const CreateTasks = () => {
 	const [createTask, setCreateTask] = useState(true)
+
 	return (
 		<>
 			{createTask ? (
