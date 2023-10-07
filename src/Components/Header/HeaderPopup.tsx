@@ -11,7 +11,7 @@ const HeaderPopup: FC<Record<'children' | 'buttonClick', JSX.Element>> = ({ chil
 		<>
 			<button onClick={handleClick}>{buttonClick}</button>
 			<Popover
-				className='mt-2'
+				className='mt-3'
 				id={id}
 				open={open}
 				anchorEl={anchorEl}

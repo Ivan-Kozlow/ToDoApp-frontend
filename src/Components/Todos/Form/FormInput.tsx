@@ -1,6 +1,6 @@
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined'
 import { UseFormRegister } from 'react-hook-form'
-import { IFormInput } from 'types/types'
+import { IFormInput } from 'types'
 
 type TypeFormInput = {
 	register: UseFormRegister<IFormInput>
@@ -8,18 +8,16 @@ type TypeFormInput = {
 	require: boolean
 	name: string
 	textColor: string
+	placeholder: string
 }
-const FormInput = ({ register, focusInput, require, name, textColor }: TypeFormInput) => {
+const FormInput = ({ register, focusInput, require, name, textColor, placeholder }: TypeFormInput) => {
 	return (
 		<div className='flex'>
 			<input
 				type='text'
-				{...register(
-					name,
-					require ? { required: `${name[0].toUpperCase() + name.slice(1)} is require field!` } : ''
-				)}
-				placeholder={name[0].toUpperCase() + name.slice(1)}
-				className={`text-${textColor} font-bold bg-title outline-none p-1 rounded-md rounded-r-none`}
+				{...register(name, require && { required: `Это поле обязательное!` })}
+				placeholder={placeholder}
+				className={`text-${textColor} font-semibold bg-title outline-none p-1 rounded-md rounded-r-none`}
 			/>
 			<button
 				type='button'

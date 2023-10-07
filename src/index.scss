@@ -4,6 +4,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;500;600;700&display=swap');
 @import './styles/nullstyle.scss';
 
+:root {
+	--light-primary: #ffffff;
+	--light-titleText: #1c1d22;
+	--light-sutTitle: #1c1d2280;
+}
 body {
 	@apply bg-primary;
 	font-family: 'Exo 2', sans-serif;
@@ -11,18 +16,17 @@ body {
 	width: 100vw;
 	overflow: hidden;
 }
+.sidebar {
+	clip-path: polygon(0% 0%, 100% 25%, 100% 75%, 0% 100%);
+}
 .open {
 	transform: translate(-100%);
 	visibility: hidden;
-}
-.openBtn {
-	visibility: visible;
 }
 .border-view {
 	display: flex;
 	align-items: center;
 	column-gap: 8px;
-	padding-bottom: 18px;
 }
 .border-view-border {
 	border-bottom: 2px solid #ffffff1a;

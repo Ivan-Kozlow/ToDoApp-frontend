@@ -1,5 +1,5 @@
-import { createSlice } from '@reduxjs/toolkit'
-import { IInitStateTodo } from './typesTodo'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
+import { IInitStateTodo, ITodo } from './typesTodo'
 
 const initialState: IInitStateTodo = {
 	todos: [
@@ -21,6 +21,33 @@ const initialState: IInitStateTodo = {
 export const todoSlice = createSlice({
 	name: 'todo',
 	initialState,
-	reducers: {},
+	reducers: {
+		addTask: (state, action: PayloadAction<ITodo>) => {
+			const todo = {
+				_id: (Math.random() * 100).toString(),
+				title: action.payload.title,
+				body: action.payload.body,
+				completed: 0,
+				createdAt: action.payload.createdAt,
+			}
+			state.todos?.unshift(todo)
+		},
+		deleteTask: (state, action: PayloadAction<ITodo>) => {
+			const newTodos = state.todos?.filter((todo) => todo._id !== action.payload._id)
+			if (newTodos) state.todos = newTodos
+		},
+		updateStatus: (state, action: PayloadAction<ITodo>) => {
+			const todo = state.todos?.find((todo) => todo._id === action.payload._id)
+			if (todo && todo.completed < 2) todo.completed += 1
+		},
+		editTask: (state, action) => {
+			const todo = state.todos?.find((todo) => todo._id === action.payload._id)
+			if (todo) {
+				todo.title = action.payload.title
+				todo.body = action.payload.body
+			}
+		},
+	},
 })
+export const { addTask, deleteTask, updateStatus, editTask } = todoSlice.actions
 export const { reducer: todoReducer, actions: todoActions } = todoSlice

@@ -1,5 +1,5 @@
 export enum EnumTodoTitle {
-	start = 'Todo',
-	inProgress = 'In Progress',
-	end = 'Done',
+	start = 'Задачи',
+	inProgress = 'В процессе',
+	end = 'Выполнено',
 }

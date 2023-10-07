@@ -15,7 +15,7 @@ import ProfilePage from 'pages/ProfilePage'
 import Loader from 'components/Loader'
 import MySnackbar from 'components/MySnackbar'
 
-const ErrorPage = React.lazy(() => import('components/ErrorPage/ErrorPage'))
+const ErrorPage = React.lazy(() => import('pages/ErrorPage/ErrorPage'))
 const AuthPage = React.lazy(() => import('pages/AuthPage'))
 
 const App: React.FC = () => {

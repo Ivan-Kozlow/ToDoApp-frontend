@@ -21,7 +21,7 @@ const icons = [
 ]
 const paths = ['/', profilePath, calendarPath]
 
-const BtnStyle = `p-3 my-4 flex justify-center items-center transition-all duration-150 hover:bg-primary hover:rounded-full active:bg-box`
+const BtnStyle = `p-3 md:my-3 my-2 flex justify-center items-center transition-all duration-150 hover:bg-primary hover:rounded-full active:bg-box`
 const Sidebar: React.FC = () => {
 	const navigate = useNavigate()
 	const { pathname } = useLocation()
@@ -45,7 +45,9 @@ const Sidebar: React.FC = () => {
 	}
 
 	return (
-		<aside className={`${open ? 'open' : ''} transition-all w-[90px] flex flex-col h-screen bg-secondary p-5 fixed`}>
+		<aside
+			className={`${open ? 'open' : ''} z-10 transition-all w-[90px] flex flex-col h-screen bg-secondary p-5 fixed`}
+		>
 			{icons.map((icon, i) => (
 				<Link
 					to={paths[i]}
@@ -58,17 +60,17 @@ const Sidebar: React.FC = () => {
 				</Link>
 			))}
 			{localStorage.getItem(LSKeys.token) ? (
-				<button className={BtnStyle + ' mt-auto'} onClick={handlerLogout} title='Logout' type='button'>
-					<LogoutOutlinedIcon sx={{ fontSize: 22, color: 'white' }} />
+				<button className={BtnStyle + ' absolute bottom-5'} onClick={handlerLogout} title='Logout' type='button'>
+					<LogoutOutlinedIcon sx={{ fontSize: 22, color: '#FFFFFF80' }} />
 				</button>
 			) : (
-				<Link to={authLoginPath} className={BtnStyle + ' mt-auto'} title='Login'>
+				<Link to={authLoginPath} className={BtnStyle + ' absolute bottom-5'} title='Login'>
 					<LoginIcon sx={{ fontSize: 22, color: 'white' }} />
 				</Link>
 			)}
 			<button
 				onClick={() => setOpen(!open)}
-				className='absolute top-[50%] translate-y-[-50%] -right-6 openBtn bg-secondary rounded-md py-4'
+				className='absolute top-[50%] translate-y-[-50%] -right-6 visible sidebar bg-secondary rounded-md py-4 h-[100px]'
 			>
 				<MoreVertOutlinedIcon sx={{ fontSize: 30, color: 'white' }} />
 			</button>

@@ -11,19 +11,13 @@ type TypeTodoBox = {
 }
 
 const TodoBox: FC<TypeTodoBox> = ({ title, tasks }) => {
-	const filterTaskByTitle = tasks.sort((a, b) => {
-		if (a.title.trim().toLowerCase() < b.title.trim().toLowerCase()) return -1
-		if (a.title.trim().toLowerCase() > b.title.trim().toLowerCase()) return 1
-		return 0
-	})
-
 	return (
-		<section className='bg-box p-4 w-full max-w-[352px] rounded-md mb-2 overflow-y-auto max-h-[675px]'>
+		<section className='bg-box p-4 w-full max-w-[352px] rounded-md overflow-y-auto max-h-[675px]'>
 			<div className='flex justify-between items-center pb-4'>
 				<h3 className='todo-text font-semibold'>
 					{title} ({tasks.length})
 				</h3>
-				<button>
+				<button title='Сортировка'>
 					<img src={FilterIcon} alt='Filter' />
 				</button>
 			</div>

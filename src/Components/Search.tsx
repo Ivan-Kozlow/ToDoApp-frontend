@@ -30,12 +30,12 @@ const Search = () => {
 					}}
 					type='text'
 					placeholder='Search is...'
-					className={`${style.input} ${search ? style.visible : ''}`}
+					className={`${style.input} ${search && style.visible}`}
 				/>
 				<button
 					onClick={() => clearSearchValue()}
 					className={`bg-title rounded-md rounded-l-none opacity-0 transition-all invisible ${
-						search ? 'opacity-100 !visible' : ''
+						search && 'opacity-100 !visible'
 					}`}
 				>
 					<ClearOutlinedIcon />
@@ -44,32 +44,33 @@ const Search = () => {
 			<button onClick={inputSearch} title='Search'>
 				<SearchOutlinedIcon />
 			</button>
-			{value !== '' && (
-				<section className='bg-secondary absolute top-12 overflow-y-auto rounded-md p-2 max-h-[22vh] w-[200px] flex flex-col gap-y-2'>
-					{tasks
-						?.filter((task) => task.title.trim().toLowerCase().includes(value.trim().toLowerCase()))
-						.map(({ title, _id, createdAt, completed }) => (
-							<button
-								key={_id}
-								className='p-2 bg-primary hover:bg-title text-start transition-all duration-150 rounded-md text-[#fff]'
-							>
-								<p className='mb-[6px] truncate font-semibold'>{title}</p>
-								<span className='text-[#FFFFFF80] mb-1 text-sm block'>{createdAt}</span>
-								<div
-									className={`h-1 ${
-										completed === 0
-											? 'bg-title'
-											: completed === 1
-											? 'bg-progressCenter'
-											: completed === 2
-											? 'bg-progressFull'
-											: ''
-									} w-full max-w-[99px] rounded-full`}
-								></div>
-							</button>
-						))}
-				</section>
-			)}
+			{!search ||
+				(value !== '' && (
+					<section className='bg-box absolute top-12 overflow-y-auto rounded-md p-2 max-h-[22vh] w-[200px] flex flex-col gap-y-2'>
+						{tasks
+							?.filter((task) => task.title.trim().toLowerCase().includes(value.trim().toLowerCase()))
+							.map(({ title, _id, createdAt, completed }) => (
+								<button
+									key={_id}
+									className='p-2 bg-taskBox hover:bg-title text-start transition-all duration-150 rounded-md text-[#fff]'
+								>
+									<p className='mb-[6px] truncate font-semibold'>{title}</p>
+									<span className='text-[#FFFFFF80] mb-1 text-sm block'>{createdAt}</span>
+									<div
+										className={`h-1 ${
+											completed === 0
+												? 'bg-title'
+												: completed === 1
+												? 'bg-progressCenter'
+												: completed === 2
+												? 'bg-progressFull'
+												: ''
+										} w-full max-w-[99px] rounded-full`}
+									></div>
+								</button>
+							))}
+					</section>
+				))}
 		</div>
 	)
 }

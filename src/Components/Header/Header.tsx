@@ -32,13 +32,13 @@ const Header: FC<{ full?: boolean }> = ({ full = true }) => {
 	const avatar = <div className='w-[36px] h-[36px] rounded-full bg-title relative'></div>
 
 	return (
-		<header className='py-7 text-[#FFFFFF80] flex items-center flex-wrap gap-y-3'>
+		<header className='md:py-7 py-4 text-[#FFFFFF80] flex items-center flex-wrap gap-y-3'>
 			{full && <h1 className='text-[#fff] text-xl font-bold'>Welcome {nickname && ` back, ${nickname}`}</h1>}
 			<div className='flex gap-x-2 sm:gap-x-5 items-center ml-auto'>
 				{full && <Search />}
 
 				<HeaderPopup buttonClick={notifications}>
-					<p className='p-3 bg-taskBox text-[#fff]'>У вас нет уведомлений!</p>
+					<span className='p-3 block bg-taskBox text-[#fff]'>У вас нет уведомлений!</span>
 				</HeaderPopup>
 
 				<div className='flex items-center gap-2'>
