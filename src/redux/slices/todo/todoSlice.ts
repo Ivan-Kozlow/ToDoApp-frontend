@@ -24,12 +24,13 @@ export const todoSlice = createSlice({
 	initialState,
 	reducers: {
 		addTask: (state, action: PayloadAction<Omit<ITodo, 'updatedAt' | 'user'>>) => {
+			const { _id, title, body, createdAt, completed } = action.payload
 			const todo = {
-				_id: action.payload._id,
-				title: action.payload.title,
-				body: action.payload.body,
-				createdAt: action.payload.createdAt,
-				completed: action.payload.completed,
+				_id,
+				title,
+				body,
+				createdAt,
+				completed,
 			}
 			state.todos?.unshift(todo)
 		},

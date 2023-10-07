@@ -14,7 +14,22 @@ type TypeMorePopover = {
 	_id: string
 }
 
+const MoveTodo = [
+	{
+		title: EnumTodoTitle.start,
+		completed: 0,
+	},
+	{
+		title: EnumTodoTitle.inProgress,
+		completed: 1,
+	},
+	{
+		title: EnumTodoTitle.end,
+		completed: 2,
+	},
+]
 const MorePopover: FC<TypeMorePopover> = ({ setCreateTask, createTask, _id }) => {
+	const [moveTodoPopup, setMoveTodoPopup] = useState(false)
 	const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
 	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => setAnchorEl(event.currentTarget)
 	const handleClose = () => setAnchorEl(null)
@@ -45,42 +60,38 @@ const MorePopover: FC<TypeMorePopover> = ({ setCreateTask, createTask, _id }) =>
 				<section className='p-1 flex gap-y-1 flex-col text-sm font-semibold bg-primary text-[#fff] min-w-[100px]'>
 					<button
 						onClick={() => dispatch(deleteTask({ _id }))}
-						className='flex items-center justify-between gap-1 hover:bg-title transition-all duration-150 rounded-md p-1'
+						className='flex items-center justify-between gap-1 hover:bg-title transition-all duration-150 rounded-md p-1 px-2'
 					>
 						<span>Удалить</span>
 						<DeleteOutlineOutlinedIcon />
 					</button>
 					<button
 						onClick={() => setCreateTask(!createTask)}
-						className='flex items-center justify-between gap-1 hover:bg-title transition-all duration-150 rounded-md p-1'
+						className='flex items-center justify-between gap-1 hover:bg-title transition-all duration-150 rounded-md p-1 px-2'
 					>
 						<span>Ред.</span>
 						<EditOutlinedIcon />
 					</button>
-					<button className='flex items-center justify-between gap-1 hover:bg-title transition-all duration-150 rounded-md p-1'>
+					<button
+						onClick={() => setMoveTodoPopup(!moveTodoPopup)}
+						className='flex items-center justify-between gap-1 hover:bg-title transition-all duration-150 rounded-md p-1 px-2'
+					>
 						<span>Перем.</span>
 						<MultipleStopOutlinedIcon />
 					</button>
-					<div className='flex gap-2'>
-						<button
-							onClick={() => dispatch(moveTodo({ _id, completed: 0 }))}
-							className='p-1 hover:bg-title transition-all duration-150 rounded-md'
-						>
-							{EnumTodoTitle.start}
-						</button>
-						<button
-							onClick={() => dispatch(moveTodo({ _id, completed: 1 }))}
-							className='p-1 hover:bg-title transition-all duration-150 rounded-md'
-						>
-							{EnumTodoTitle.inProgress}
-						</button>
-						<button
-							onClick={() => dispatch(moveTodo({ _id, completed: 2 }))}
-							className='p-1 hover:bg-title transition-all duration-150 rounded-md'
-						>
-							{EnumTodoTitle.end}
-						</button>
-					</div>
+					{moveTodoPopup && (
+						<div className='flex gap-2 flex-col'>
+							{MoveTodo.map(({ title, completed }) => (
+								<button
+									key={completed}
+									onClick={() => dispatch(moveTodo({ _id, completed }))}
+									className='hover:bg-title text-start w-full transition-all duration-150 rounded-md p-1 px-2'
+								>
+									{title}
+								</button>
+							))}
+						</div>
+					)}
 				</section>
 			</Popover>
 		</>

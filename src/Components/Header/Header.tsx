@@ -1,16 +1,16 @@
 import { FC, useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 // utils
-import { calendarPath } from 'consts/URL'
+import { calendarPath, profilePath } from 'consts/URL'
 import { useAppSelector } from 'hooks/redux'
 
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined'
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined'
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined'
 import NotificationsOutlinedIcon from '@mui/icons-material/NotificationsOutlined'
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined'
-import { profilePath } from 'consts/URL'
 import HeaderPopup from './HeaderPopup'
 import Search from '../Search'
 
@@ -21,6 +21,7 @@ const Header: FC<{ full?: boolean }> = ({ full = true }) => {
 	const date = new Date().toLocaleString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' })
 	const [theme, setTheme] = useState<ThemeType>(() => (localStorage.getItem('theme') as ThemeType) || 'dark')
 	useEffect(() => localStorage.setItem('theme', theme), [theme])
+	const { pathname } = useLocation()
 
 	const notifications = (
 		<div className='relative'>
@@ -50,9 +51,16 @@ const Header: FC<{ full?: boolean }> = ({ full = true }) => {
 
 				<HeaderPopup buttonClick={avatar}>
 					<section className={`flex flex-col md:flex-ro gap-2 p-2 bg-taskBox text-[#fff]`}>
-						<Link to={profilePath}>
-							<PersonOutlineOutlinedIcon />
-						</Link>
+						{pathname === profilePath ? (
+							<Link to={'/'}>
+								<HomeOutlinedIcon />
+							</Link>
+						) : (
+							<Link to={profilePath}>
+								<PersonOutlineOutlinedIcon />
+							</Link>
+						)}
+
 						{theme === 'dark' ? (
 							<button onClick={() => setTheme('light')}>
 								<DarkModeOutlinedIcon />
