@@ -10,10 +10,10 @@ const FormEditUserButtons: React.FC = () => {
 	return (
 		<div className='self-center'>
 			<Button disabled={isSubmitting} type='submit' sx={{ width: 'min-content' }} color='inherit' size='large'>
-				CHANGE
+				Изменить
 			</Button>
 			<Button sx={{ width: 'min-content' }} color='inherit' size='large' onClick={() => reset()}>
-				RESET
+				Сбросить
 			</Button>
 		</div>
 	)

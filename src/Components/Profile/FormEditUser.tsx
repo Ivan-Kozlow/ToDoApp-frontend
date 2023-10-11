@@ -5,16 +5,17 @@ import { TypeAxiosErrorResponse } from 'utils/getErrorMessageOnResponse'
 
 import InputFieldsEditUser from './InputFieldsEditUser'
 import FormEditUserButtons from './FormEditUserButtons'
-import { IFormFields } from 'pages/AuthPage'
+import { IFormUserFields } from 'pages/AuthPage'
 
 interface IFormEditUserProps {
-	mutate: UseMutateFunction<{ message: string }, TypeAxiosErrorResponse, IFormFields>
+	mutate: UseMutateFunction<string, TypeAxiosErrorResponse, IFormUserFields>
 }
 
 const FormEditUser: React.FC<IFormEditUserProps> = ({ mutate }) => {
-	const formMethods = useForm<IFormFields>()
+	const formMethods = useForm<IFormUserFields>()
 	const { handleSubmit, reset } = formMethods
-	const onSubmit = (data: IFormFields) => {
+
+	const onSubmit = (data: IFormUserFields) => {
 		if (Object.values(data).every((el) => el === '')) {
 			alert('Заполните поля, перед отправкой на сервер')
 			return false
@@ -23,12 +24,12 @@ const FormEditUser: React.FC<IFormEditUserProps> = ({ mutate }) => {
 	}
 
 	return (
-		<FormProvider {...formMethods}>
-			<form className={style.form} onSubmit={handleSubmit(onSubmit)} noValidate>
+		<form className={style.form} onSubmit={handleSubmit(onSubmit)} noValidate>
+			<FormProvider {...formMethods}>
 				<InputFieldsEditUser />
 				<FormEditUserButtons />
-			</form>
-		</FormProvider>
+			</FormProvider>
+		</form>
 	)
 }
 

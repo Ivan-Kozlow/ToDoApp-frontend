@@ -8,9 +8,9 @@ export interface IUserQueryResult extends IUser {
 }
 
 export type TypeUserGetMeResult = Omit<IUserQueryResult, 'token'>
-export type TypeRegisterBody = Pick<IUser, 'email' | 'nickname'> & { password: string; avatar?: any }
+export type TypeRegisterBody = Pick<IUser, 'email' | 'nickname'> & { password: string; avatar?: string }
 export type TypeLoginBody = Pick<IUser, 'email'> & { password: string }
-export type TypeUpdateUserData = Partial<Pick<IUser, 'email' | 'nickname'> & { password: string; avatar: any }>
+export type TypeUpdateUserData = Partial<Pick<IUser, 'email' | 'nickname'> & { password: string; avatar: string }>
 
 // Todo ----------------------------
 

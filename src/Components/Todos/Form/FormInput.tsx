@@ -1,21 +1,33 @@
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined'
-import { UseFormRegister } from 'react-hook-form'
+import { validations } from 'consts/validationsForm'
+import { useFormContext } from 'react-hook-form'
 import { IFormInput } from 'types'
 
 type TypeFormInput = {
-	register: UseFormRegister<IFormInput>
-	focusInput: (name: keyof IFormInput) => void
-	require: boolean
+	require?: boolean
 	name: keyof IFormInput
 	textColor: string
 	placeholder: string
 }
-const FormInput = ({ register, focusInput, require, name, textColor, placeholder }: TypeFormInput) => {
+
+const FormInput: React.FC<TypeFormInput> = ({ require = false, name, textColor, placeholder }) => {
+	const {
+		register,
+		resetField,
+		setFocus,
+		formState: { errors: fieldError },
+	} = useFormContext<IFormInput>()
+
+	const focusInput = (name: keyof IFormInput) => {
+		resetField(name)
+		setFocus(name)
+	}
+
 	return (
-		<div className='flex'>
+		<div className='flex flex-wrap'>
 			<input
 				type='text'
-				{...register(name, require ? { required: 'Это поле обязательное!' } : undefined)}
+				{...register(name, require ? validations.withRequiredField.title : undefined)}
 				placeholder={placeholder}
 				className={`text-${textColor} font-semibold bg-title outline-none p-1 rounded-md rounded-r-none`}
 			/>
@@ -26,6 +38,7 @@ const FormInput = ({ register, focusInput, require, name, textColor, placeholder
 			>
 				<ClearOutlinedIcon />
 			</button>
+			{fieldError[name] && <p className='mb-1 text-[red]'>{fieldError[name]?.message}</p>}
 		</div>
 	)
 }

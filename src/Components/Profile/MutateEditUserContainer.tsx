@@ -1,26 +1,28 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import React from 'react'
+import { useDispatch } from 'react-redux'
 
 // utils
 import { keyUserGetMe, keyUserUpdate } from 'consts/queryKeys'
 import userService from 'services/user.service'
 import { TypeAxiosErrorResponse, getErrorMessageForResponse } from 'utils/getErrorMessageOnResponse'
+import { userActions } from 'Redux/slices/user/userSlice'
 
 import Loader from 'components/Loader'
 import MySnackbar from 'components/MySnackbar'
-import { IFormFields } from 'pages/AuthPage'
+import { IFormUserFields } from 'pages/AuthPage'
 import FormEditUser from './FormEditUser'
 
 const MutateEditUserContainer: React.FC = () => {
+	const dispatch = useDispatch()
 	const queryClient = useQueryClient()
-	const { mutate, error, isLoading, isSuccess } = useMutation<
-		{ message: string },
-		TypeAxiosErrorResponse,
-		IFormFields
-	>({
+	const { mutate, error, isLoading, isSuccess } = useMutation<string, TypeAxiosErrorResponse, IFormUserFields>({
 		mutationKey: [keyUserUpdate],
-		mutationFn: (data: IFormFields) => userService.update(data),
-		onSuccess: () => queryClient.invalidateQueries([keyUserGetMe]),
+		mutationFn: (data) => userService.update(data),
+		onSuccess: (avatar) => {
+			dispatch(userActions.updateAvatar(avatar))
+			queryClient.invalidateQueries([keyUserGetMe])
+		},
 	})
 
 	return (

@@ -6,6 +6,7 @@ export interface ITodo {
 	completed: 0 | 1 | 2
 	createdAt: string
 	updatedAt: string
+	__v?: number
 }
 
 export interface IInitStateTodo {

@@ -8,12 +8,12 @@ import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown'
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp'
 import { Button, Popover } from '@mui/material'
 import { authLoginPath, authRegisterPath } from 'consts/URL'
-import { IFormFields } from 'pages/AuthPage'
+import { IFormUserFields } from 'pages/AuthPage'
 
 interface IFormButtonsProps {
 	buttonText: 'Зарегистрироваться' | 'Войти'
 	isSubmitting: boolean
-	clearErrors: UseFormClearErrors<IFormFields>
+	clearErrors: UseFormClearErrors<IFormUserFields>
 }
 
 const FormButtons: React.FC<IFormButtonsProps> = ({ buttonText, clearErrors, isSubmitting }) => {
