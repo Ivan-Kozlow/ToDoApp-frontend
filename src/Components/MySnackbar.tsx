@@ -3,12 +3,17 @@ import { Alert, AlertColor, Slide, Snackbar, SnackbarOrigin } from '@mui/materia
 
 interface IMySnackbarProps {
 	message: string
-	position: SnackbarOrigin
 	type: AlertColor
-	slideDirection: 'left' | 'right' | 'up' | 'down'
+	position?: SnackbarOrigin
+	slideDirection?: 'left' | 'right' | 'up' | 'down'
 }
 
-const MySnackbar: React.FC<IMySnackbarProps> = ({ type, message, position, slideDirection }) => {
+const MySnackbar: React.FC<IMySnackbarProps> = ({
+	type,
+	message,
+	position = { vertical: 'bottom', horizontal: 'left' },
+	slideDirection = 'right',
+}) => {
 	const [state, setState] = React.useState(true)
 
 	return (
