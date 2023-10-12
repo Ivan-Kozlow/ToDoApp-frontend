@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import CreateTaskForm from './Form/TaskForm'
+import TaskForm from './Form/TaskForm'
 import TodoProgressBar from './Form/TodoProgressBar'
 
 const CreateTasks = () => {
@@ -15,10 +15,10 @@ const CreateTasks = () => {
 				</button>
 			) : (
 				<div className='bg-taskBox rounded-md w-full max-w-[320px] p-5 mb-3'>
-					<CreateTaskForm btnName='Создать' create createTask={createTask} setCreateTask={setCreateTask}>
-						<p className='text-sm text-[#FFFFFF80]'>Прогресс</p>
+					<TaskForm btnName='Создать' create createTask={createTask} setCreateTask={setCreateTask}>
+						<p className='text-sm text-[#FFFFFF80]'>Статус</p>
 						<TodoProgressBar completed={0} />
-					</CreateTaskForm>
+					</TaskForm>
 				</div>
 			)}
 		</>

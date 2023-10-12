@@ -12,7 +12,7 @@ const MainPage: React.FC = () => {
 	// TODO create array of tasks completed, which in redux
 	// and map this new array using filterTasksByProgress()
 	const filterTasksByProgress = (completed: TypeCompleted) =>
-		tasks?.length ? tasks?.filter((task) => task.completed === completed) : []
+		tasks?.length ? tasks.filter((task) => task.completed === completed) : []
 	return (
 		<div className='flex text-[#fff]'>
 			<Sidebar />

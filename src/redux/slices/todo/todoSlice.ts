@@ -24,14 +24,7 @@ export const todoSlice = createSlice({
 	initialState,
 	reducers: {
 		addTask: (state, action: PayloadAction<Omit<ITodo, 'updatedAt' | 'user'>>) => {
-			const { _id, title, body, createdAt, completed } = action.payload
-			const todo = {
-				_id,
-				title,
-				body,
-				createdAt,
-				completed,
-			}
+			const todo = { ...action.payload }
 			state.todos?.unshift(todo)
 		},
 		deleteTask: (state, action: PayloadAction<Pick<ITodo, '_id'>>) => {
@@ -53,7 +46,9 @@ export const todoSlice = createSlice({
 			const todo = state.todos?.find((todo) => todo._id === action.payload._id)
 			if (todo) todo.completed = action.payload.completed
 		},
+		sortTasks: (state) => {
+			state.todos?.sort((a, b) => a.title.localeCompare(b.title))
+		},
 	},
 })
-export const { addTask, deleteTask, updateStatus, editTask, moveTodo } = todoSlice.actions
 export const { reducer: todoReducer, actions: todoActions } = todoSlice

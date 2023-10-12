@@ -4,6 +4,8 @@ import { EnumTodoTitle } from 'consts/enums'
 import FilterIcon from 'assets/FilterIcon.svg'
 import CreateTasks from './CreateTasks'
 import TodoTask from './TodoTask'
+import { useAppDispatch } from 'hooks/redux'
+import { todoActions } from 'Redux/slices/todo/todoSlice'
 
 type TypeTodoBox = {
 	title: string
@@ -11,13 +13,15 @@ type TypeTodoBox = {
 }
 
 const TodoBox: FC<TypeTodoBox> = ({ title, tasks }) => {
+	const dispatch = useAppDispatch()
+
 	return (
 		<section className='bg-box p-4 w-full max-w-[352px] rounded-md overflow-y-auto max-h-[675px]'>
 			<div className='flex justify-between items-center pb-4'>
 				<h3 className='todo-text font-semibold'>
 					{title} ({tasks.length})
 				</h3>
-				<button title='Сортировка'>
+				<button onClick={() => dispatch(todoActions.sortTasks({ title }))} title='Сортировка'>
 					<img src={FilterIcon} alt='Filter' />
 				</button>
 			</div>

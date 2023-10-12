@@ -3,7 +3,7 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
 import MultipleStopOutlinedIcon from '@mui/icons-material/MultipleStopOutlined'
 import { Popover } from '@mui/material'
-import { deleteTask, moveTodo } from 'Redux/slices/todo/todoSlice'
+import { todoActions } from 'Redux/slices/todo/todoSlice'
 import { EnumTodoTitle } from 'consts/enums'
 import { useAppDispatch } from 'hooks/redux'
 import { Dispatch, FC, SetStateAction, useState } from 'react'
@@ -59,7 +59,7 @@ const MorePopover: FC<TypeMorePopover> = ({ setCreateTask, createTask, _id }) =>
 			>
 				<section className='p-1 flex gap-y-1 flex-col text-sm font-semibold bg-primary text-[#fff] min-w-[100px]'>
 					<button
-						onClick={() => dispatch(deleteTask({ _id }))}
+						onClick={() => dispatch(todoActions.deleteTask({ _id }))}
 						className='flex items-center justify-between gap-1 hover:bg-title transition-all duration-150 rounded-md p-1 px-2'
 					>
 						<span>Удалить</span>
@@ -84,7 +84,7 @@ const MorePopover: FC<TypeMorePopover> = ({ setCreateTask, createTask, _id }) =>
 							{MoveTodo.map(({ title, completed }) => (
 								<button
 									key={completed}
-									onClick={() => dispatch(moveTodo({ _id, completed }))}
+									onClick={() => dispatch(todoActions.moveTodo({ _id, completed }))}
 									className='hover:bg-title text-start w-full transition-all duration-150 rounded-md p-1 px-2'
 								>
 									{title}

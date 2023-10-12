@@ -1,11 +1,11 @@
-import { addTask, editTask } from 'Redux/slices/todo/todoSlice'
+import { todoActions } from 'Redux/slices/todo/todoSlice'
 import { useAppDispatch } from 'hooks/redux'
+import { useId } from 'react'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { IFormInput, TypeForm } from 'types'
 import FormInput from './FormInput'
-import { useId } from 'react'
 
-const CreateTaskForm: React.FC<TypeForm> = ({ createTask, create, setCreateTask, children, _id, btnName }) => {
+const TaskForm: React.FC<TypeForm> = ({ createTask, create, setCreateTask, children, _id, btnName }) => {
 	const date = new Date().toLocaleString('ru-RU', { day: 'numeric', month: 'numeric', year: 'numeric' })
 	const dispatch = useAppDispatch()
 	const {
@@ -31,14 +31,14 @@ const CreateTaskForm: React.FC<TypeForm> = ({ createTask, create, setCreateTask,
 	const onSubmit: SubmitHandler<IFormInput> = (data) => {
 		dispatch(
 			create
-				? addTask({
+				? todoActions.addTask({
 						_id: id,
 						title: data.title,
 						body: data.body,
 						createdAt: date,
 						completed: 0,
 				  })
-				: editTask({
+				: todoActions.editTask({
 						_id,
 						title: data.title,
 						body: data.body,
@@ -66,7 +66,7 @@ const CreateTaskForm: React.FC<TypeForm> = ({ createTask, create, setCreateTask,
 				register={register}
 				name={'body'}
 				textColor='[#FFFFFF90]'
-				placeholder='Примечание'
+				placeholder='Описание'
 			/>
 
 			{children}
@@ -80,4 +80,4 @@ const CreateTaskForm: React.FC<TypeForm> = ({ createTask, create, setCreateTask,
 	)
 }
 
-export default CreateTaskForm
+export default TaskForm
