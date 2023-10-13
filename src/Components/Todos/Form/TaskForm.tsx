@@ -6,6 +6,7 @@ import { keyTodoCreate } from 'consts/queryKeys'
 import { useAppDispatch } from 'hooks/redux'
 import todoService from 'services/todo.service'
 import { TypeCreateTodo } from 'services/types'
+import { getLocalDateNumbers } from 'utils/getLocalDate'
 import { IFormInput, TypeForm } from 'types'
 import { TypeAxiosErrorResponse, getErrorMessageForResponse } from 'utils/getErrorMessageOnResponse'
 import MySnackbar from 'components/MySnackbar'
@@ -15,7 +16,7 @@ const CreateTaskForm: React.FC<TypeForm> = ({ createTask, create, setCreateTask,
 	const dispatch = useAppDispatch()
 	const formMethods = useForm<IFormInput>({ defaultValues: { title: '', body: '' } })
 	const { handleSubmit, reset, watch } = formMethods
-	const { mutate, isError, error } = useMutation<ITodo, TypeAxiosErrorResponse, TypeCreateTodo>({
+	const { mutate, isError, error, isLoading } = useMutation<ITodo, TypeAxiosErrorResponse, TypeCreateTodo>({
 		mutationKey: [keyTodoCreate],
 		mutationFn: (data) => todoService.create(data),
 		onSuccess: (data) => {
@@ -26,11 +27,9 @@ const CreateTaskForm: React.FC<TypeForm> = ({ createTask, create, setCreateTask,
 	})
 
 	const fieldsIsEmpty = Object.values(watch()).every((el) => el === '')
-	//FIXME rerender on click on clear btn
-	//FIXME deleting token, when often click btn 'Сбросить'
 
 	const onSubmit: SubmitHandler<TypeCreateTodo> = (data) => mutate(data)
-	const date = new Date().toLocaleString('ru-RU', { day: 'numeric', month: 'numeric', year: 'numeric' })
+	const date = getLocalDateNumbers()
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-2'>
@@ -48,6 +47,7 @@ const CreateTaskForm: React.FC<TypeForm> = ({ createTask, create, setCreateTask,
 					type={fieldsIsEmpty ? 'button' : 'submit'}
 					className={`p-2 bg-[#FFFFFF0F] rounded-md`}
 					onClick={() => fieldsIsEmpty && setCreateTask((val) => !val)}
+					disabled={isLoading}
 				>
 					{fieldsIsEmpty ? 'Отменить' : btnName}
 				</button>

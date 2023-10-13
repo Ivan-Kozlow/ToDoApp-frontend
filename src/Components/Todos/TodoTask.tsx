@@ -1,7 +1,8 @@
 import { FC, useState } from 'react'
-import { todoActions } from 'Redux/slices/todo/todoSlice'
-import { ITodo } from 'Redux/slices/todo/typesTodo'
 import { useAppDispatch } from 'hooks/redux'
+import { getLocalDateNumbers } from 'utils/getLocalDate'
+import { ITodo } from 'Redux/slices/todo/typesTodo'
+import { todoActions } from 'Redux/slices/todo/todoSlice'
 
 import MoreTodoMenu from 'components/Todos/MorePopover'
 import TodoProgressBar from './Form/TodoProgressBar'
@@ -14,6 +15,8 @@ type TypeTodoTaskProps = Pick<ITodo, 'title' | 'body' | 'completed' | 'createdAt
 const TodoTask: FC<TypeTodoTaskProps> = ({ title, body, completed, createdAt, _id }) => {
 	const [createTask, setCreateTask] = useState(false)
 	const dispatch = useAppDispatch()
+
+	const date = getLocalDateNumbers(createdAt)
 
 	return (
 		<article className='bg-taskBox rounded-md p-5'>
@@ -42,7 +45,7 @@ const TodoTask: FC<TypeTodoTaskProps> = ({ title, body, completed, createdAt, _i
 						<TodoProgressBar completed={completed} />
 					</div>
 					<div className='flex items-center justify-between'>
-						<p className='todo-text px-4 py-2 bg-[#FFFFFF0F] rounded-full'>{createdAt}</p>
+						<p className='todo-text px-4 py-2 bg-[#FFFFFF0F] rounded-full'>{date}</p>
 						{completed === 2 ? (
 							<button onClick={() => dispatch(todoActions.deleteTask(_id))} title='Удалить'>
 								<RemoveCircleOutlineOutlinedIcon />

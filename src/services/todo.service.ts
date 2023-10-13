@@ -8,7 +8,7 @@ const todoService = {
 		return (await axios.get<ITodo>(`/todo/${todoId}`)).data
 	},
 	async getAll(userId: IUser['_id']) {
-		return (await axios.get<ITodo[]>(`/todo/${userId}`)).data
+		return (await axios.get<ITodo[]>(`/${userId}`)).data
 	},
 	async create(body: TypeCreateTodo) {
 		return (await axios.post<ITodo>(`/todo/create`, body)).data

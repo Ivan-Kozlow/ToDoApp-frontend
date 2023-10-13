@@ -4,5 +4,6 @@ export const keyUserUpdate = 'user update'
 
 export const keyTodoCreate = 'todo create'
 export const keyTodoGetOne = 'todo getOne'
+export const keyTodoGetAll = 'todo getAll'
 export const keyTodoUpdate = 'todo update'
 export const keyTodoRemove = 'todo remove'

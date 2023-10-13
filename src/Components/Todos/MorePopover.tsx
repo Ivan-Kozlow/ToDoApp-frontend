@@ -57,7 +57,7 @@ const MorePopover: FC<TypeMorePopover> = ({ setCreateTask, createTask, _id }) =>
 
 	const btnStyle =
 		'flex items-center justify-between gap-1 hover:bg-title transition-all duration-150 rounded-md p-1 px-2'
-	// TODO jumping snackbar on rerender component
+	// FIXME jumping snackbar on rerender component
 	return (
 		<>
 			{isError && (
