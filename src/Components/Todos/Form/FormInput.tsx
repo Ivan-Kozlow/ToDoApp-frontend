@@ -26,7 +26,6 @@ const FormInput: React.FC<TypeFormInput> = ({ require = false, name, textColor, 
 	return (
 		<div className='flex flex-wrap'>
 			<input
-				type='text'
 				{...register(name, require ? validations.withRequiredField.title : undefined)}
 				placeholder={placeholder}
 				className={`text-${textColor} font-semibold bg-title outline-none p-1 rounded-md rounded-r-none`}

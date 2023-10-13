@@ -5,15 +5,14 @@ import { Route, Routes } from 'react-router-dom'
 // utils
 import { userActions } from 'Redux/slices/user/userSlice'
 import { authLoginPath, authRegisterPath, calendarPath, profilePath } from 'consts/URL'
+import { keyUserGetMe } from 'consts/queryKeys'
 import { useAppDispatch } from './hooks/redux'
 import userService from './services/user.service'
-import { keyUserGetMe } from 'consts/queryKeys'
-import { LSKeys } from 'consts/localStorKey'
 
-import MainPage from 'pages/MainPage'
-import ProfilePage from 'pages/ProfilePage'
 import Loader from 'components/Loader'
 import MySnackbar from 'components/MySnackbar'
+import MainPage from 'pages/MainPage'
+import ProfilePage from 'pages/ProfilePage'
 
 const ErrorPage = React.lazy(() => import('pages/ErrorPage/ErrorPage'))
 const AuthPage = React.lazy(() => import('pages/AuthPage'))
@@ -26,8 +25,7 @@ const App: React.FC = () => {
 	})
 
 	React.useEffect(() => {
-		const token = localStorage.getItem(LSKeys.token) || ''
-		data && dispatch(userActions.saveUser({ ...data, token }))
+		data && dispatch(userActions.saveUser(data))
 	}, [data])
 
 	return (

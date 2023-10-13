@@ -13,8 +13,8 @@ import FormInput from './FormInput'
 
 const CreateTaskForm: React.FC<TypeForm> = ({ createTask, create, setCreateTask, children, btnName }) => {
 	const dispatch = useAppDispatch()
-	const formMethods = useForm<IFormInput>()
-	const { handleSubmit, reset } = formMethods
+	const formMethods = useForm<IFormInput>({ defaultValues: { title: '', body: '' } })
+	const { handleSubmit, reset, watch } = formMethods
 	const { mutate, isError, error } = useMutation<ITodo, TypeAxiosErrorResponse, TypeCreateTodo>({
 		mutationKey: [keyTodoCreate],
 		mutationFn: (data) => todoService.create(data),
@@ -25,6 +25,7 @@ const CreateTaskForm: React.FC<TypeForm> = ({ createTask, create, setCreateTask,
 		},
 	})
 
+	const fieldsIsEmpty = Object.values(watch()).every((el) => el === '')
 	//FIXME rerender on click on clear btn
 	//FIXME deleting token, when often click btn 'Сбросить'
 
@@ -43,8 +44,12 @@ const CreateTaskForm: React.FC<TypeForm> = ({ createTask, create, setCreateTask,
 			{children}
 			<div className='flex justify-between gap-1 mt-2 items-center'>
 				<p className='todo-text px-4 py-2 bg-[#FFFFFF0F] rounded-full'>{date}</p>
-				<button type='submit' className={`p-2 bg-[#FFFFFF0F] rounded-md`}>
-					{btnName}
+				<button
+					type={fieldsIsEmpty ? 'button' : 'submit'}
+					className={`p-2 bg-[#FFFFFF0F] rounded-md`}
+					onClick={() => fieldsIsEmpty && setCreateTask((val) => !val)}
+				>
+					{fieldsIsEmpty ? 'Отменить' : btnName}
 				</button>
 			</div>
 		</form>

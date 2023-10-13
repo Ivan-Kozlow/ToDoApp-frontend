@@ -33,7 +33,7 @@ const AuthForm: React.FC<{ isRegistration: boolean }> = ({ isRegistration }) => 
 
 	const { mutate, error } = useMutation<IUserQueryResult, TypeAxiosErrorResponse, IFormUserFields>({
 		mutationKey: [keyUserAuth],
-		mutationFn: (data: IFormUserFields) => (isRegistration ? userService.register(data) : userService.login(data)),
+		mutationFn: (data) => (isRegistration ? userService.register(data) : userService.login(data)),
 		onSuccess: (data) => {
 			dispatch(userActions.saveUser(data))
 			navigate('/')

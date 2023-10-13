@@ -5,6 +5,7 @@ export interface IUser {
 	email: string
 	createdAt: string
 	updatedAt: string
+	__v?: number
 }
 
 export interface IInitStateUser {

@@ -1,13 +1,14 @@
 import axios from '../../axios'
 import { authLoginPath, authMePath, authRegisterPath } from 'consts/URL'
-import { IUserQueryResult, TypeLoginBody, TypeRegisterBody, TypeUpdateUserData, TypeUserGetMeResult } from './types'
+import { IUserQueryResult, TypeLoginBody, TypeRegisterBody, TypeUpdateUserData } from './types'
 import { LSKeys } from 'consts/localStorKey'
 import { IFormUserFields } from 'pages/AuthPage'
+import { IUser } from 'Redux/slices/user/typesUser'
 
 // TODO add cookie instead localStorage
 const userService = {
 	async getMe() {
-		return (await axios.get<TypeUserGetMeResult>(authMePath)).data
+		return (await axios.get<IUser>(authMePath)).data
 	},
 	async register(body: TypeRegisterBody) {
 		return (await axios.post<IUserQueryResult>(authRegisterPath, body)).data
