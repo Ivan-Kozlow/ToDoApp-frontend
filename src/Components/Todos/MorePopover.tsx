@@ -71,6 +71,7 @@ const MorePopover: FC<TypeMorePopover> = ({ setCreateTask, createTask, _id }) =>
 			<button
 				onClick={handleClick}
 				title='more'
+				aria-label='Button to open more features for todo item'
 				className='transition-all duration-150 hover:bg-title hover:rounded-full'
 			>
 				<MoreHorizIcon />
@@ -89,6 +90,7 @@ const MorePopover: FC<TypeMorePopover> = ({ setCreateTask, createTask, _id }) =>
 					<button
 						onClick={() => mutate()}
 						disabled={btnIsDisable}
+						aria-disabled={btnIsDisable}
 						className={`${btnStyle} disabled:bg-primary disabled:text-secondary`}
 					>
 						<span>Удалить</span>

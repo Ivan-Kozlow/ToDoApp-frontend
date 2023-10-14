@@ -48,6 +48,7 @@ const CreateTaskForm: React.FC<TypeForm> = ({ createTask, create, setCreateTask,
 					className={`p-2 bg-[#FFFFFF0F] rounded-md`}
 					onClick={() => fieldsIsEmpty && setCreateTask((val) => !val)}
 					disabled={isLoading}
+					aria-disabled={isLoading}
 				>
 					{fieldsIsEmpty ? 'Отменить' : btnName}
 				</button>
