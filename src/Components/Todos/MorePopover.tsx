@@ -62,7 +62,7 @@ const MorePopover: FC<TypeMorePopover> = ({ setCreateTask, createTask, _id }) =>
 		<>
 			{isError && (
 				<MySnackbar
-					message={'Не удалось заметку'}
+					message={'Не удалось удалить заметку'}
 					position={{ horizontal: 'right', vertical: 'bottom' }}
 					type={'error'}
 					slideDirection={'left'}

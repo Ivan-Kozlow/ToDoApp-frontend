@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
@@ -6,7 +6,7 @@ import style from './FormRegister.module.scss'
 
 // utils
 import { userActions } from 'Redux/slices/user/userSlice'
-import { keyUserAuth } from 'consts/queryKeys'
+import { keyUserAuth, keyUserGetMe } from 'consts/queryKeys'
 import { validations } from 'consts/validationsForm'
 import { useAppDispatch } from 'hooks/redux'
 import { IUserQueryResult } from 'services/types'
@@ -31,12 +31,14 @@ const AuthForm: React.FC<{ isRegistration: boolean }> = ({ isRegistration }) => 
 		formState: { isSubmitting, errors: fieldError },
 	} = useForm<IFormUserFields>()
 
+	const queryClient = useQueryClient()
 	const { mutate, error } = useMutation<IUserQueryResult, TypeAxiosErrorResponse, IFormUserFields>({
 		mutationKey: [keyUserAuth],
 		mutationFn: (data) => (isRegistration ? userService.register(data) : userService.login(data)),
 		onSuccess: (data) => {
 			dispatch(userActions.saveUser(data))
 			navigate('/')
+			queryClient.invalidateQueries([keyUserGetMe])
 		},
 	})
 

@@ -21,11 +21,15 @@ const AuthPage = React.lazy(() => import('pages/AuthPage'))
 
 const App: React.FC = () => {
 	const dispatch = useAppDispatch()
-	const { data: userData, isError } = useQuery({
+	const {
+		data: userData,
+		isError,
+		isLoading,
+	} = useQuery({
 		queryKey: [keyUserGetMe],
 		queryFn: () => userService.getMe(),
 	})
-	const { data: todoData, isLoading } = useQuery({
+	const { data: todoData, isFetching } = useQuery({
 		queryKey: [keyTodoGetAll, userData?._id],
 		queryFn: () => todoService.getAll(userData?._id || ''),
 		enabled: !!userData?._id,
@@ -40,14 +44,14 @@ const App: React.FC = () => {
 		<Suspense fallback={<Loader />}>
 			{isError && (
 				<MySnackbar
-					message={'You are not authorized'}
+					message={'Ошибка авторизации'}
 					position={{ horizontal: 'right', vertical: 'bottom' }}
 					type={'warning'}
 					slideDirection={'left'}
 				/>
 			)}
 			<Routes>
-				<Route path='/' element={<MainPage isLoading={isLoading} />}></Route>
+				<Route path='/' element={<MainPage authChecking={isLoading} isFetchingTodo={isFetching} />}></Route>
 				<Route path={profilePath} element={<ProfilePage />}></Route>
 				<Route path={authLoginPath} element={<AuthPage isRegistration={false} />}></Route>
 				<Route path={authRegisterPath} element={<AuthPage isRegistration={true} />}></Route>

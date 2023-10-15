@@ -1,10 +1,17 @@
+import React from 'react'
 import DnsOutlinedIcon from '@mui/icons-material/DnsOutlined'
 import Header from 'components/Header/Header'
 import { Sidebar } from 'components/Sidebar'
 import Loader from 'components/Loader'
 import TodosCategories from 'components/Todos/TodosCategories'
 
-const MainPage: React.FC<{ isLoading: boolean }> = ({ isLoading }) => {
+interface IMainPageProps {
+	authChecking: boolean
+	isFetchingTodo: boolean
+}
+
+const MainPage: React.FC<IMainPageProps> = React.memo(({ authChecking, isFetchingTodo }) => {
+	const isLoading = authChecking || isFetchingTodo
 	return (
 		<div className='flex text-[#fff]'>
 			<Sidebar />
@@ -17,11 +24,11 @@ const MainPage: React.FC<{ isLoading: boolean }> = ({ isLoading }) => {
 							<span>Board view</span>
 						</div>
 					</section>
-					<div className='flex gap-5 mb-4 pb-4'>{!isLoading ? <TodosCategories /> : <Loader />}</div>
+					<div className='flex gap-5 mb-4 pb-4'>{isLoading ? <Loader /> : <TodosCategories />}</div>
 				</main>
 			</div>
 		</div>
 	)
-}
+})
 
 export default MainPage

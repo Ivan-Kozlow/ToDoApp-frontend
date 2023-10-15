@@ -33,7 +33,7 @@ const MutateEditUserContainer: React.FC = () => {
 					slideDirection='right'
 					type={isSuccess ? 'success' : 'error'}
 					position={{ vertical: 'bottom', horizontal: 'left' }}
-					message={getErrorMessageForResponse(error) || 'Success update'}
+					message={getErrorMessageForResponse(error) || 'Данные обновились успешно'}
 				/>
 			)}
 
