@@ -4,7 +4,7 @@ import { useFormContext } from 'react-hook-form'
 
 import penInputEdit from 'assets/penInputEdit.svg'
 import { validations } from 'consts/validationsForm'
-import { IFormFields } from 'pages/AuthPage'
+import { IFormUserFields } from 'pages/AuthPage'
 
 export interface IInputBlockProps {
 	label: string
@@ -14,7 +14,7 @@ export interface IInputBlockProps {
 }
 
 const InputField: React.FC<IInputBlockProps> = ({ label, value, type = 'text', name }) => {
-	const { register, setFocus } = useFormContext<IFormFields>()
+	const { register, setFocus } = useFormContext<IFormUserFields>()
 	const autoComplete = name === 'nickname' ? '' : `current-${name}`
 
 	return (

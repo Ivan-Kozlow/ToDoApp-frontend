@@ -15,9 +15,9 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import LoginIcon from '@mui/icons-material/Login'
 
 const icons = [
-	<GridViewOutlinedIcon sx={{ fontSize: 22, color: 'white' }} />,
-	<PersonOutlineOutlinedIcon sx={{ fontSize: 22, color: 'white' }} />,
-	<CalendarTodayOutlinedIcon sx={{ fontSize: 22, color: 'white' }} />,
+	{ icon: <GridViewOutlinedIcon sx={{ fontSize: 22, color: 'white' }} />, title: 'Главная' },
+	{ icon: <PersonOutlineOutlinedIcon sx={{ fontSize: 22, color: 'white' }} />, title: 'Профиль' },
+	{ icon: <CalendarTodayOutlinedIcon sx={{ fontSize: 22, color: 'white' }} />, title: 'Календарь' },
 ]
 const paths = ['/', profilePath, calendarPath]
 
@@ -48,29 +48,30 @@ const Sidebar: React.FC = () => {
 		<aside
 			className={`${open ? 'open' : ''} z-10 transition-all w-[90px] flex flex-col h-screen bg-secondary p-5 fixed`}
 		>
-			{icons.map((icon, i) => (
+			{icons.map((el, i) => (
 				<Link
 					to={paths[i]}
 					key={i}
 					className={`${isActive === i && 'bg-title rounded-full'} ${BtnStyle}`}
 					onClick={() => setIsActive(i)}
-					title={paths[i]}
+					title={el.title}
 				>
-					{icon}
+					{el.icon}
 				</Link>
 			))}
 			{localStorage.getItem(LSKeys.token) ? (
-				<button className={BtnStyle + ' absolute bottom-5'} onClick={handlerLogout} title='Logout' type='button'>
+				<button className={BtnStyle + ' absolute bottom-5'} onClick={handlerLogout} title='Выйти' type='button'>
 					<LogoutOutlinedIcon sx={{ fontSize: 22, color: '#FFFFFF80' }} />
 				</button>
 			) : (
-				<Link to={authLoginPath} className={BtnStyle + ' absolute bottom-5'} title='Login'>
+				<Link to={authLoginPath} className={BtnStyle + ' absolute bottom-5'} title='Войти'>
 					<LoginIcon sx={{ fontSize: 22, color: 'white' }} />
 				</Link>
 			)}
 			<button
 				onClick={() => setOpen(!open)}
 				className='absolute top-[50%] translate-y-[-50%] -right-6 visible sidebar bg-secondary rounded-md py-4 h-[100px]'
+				title='Передвинуть боковую панель'
 			>
 				<MoreVertOutlinedIcon sx={{ fontSize: 30, color: 'white' }} />
 			</button>

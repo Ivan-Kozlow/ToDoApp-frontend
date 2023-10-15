@@ -1,5 +1,4 @@
 import { useMutation } from '@tanstack/react-query'
-import { AxiosError } from 'axios'
 import React from 'react'
 import { useForm } from 'react-hook-form'
 import { useNavigate } from 'react-router-dom'
@@ -12,12 +11,12 @@ import { validations } from 'consts/validationsForm'
 import { useAppDispatch } from 'hooks/redux'
 import { IUserQueryResult } from 'services/types'
 import userService from 'services/user.service'
-import { getErrorMessageForResponse } from 'utils/getErrorMessageOnResponse'
+import { TypeAxiosErrorResponse, getErrorMessageForResponse } from 'utils/getErrorMessageOnResponse'
 
 // components
 import { TextField } from '@mui/material'
 import MySnackbar from 'components/MySnackbar'
-import { IFormFields } from 'pages/AuthPage'
+import { IFormUserFields } from 'pages/AuthPage'
 import ErrorField from './ErrorField'
 import FormButtons from './FormButtons'
 
@@ -30,11 +29,11 @@ const AuthForm: React.FC<{ isRegistration: boolean }> = ({ isRegistration }) => 
 		register,
 		clearErrors,
 		formState: { isSubmitting, errors: fieldError },
-	} = useForm<IFormFields>()
+	} = useForm<IFormUserFields>()
 
-	const { mutate, error } = useMutation<IUserQueryResult, AxiosError<{ message: string }>, IFormFields>({
+	const { mutate, error } = useMutation<IUserQueryResult, TypeAxiosErrorResponse, IFormUserFields>({
 		mutationKey: [keyUserAuth],
-		mutationFn: (data: IFormFields) => (isRegistration ? userService.register(data) : userService.login(data)),
+		mutationFn: (data: IFormUserFields) => (isRegistration ? userService.register(data) : userService.login(data)),
 		onSuccess: (data) => {
 			dispatch(userActions.saveUser(data))
 			navigate('/')
@@ -46,7 +45,7 @@ const AuthForm: React.FC<{ isRegistration: boolean }> = ({ isRegistration }) => 
 			{isRegistration && (
 				<TextField
 					{...register('nickname', { ...validations.withRequiredField.nickname })}
-					label='Nickname'
+					label='Имя'
 					variant='outlined'
 					color={fieldError.nickname ? 'warning' : 'primary'}
 					autoComplete={isRegistration ? 'new-name' : 'current-name'}
@@ -58,7 +57,7 @@ const AuthForm: React.FC<{ isRegistration: boolean }> = ({ isRegistration }) => 
 			)}
 			<TextField
 				{...register('email', { ...validations.withRequiredField.email })}
-				label='Email'
+				label='Почта'
 				variant='outlined'
 				color={fieldError.email ? 'warning' : 'primary'}
 				autoComplete={isRegistration ? 'new-email' : 'current-email'}
@@ -70,7 +69,7 @@ const AuthForm: React.FC<{ isRegistration: boolean }> = ({ isRegistration }) => 
 			<TextField
 				{...register('password', { ...validations.withRequiredField.password })}
 				type='password'
-				label='Password'
+				label='Пароль'
 				variant='outlined'
 				color={fieldError.password ? 'warning' : 'primary'}
 				autoComplete={isRegistration ? 'new-email' : 'current-email'}

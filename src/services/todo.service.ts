@@ -1,22 +1,23 @@
 import axios from '../../axios'
 import { ITodo } from 'Redux/slices/todo/typesTodo'
 import { TypeCreateTodo, TypeUpdateTodoData } from './types'
+import { IUser } from 'Redux/slices/user/typesUser'
 
 const todoService = {
-	async getOneTodo(todoId: string) {
-		axios.get<ITodo>(`/todo/${todoId}`)
+	async getOneTodo(todoId: ITodo['_id']) {
+		return (await axios.get<ITodo>(`/todo/${todoId}`)).data
 	},
-	async getAll(todoId: string) {
-		axios.get<ITodo[]>(`/todo/${todoId}`)
+	async getAll(userId: IUser['_id']) {
+		return (await axios.get<ITodo[]>(`/todo/${userId}`)).data
 	},
 	async create(body: TypeCreateTodo) {
-		axios.post<ITodo>(`/todo/create`, body)
+		return (await axios.post<ITodo>(`/todo/create`, body)).data
 	},
-	async update(todoId: string, body: TypeUpdateTodoData) {
-		axios.patch<{ message: string }>(`/todo/${todoId}`, body)
+	async update(todoId: ITodo['_id'], body: TypeUpdateTodoData) {
+		return (await axios.patch<{ message: string }>(`/todo/${todoId}`, body)).data
 	},
-	async delete(todoId: string) {
-		axios.delete<{ message: string }>(`/todo/${todoId}`)
+	async delete(todoId: ITodo['_id']) {
+		return (await axios.delete<{ message: string }>(`/todo/${todoId}`)).data
 	},
 }
 

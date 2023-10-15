@@ -9,6 +9,8 @@ import TodoBox from 'components/Todos/TodoBox'
 
 const MainPage: React.FC = () => {
 	const tasks = useAppSelector((s) => s.todo.todos)
+	console.log(tasks);
+	
 	// TODO create array of tasks completed, which in redux
 	// and map this new array using filterTasksByProgress()
 	const filterTasksByProgress = (completed: TypeCompleted) =>

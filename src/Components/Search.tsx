@@ -4,11 +4,11 @@ import { useRef, useState } from 'react'
 import style from './Search.module.scss'
 import { useAppSelector } from 'hooks/redux'
 
-const Search = () => {
+const Search: React.FC = () => {
 	const tasks = useAppSelector((s) => s.todo.todos)
 	const [search, setSearch] = useState<boolean>(false)
 	const [value, setValue] = useState('')
-	const ref = useRef<HTMLInputElement | null>(null)
+	const ref = useRef<HTMLInputElement>(null)
 
 	const inputSearch = () => {
 		setSearch(!search)

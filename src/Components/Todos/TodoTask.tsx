@@ -1,12 +1,13 @@
-import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
-import RemoveCircleOutlineOutlinedIcon from '@mui/icons-material/RemoveCircleOutlineOutlined'
+import { FC, useState } from 'react'
 import { todoActions } from 'Redux/slices/todo/todoSlice'
 import { ITodo } from 'Redux/slices/todo/typesTodo'
-import MorePopover from 'components/Todos/MorePopover'
 import { useAppDispatch } from 'hooks/redux'
-import { FC, useState } from 'react'
-import TaskForm from './Form/TaskForm'
+
+import MoreTodoMenu from 'components/Todos/MorePopover'
 import TodoProgressBar from './Form/TodoProgressBar'
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
+import RemoveCircleOutlineOutlinedIcon from '@mui/icons-material/RemoveCircleOutlineOutlined'
+import TaskForm from './Form/TaskForm'
 
 type TypeTodoTaskProps = Pick<ITodo, 'title' | 'body' | 'completed' | 'createdAt' | '_id'>
 
@@ -33,7 +34,7 @@ const TodoTask: FC<TypeTodoTaskProps> = ({ title, body, completed, createdAt, _i
 						<h2 className='font-bold text-base truncate' title={title}>
 							{title}
 						</h2>
-						<MorePopover _id={_id} setCreateTask={setCreateTask} createTask={createTask} />
+						<MoreTodoMenu _id={_id} setCreateTask={setCreateTask} createTask={createTask} />
 					</div>
 					{body && <p className='todo-text max-w-[250px] truncate'>{body}</p>}
 					<div className='my-4'>
@@ -41,13 +42,13 @@ const TodoTask: FC<TypeTodoTaskProps> = ({ title, body, completed, createdAt, _i
 						<TodoProgressBar completed={completed} />
 					</div>
 					<div className='flex items-center justify-between'>
-						<p className='todo-text px-4 py-2 bg-[#FFFFFF0F] rounded-full'>{createdAt}</p>
+						<p className='todo-text px-4 py-2 bg-[#FFFFFF0F] rounded-full'>{createdAt.slice(0, 10)}</p>
 						{completed === 2 ? (
-							<button onClick={() => dispatch(todoActions.deleteTask({ _id }))} title='Удалить'>
+							<button onClick={() => dispatch(todoActions.deleteTask(_id))} title='Удалить'>
 								<RemoveCircleOutlineOutlinedIcon />
 							</button>
 						) : (
-							<button onClick={() => dispatch(todoActions.updateStatus({ _id }))} title='Выполнить'>
+							<button onClick={() => dispatch(todoActions.updateStatus(_id))} title='Выполнить'>
 								<CheckCircleOutlineIcon />
 							</button>
 						)}

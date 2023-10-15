@@ -29,12 +29,11 @@ const Header: FC<{ full?: boolean }> = ({ full = true }) => {
 			<NotificationsOutlinedIcon />
 		</div>
 	)
-
 	const avatar = <div className='w-[36px] h-[36px] rounded-full bg-title relative'></div>
 
 	return (
 		<header className='md:py-7 py-4 text-[#FFFFFF80] flex items-center flex-wrap gap-y-3'>
-			{full && <h1 className='text-[#fff] text-xl font-bold'>Welcome {nickname && ` back, ${nickname}`}</h1>}
+			{full && <h1 className='text-[#fff] text-xl font-bold'>Добро пожаловать{nickname && `, ${nickname}`}</h1>}
 			<div className='flex gap-x-2 sm:gap-x-5 items-center ml-auto'>
 				{full && <Search />}
 

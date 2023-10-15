@@ -21,6 +21,9 @@ export const userSlice = createSlice({
 			localStorage.removeItem('token')
 			localStorage.removeItem('userId')
 		},
+		updateAvatar(state, action: PayloadAction<string>) {
+			state.user?.avatar ?? action.payload // TODO check update avatar
+		},
 	},
 })
 export const { reducer: userReducer, actions: userActions } = userSlice

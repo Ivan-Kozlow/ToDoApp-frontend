@@ -1,73 +1,46 @@
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
+import { useMutation } from '@tanstack/react-query'
+import { ITodo } from 'Redux/slices/todo/typesTodo'
 import { todoActions } from 'Redux/slices/todo/todoSlice'
+import { keyTodoCreate } from 'consts/queryKeys'
 import { useAppDispatch } from 'hooks/redux'
-import { useId } from 'react'
-import { SubmitHandler, useForm } from 'react-hook-form'
+import todoService from 'services/todo.service'
+import { TypeCreateTodo } from 'services/types'
 import { IFormInput, TypeForm } from 'types'
+import { TypeAxiosErrorResponse, getErrorMessageForResponse } from 'utils/getErrorMessageOnResponse'
+import MySnackbar from 'components/MySnackbar'
 import FormInput from './FormInput'
 
-const TaskForm: React.FC<TypeForm> = ({ createTask, create, setCreateTask, children, _id, btnName }) => {
+const TaskForm: React.FC<TypeForm> = ({ createTask, create, setCreateTask, children, btnName }) => {
 	const date = new Date().toLocaleString('ru-RU', { day: 'numeric', month: 'numeric', year: 'numeric' })
 	const dispatch = useAppDispatch()
-	const {
-		register,
-		handleSubmit,
-		formState: { errors },
-		resetField,
-		reset,
-		setFocus,
-	} = useForm<IFormInput>({
-		defaultValues: {
-			title: '',
-			body: '',
+	const formMethods = useForm<IFormInput>()
+	const { handleSubmit, reset } = formMethods
+	const { mutate, isError, error } = useMutation<ITodo, TypeAxiosErrorResponse, TypeCreateTodo>({
+		mutationKey: [keyTodoCreate],
+		mutationFn: (data) => todoService.create(data),
+		onSuccess: (data) => {
+			dispatch(create ? todoActions.addTask(data) : todoActions.editTask(data))
+			console.log(data._id);
+			
+			reset()
+			setCreateTask(!createTask)
 		},
 	})
-	const id = useId()
 
-	const focusInput = (name: keyof IFormInput) => {
-		resetField(name)
-		setFocus(name)
-	}
+	//FIXME rerender on click on clear btn
+	//FIXME deleting token, when often click btn 'Сбросить'
 
-	const onSubmit: SubmitHandler<IFormInput> = (data) => {
-		dispatch(
-			create
-				? todoActions.addTask({
-						_id: id,
-						title: data.title,
-						body: data.body,
-						createdAt: date,
-						completed: 0,
-				  })
-				: todoActions.editTask({
-						_id,
-						title: data.title,
-						body: data.body,
-				  })
-		)
-		reset()
-		setCreateTask(!createTask)
-	}
+	const onSubmit: SubmitHandler<TypeCreateTodo> = (data) => mutate(data)
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-2'>
-			<FormInput
-				focusInput={focusInput}
-				require
-				register={register}
-				name={'title'}
-				textColor='fff'
-				placeholder='Название'
-			/>
-			{errors.title && <p className='mb-1 text-[red]'>{errors.title.message}</p>}
+			<FormProvider {...formMethods}>
+				<FormInput require name={'title'} textColor='fff' placeholder='Название' />
+				<FormInput name={'body'} textColor='[#FFFFFF90]' placeholder='Описание' />
+			</FormProvider>
 
-			<FormInput
-				focusInput={focusInput}
-				require={false}
-				register={register}
-				name={'body'}
-				textColor='[#FFFFFF90]'
-				placeholder='Описание'
-			/>
+			{isError && <MySnackbar message={getErrorMessageForResponse(error)} type={'error'} />}
 
 			{children}
 			<div className='flex justify-between gap-1 mt-2 items-center'>

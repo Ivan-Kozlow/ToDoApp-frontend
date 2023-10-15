@@ -21,7 +21,7 @@ const TodoBox: FC<TypeTodoBox> = ({ title, tasks }) => {
 				<h3 className='todo-text font-semibold'>
 					{title} ({tasks.length})
 				</h3>
-				<button onClick={() => dispatch(todoActions.sortTasks({ title }))} title='Сортировка'>
+				<button onClick={() => dispatch(todoActions.sortTasks(title))} title='Сортировка'>
 					<img src={FilterIcon} alt='Filter' />
 				</button>
 			</div>
