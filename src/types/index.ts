@@ -8,11 +8,12 @@ export type TypeForm = {
 	setCreateTask: Dispatch<SetStateAction<boolean>>
 	children?: React.ReactNode
 	_id?: string
-	create: boolean
+	isCreate: boolean
 	btnName: string
 }
 export interface IFormInput {
 	_id?: string
-	title: string
-	body: string
+	title: ITodo['title']
+	body: ITodo['body']
+	// completed: ITodo['completed']
 }

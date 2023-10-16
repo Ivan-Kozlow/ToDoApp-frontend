@@ -4,7 +4,7 @@ import { Dispatch, FC, SetStateAction, useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
 import todoService from 'services/todo.service'
 import { TypeAxiosErrorResponse } from 'utils/getErrorMessageOnResponse'
-import { keyTodoRemove } from 'consts/queryKeys'
+import { keyTodoRemove, keyTodoUpdate } from 'consts/queryKeys'
 import { EnumTodoTitle } from 'consts/enums'
 import { useAppDispatch } from 'hooks/redux'
 import { TypeCompleted } from 'types'
@@ -15,12 +15,6 @@ import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
 import MultipleStopOutlinedIcon from '@mui/icons-material/MultipleStopOutlined'
 import { Popover } from '@mui/material'
 import MySnackbar from 'components/MySnackbar'
-
-type TypeMorePopover = {
-	setCreateTask: Dispatch<SetStateAction<boolean>>
-	createTask: boolean
-	_id: ITodo['_id']
-}
 
 const MoveTodo: { title: EnumTodoTitle; completed: TypeCompleted }[] = [
 	{
@@ -37,27 +31,36 @@ const MoveTodo: { title: EnumTodoTitle; completed: TypeCompleted }[] = [
 	},
 ]
 
-const MorePopover: FC<TypeMorePopover> = ({ setCreateTask, createTask, _id }) => {
+type TypeMorePopover = {
+	setCreateTask: Dispatch<SetStateAction<boolean>>
+	_id: ITodo['_id']
+}
+
+const MorePopover: FC<TypeMorePopover> = ({ setCreateTask, _id }) => {
 	const dispatch = useAppDispatch()
 	const [moveTodoPopup, setMoveTodoPopup] = useState(false)
 	const [btnIsDisable, setBtnIsDisable] = useState(false)
 	const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
-	const { mutate, isError } = useMutation<{ message: string }, TypeAxiosErrorResponse>({
-		mutationKey: [keyTodoRemove, _id],
+
+	const { mutate, isError } = useMutation<{ message: string }, TypeAxiosErrorResponse, ITodo['_id']>({
+		mutationKey: [keyTodoRemove],
 		mutationFn: () => todoService.delete(_id),
 		onMutate: () => setBtnIsDisable(true),
 		onSuccess: () => dispatch(todoActions.deleteTask(_id)),
 		onSettled: () => setBtnIsDisable(false),
 	})
+	const { mutate: mutateMoveTodo } = useMutation<{ message: string }, TypeAxiosErrorResponse, ITodo['completed']>({
+		mutationKey: [keyTodoUpdate],
+		mutationFn: (completed) => todoService.update(_id, { completed }),
+		onSuccess: (_, completed) => dispatch(todoActions.moveTodo({ _id, completed })),
+	})
 
 	const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => setAnchorEl(event.currentTarget)
 	const handleClose = () => setAnchorEl(null)
 	const open = Boolean(anchorEl)
-	const id = open ? 'simple-popover' : undefined
-
+	// FIXME jumping snackbar on rerender component
 	const btnStyle =
 		'flex items-center justify-between gap-1 hover:bg-title transition-all duration-150 rounded-md p-1 px-2'
-	// FIXME jumping snackbar on rerender component
 	return (
 		<>
 			{isError && (
@@ -70,14 +73,13 @@ const MorePopover: FC<TypeMorePopover> = ({ setCreateTask, createTask, _id }) =>
 			)}
 			<button
 				onClick={handleClick}
-				title='more'
+				title='Больше'
 				aria-label='Button to open more features for todo item'
 				className='transition-all duration-150 hover:bg-title hover:rounded-full'
 			>
 				<MoreHorizIcon />
 			</button>
 			<Popover
-				id={id}
 				open={open}
 				anchorEl={anchorEl}
 				onClose={handleClose}
@@ -88,7 +90,7 @@ const MorePopover: FC<TypeMorePopover> = ({ setCreateTask, createTask, _id }) =>
 			>
 				<section className='p-1 flex gap-y-1 flex-col text-sm font-semibold bg-primary text-[#fff] min-w-[100px]'>
 					<button
-						onClick={() => mutate()}
+						onClick={() => mutate(_id)}
 						disabled={btnIsDisable}
 						aria-disabled={btnIsDisable}
 						className={`${btnStyle} disabled:bg-primary disabled:text-secondary`}
@@ -96,7 +98,7 @@ const MorePopover: FC<TypeMorePopover> = ({ setCreateTask, createTask, _id }) =>
 						<span>Удалить</span>
 						<DeleteOutlineOutlinedIcon />
 					</button>
-					<button onClick={() => setCreateTask(!createTask)} className={`${btnStyle}`}>
+					<button onClick={() => setCreateTask((v) => !v)} className={`${btnStyle}`}>
 						<span>Ред.</span>
 						<EditOutlinedIcon />
 					</button>
@@ -112,7 +114,7 @@ const MorePopover: FC<TypeMorePopover> = ({ setCreateTask, createTask, _id }) =>
 							{MoveTodo.map(({ title, completed }) => (
 								<button
 									key={completed}
-									onClick={() => dispatch(todoActions.moveTodo({ _id, completed }))}
+									onClick={() => mutateMoveTodo(completed)}
 									className='hover:bg-title text-start w-full transition-all duration-150 rounded-md p-1 px-2'
 								>
 									{title}

@@ -41,7 +41,7 @@ const Search: React.FC = () => {
 					<ClearOutlinedIcon />
 				</button>
 			</div>
-			<button onClick={inputSearch} title='Search'>
+			<button onClick={inputSearch} title='Поиск'>
 				<SearchOutlinedIcon />
 			</button>
 			{!search ||

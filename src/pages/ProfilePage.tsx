@@ -36,7 +36,7 @@ const ProfilePage: React.FC = () => {
 				<Header full={false} />
 				<span className={style.header__underline}></span>
 				<main className={style.profile}>
-					<button className={style.btn_avatar} type='button' title='Avatar'>
+					<button className={style.btn_avatar} type='button' title='Аватар'>
 						{/*TODO add avatar -logic */}
 						{/* <img src='' width='130' height='130' alt='Avatar' /> */}
 						<BrushOutlinedIcon fontSize='large' />

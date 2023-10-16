@@ -19,7 +19,7 @@ const TodoTask: FC<TypeTodoTaskProps> = ({ title, body, completed, createdAt, _i
 	const [createTask, setCreateTask] = useState(false)
 	const dispatch = useAppDispatch()
 	const { mutate } = useMutation({
-		mutationKey: [keyTodoUpdate],
+		mutationKey: [keyTodoUpdate, _id],
 		mutationFn: () =>
 			completed < 2
 				? todoService.update(_id, { completed: ++completed as ITodo['completed'] })
@@ -35,7 +35,7 @@ const TodoTask: FC<TypeTodoTaskProps> = ({ title, body, completed, createdAt, _i
 			{createTask && (
 				<CreateTaskForm
 					btnName='Сохранить'
-					create={false}
+					isCreate={false}
 					_id={_id}
 					createTask={createTask}
 					setCreateTask={setCreateTask}
@@ -49,7 +49,7 @@ const TodoTask: FC<TypeTodoTaskProps> = ({ title, body, completed, createdAt, _i
 						<h2 className='font-bold text-base truncate' title={title}>
 							{title}
 						</h2>
-						<MoreTodoMenu _id={_id} setCreateTask={setCreateTask} createTask={createTask} />
+						<MoreTodoMenu _id={_id} setCreateTask={setCreateTask} />
 					</div>
 					{body && <p className='todo-text max-w-[250px] truncate'>{body}</p>}
 					<div className='my-4'>
