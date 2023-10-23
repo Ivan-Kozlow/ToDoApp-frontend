@@ -47,7 +47,9 @@ const CreateTaskForm: React.FC<TypeForm> = ({ createTask, isCreate, setCreateTas
 				<FormInput name={'body'} textColor='[#FFFFFF90]' placeholder='Примечание' />
 			</FormProvider>
 
-			{isError && <MySnackbar message={getErrorMessageForResponse(error)} type={'error'} />}
+			{isError && (
+				<MySnackbar message={getErrorMessageForResponse(error) || 'Не удалось создать заметку'} type={'error'} />
+			)}
 
 			{children}
 			<div className='flex justify-between gap-1 mt-2 items-center'>

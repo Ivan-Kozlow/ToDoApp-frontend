@@ -8,7 +8,6 @@ export interface IUserQueryResult extends IUser {
 
 export type TypeRegisterBody = Pick<IUser, 'email' | 'nickname'> & { password: string; avatar?: string }
 export type TypeLoginBody = Pick<IUser, 'email'> & { password: string }
-export type TypeUpdateUserData = Partial<Pick<IUser, 'email' | 'nickname'> & { password: string; avatar: string }>
 
 // Todo ----------------------------
 export type TypeUpdateTodoData = Partial<Pick<ITodo, 'title' | 'body' | 'completed'>>

@@ -1,11 +1,16 @@
 import style from 'components/Profile/ProfilePageStyle.module.scss'
 import React from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 // utils
+import { keyUserAvatarUpdate, keyUserGetMe } from 'consts/queryKeys'
 import { authLoginPath } from 'consts/URL'
 import { useAppSelector } from 'hooks/redux'
 import { LSKeys } from 'consts/localStorKey'
+import userService from 'services/user.service'
+import { baseURL } from '../../axios'
+import { TypeAxiosErrorResponse } from 'utils/getErrorMessageOnResponse'
 
 import BrushOutlinedIcon from '@mui/icons-material/BrushOutlined'
 import { Container } from '@mui/material'
@@ -16,11 +21,20 @@ import MutateEditUserContainer from 'components/Profile/MutateEditUserContainer'
 
 const ProfilePage: React.FC = () => {
 	const navigate = useNavigate()
+	const RefInput = React.useRef<HTMLInputElement | null>(null)
 	const user = useAppSelector((state) => state.user.user) // FIXME change on reselect
 	const createdDate = (user && new Date(user.createdAt).toLocaleDateString()) || 'Нет информации'
 	const updateDate = (user && new Date(user.updatedAt).toLocaleDateString()) || 'Нет информации'
 
+	const queryClient = useQueryClient()
+	const { mutate } = useMutation<string, TypeAxiosErrorResponse, Blob | undefined>({
+		mutationKey: [keyUserAvatarUpdate],
+		mutationFn: (avatar) => userService.update({ avatar }),
+		onSuccess: () => queryClient.invalidateQueries([keyUserGetMe]),
+	})
+
 	React.useEffect(() => {
+		if (user?._id) return
 		const t = setTimeout(() => {
 			!user?._id && navigate('/')
 		}, 4000)
@@ -36,11 +50,37 @@ const ProfilePage: React.FC = () => {
 				<Header full={false} />
 				<span className={style.header__underline}></span>
 				<main className={style.profile}>
-					<button className={style.btn_avatar} type='button' title='Аватар'>
-						{/*TODO add avatar -logic */}
-						{/* <img src='' width='130' height='130' alt='Avatar' /> */}
-						<BrushOutlinedIcon fontSize='large' />
-					</button>
+					<div className='flex flex-col gap-6'>
+						<button
+							className={style.btn_avatar}
+							type='button'
+							title='Аватар'
+							onClick={() => RefInput.current?.click()}
+						>
+							{user.avatar && (
+								<img
+									src={`${baseURL + 'uploads/' + user.avatar}`}
+									className='text-[0] h-full bg-cover'
+									width='130'
+									height='130'
+									alt='Аватар'
+								/>
+							)}
+							<input
+								ref={RefInput}
+								type='file'
+								accept='image/*'
+								name='avatar'
+								className='hidden'
+								onChange={(e) => mutate(e.target.files![0])}
+							/>
+							<BrushOutlinedIcon
+								fontSize='large'
+								sx={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-40%, -40%)' }}
+							/>
+						</button>
+						{user.avatar && <button onClick={() => mutate(undefined)}>Удалить аватар</button>}
+					</div>
 					<div className={style.right__block}>
 						<h2>
 							Аккаунт создан: <span>{createdDate}</span>
