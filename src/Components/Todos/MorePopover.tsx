@@ -57,7 +57,7 @@ const MorePopover: FC<TypeMorePopover> = ({ setCreateTask, createTask, _id }) =>
 
 	const btnStyle =
 		'flex items-center justify-between gap-1 hover:bg-title transition-all duration-150 rounded-md p-1 px-2'
-	// TODO jumping snackbar on rerender component
+	// FIXME jumping snackbar on rerender component
 	return (
 		<>
 			{isError && (
@@ -70,7 +70,8 @@ const MorePopover: FC<TypeMorePopover> = ({ setCreateTask, createTask, _id }) =>
 			)}
 			<button
 				onClick={handleClick}
-				title='more'
+				title='Ещё'
+				aria-label='Кнопка для открытия доп. функций'
 				className='transition-all duration-150 hover:bg-title hover:rounded-full'
 			>
 				<MoreHorizIcon />
@@ -89,6 +90,7 @@ const MorePopover: FC<TypeMorePopover> = ({ setCreateTask, createTask, _id }) =>
 					<button
 						onClick={() => mutate()}
 						disabled={btnIsDisable}
+						aria-disabled={btnIsDisable}
 						className={`${btnStyle} disabled:bg-primary disabled:text-secondary`}
 					>
 						<span>Удалить</span>

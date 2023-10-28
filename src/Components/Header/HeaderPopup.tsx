@@ -7,9 +7,12 @@ const HeaderPopup: FC<Record<'children' | 'buttonClick', JSX.Element>> = ({ chil
 	const handleClose = () => setAnchorEl(null)
 	const open = Boolean(anchorEl)
 	const id = open ? 'simple-popover' : undefined
+
 	return (
 		<>
-			<button onClick={handleClick}>{buttonClick}</button>
+			<button onClick={handleClick} aria-label='On click to open menu'>
+				{buttonClick}
+			</button>
 			<Popover
 				className='mt-3'
 				id={id}

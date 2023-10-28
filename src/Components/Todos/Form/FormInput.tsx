@@ -1,4 +1,5 @@
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined'
+import { TextareaAutosize } from '@mui/material'
 import { validations } from 'consts/validationsForm'
 import { useFormContext } from 'react-hook-form'
 import { IFormInput } from 'types'
@@ -25,11 +26,10 @@ const FormInput: React.FC<TypeFormInput> = ({ require = false, name, textColor, 
 
 	return (
 		<div className='flex flex-wrap'>
-			<input
-				type='text'
+			<TextareaAutosize
 				{...register(name, require ? validations.withRequiredField.title : undefined)}
 				placeholder={placeholder}
-				className={`text-${textColor} font-semibold bg-title outline-none p-1 rounded-md rounded-r-none`}
+				className={`text-${textColor} w-full lg:max-w-[200px] max-w-[180px] font-semibold bg-title outline-none p-1 rounded-md rounded-r-none max-h-14 resize-none leading-5 overflow-y-scroll`}
 			/>
 			<button
 				type='button'

@@ -3,4 +3,4 @@ export const LSKeys = {
 	todoId: 'todoId',
 	token: 'token',
 	sidebarIsOpen: 'sidebarIsOpen',
-}
+} as const

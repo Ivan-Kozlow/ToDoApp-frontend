@@ -12,7 +12,7 @@ interface IFormEditUserProps {
 }
 
 const FormEditUser: React.FC<IFormEditUserProps> = ({ mutate }) => {
-	const formMethods = useForm<IFormUserFields>()
+	const formMethods = useForm<IFormUserFields>({ defaultValues: { nickname: '', email: '', password: '' } })
 	const { handleSubmit, reset } = formMethods
 
 	const onSubmit = (data: IFormUserFields) => {

@@ -39,4 +39,4 @@ export const validations = {
 			minLength: { value: 8, message: INVALID_PASS_LENGTH },
 		},
 	},
-}
+} as const

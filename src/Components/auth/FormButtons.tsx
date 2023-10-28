@@ -49,6 +49,7 @@ const FormButtons: React.FC<IFormButtonsProps> = ({ buttonText, clearErrors, isS
 					ref={btnRef}
 					className='px-[4px] py-[7px] ml-2'
 					title={inverseBtnTextForSwitch}
+					aria-label='Button to change auth mode'
 					type='button'
 					onClick={() => setOpen(true)}
 				>

@@ -3,6 +3,7 @@ import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined'
 import { useRef, useState } from 'react'
 import style from './Search.module.scss'
 import { useAppSelector } from 'hooks/redux'
+import { getLocalDateNumbers } from 'utils/getLocalDate'
 
 const Search: React.FC = () => {
 	const tasks = useAppSelector((s) => s.todo.todos)
@@ -28,7 +29,7 @@ const Search: React.FC = () => {
 						if (search) setValue(e.target.value)
 					}}
 					type='text'
-					placeholder='Search to...'
+					placeholder='Поиск...'
 					className={`${style.input} ${search && style.visible}`}
 				/>
 				<button
@@ -54,7 +55,7 @@ const Search: React.FC = () => {
 									className='p-2 bg-taskBox hover:bg-title text-start transition-all duration-150 rounded-md text-[#fff]'
 								>
 									<p className='mb-[6px] truncate font-semibold'>{title}</p>
-									<span className='text-[#FFFFFF80] mb-1 text-sm block'>{createdAt}</span>
+									<span className='text-[#FFFFFF80] mb-1 text-sm block'>{getLocalDateNumbers(createdAt)}</span>
 									<div
 										className={`h-1 ${
 											completed === 0
