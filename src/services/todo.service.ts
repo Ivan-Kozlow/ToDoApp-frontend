@@ -1,6 +1,6 @@
 import axios from '../../axios'
 import { ITodo } from 'Redux/slices/todo/typesTodo'
-import { TypeCreateTodo, TypeUpdateTodoData } from './types'
+import type { TypeCreateTodo, TypeUpdateTodoData } from './types'
 import { IUser } from 'Redux/slices/user/typesUser'
 
 const todoService = {

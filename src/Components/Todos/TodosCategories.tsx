@@ -1,5 +1,5 @@
 import { useAppSelector } from 'hooks/redux'
-import { TypeCompleted } from 'types'
+import type { TypeCompleted } from 'types'
 import { EnumTodoTitle } from 'consts/enums'
 import CreateTasks from './CreateTasks'
 import TodoBox from './TodoBox'

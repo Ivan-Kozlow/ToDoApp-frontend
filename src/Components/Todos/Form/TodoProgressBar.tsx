@@ -1,7 +1,7 @@
 import RadioButtonCheckedOutlinedIcon from '@mui/icons-material/RadioButtonCheckedOutlined'
 import CheckBox from 'assets/CheckBox.svg'
 import TaskIcon from 'assets/TaskIcon.svg'
-import { TypeCompleted } from 'types'
+import type { TypeCompleted } from 'types'
 
 const TodoProgressBar: React.FC<{ completed: TypeCompleted }> = ({ completed }) => {
 	return (

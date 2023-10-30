@@ -10,7 +10,7 @@ import { useAppSelector } from 'hooks/redux'
 import { LSKeys } from 'consts/localStorKey'
 import userService from 'services/user.service'
 import { baseURL } from '../../axios'
-import { TypeAxiosErrorResponse } from 'utils/getErrorMessageOnResponse'
+import type { TypeAxiosErrorResponse } from 'utils/getErrorMessageOnResponse'
 
 import BrushOutlinedIcon from '@mui/icons-material/BrushOutlined'
 import { Container } from '@mui/material'
@@ -22,7 +22,7 @@ import MutateEditUserContainer from 'components/Profile/MutateEditUserContainer'
 const ProfilePage: React.FC = () => {
 	const navigate = useNavigate()
 	const RefInput = React.useRef<HTMLInputElement | null>(null)
-	const user = useAppSelector((state) => state.user.user) // FIXME change on reselect
+	const user = useAppSelector((state) => state.user.user)
 	const createdDate = (user && new Date(user.createdAt).toLocaleDateString()) || 'Нет информации'
 	const updateDate = (user && new Date(user.updatedAt).toLocaleDateString()) || 'Нет информации'
 

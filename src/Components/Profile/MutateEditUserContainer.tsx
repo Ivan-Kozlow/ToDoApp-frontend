@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux'
 // utils
 import { keyUserGetMe, keyUserDataUpdate } from 'consts/queryKeys'
 import userService from 'services/user.service'
-import { TypeAxiosErrorResponse, getErrorMessageForResponse } from 'utils/getErrorMessageOnResponse'
+import { type TypeAxiosErrorResponse, getErrorMessageForResponse } from 'utils/getErrorMessageOnResponse'
 import { userActions } from 'Redux/slices/user/userSlice'
 
 import Loader from 'components/Loader'
