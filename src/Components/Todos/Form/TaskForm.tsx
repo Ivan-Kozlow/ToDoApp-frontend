@@ -56,7 +56,7 @@ const CreateTaskForm: React.FC<TypeForm> = ({ createTask, isCreate, setCreateTas
 				<p className='todo-text px-4 py-2 bg-[#FFFFFF0F] rounded-full'>{getLocalDateNumbers()}</p>
 				<button
 					type={fieldsIsEmpty ? 'button' : 'submit'}
-					className={`p-2 bg-[#FFFFFF0F] rounded-md`}
+					className={'p-2 bg-[#FFFFFF0F] rounded-md'}
 					onClick={() => fieldsIsEmpty && setCreateTask((val) => !val)}
 					disabled={isLoading}
 					aria-disabled={isLoading}

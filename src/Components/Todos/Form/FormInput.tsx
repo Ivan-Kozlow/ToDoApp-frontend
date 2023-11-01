@@ -33,7 +33,7 @@ const FormInput: React.FC<TypeFormInput> = ({ require = false, name, textColor, 
 			<button
 				type='button'
 				onClick={() => focusInput(name)}
-				className={`bg-title flex items-center cursor-pointer rounded-md rounded-l-none`}
+				className={'bg-title flex items-center cursor-pointer rounded-md rounded-l-none'}
 			>
 				<ClearOutlinedIcon />
 			</button>

@@ -11,7 +11,7 @@ const todoService = {
 		return (await axios.get<ITodo[]>(`/${userId}`)).data
 	},
 	async create(body: TypeCreateTodo) {
-		return (await axios.post<ITodo>(`/todo/create`, body)).data
+		return (await axios.post<ITodo>('/todo/create', body)).data
 	},
 	async update(todoId: ITodo['_id'], body: TypeUpdateTodoData) {
 		return (await axios.patch<{ message: string }>(`/todo/${todoId}`, body)).data

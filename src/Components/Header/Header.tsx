@@ -49,7 +49,7 @@ const Header: FC<{ full?: boolean }> = ({ full = true }) => {
 				</div>
 
 				<HeaderPopup buttonClick={avatar}>
-					<section className={`flex flex-col md:flex-ro gap-2 p-2 bg-taskBox text-[#fff]`}>
+					<section className={'flex flex-col md:flex-ro gap-2 p-2 bg-taskBox text-[#fff]'}>
 						{pathname === profilePath ? (
 							<Link to={'/'}>
 								<HomeOutlinedIcon />
