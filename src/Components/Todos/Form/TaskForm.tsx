@@ -5,10 +5,10 @@ import { todoActions } from 'Redux/slices/todo/todoSlice'
 import { keyTodoCreate, keyTodoGetAll, keyTodoUpdate } from 'consts/queryKeys'
 import { useAppDispatch, useAppSelector } from 'hooks/redux'
 import todoService from 'services/todo.service'
-import { TypeCreateTodo } from 'services/types'
 import { getLocalDateNumbers } from 'utils/getLocalDate'
 import { IFormInput, TypeForm } from 'types'
-import { TypeAxiosErrorResponse, getErrorMessageForResponse } from 'utils/getErrorMessageOnResponse'
+import { type TypeCreateTodo } from 'services/types'
+import { type TypeAxiosErrorResponse, getErrorMessageForResponse } from 'utils/getErrorMessageOnResponse'
 import MySnackbar from 'components/MySnackbar'
 import FormInput from './FormInput'
 
@@ -38,8 +38,6 @@ const TaskForm: React.FC<TypeForm> = ({ createTask, isCreate, setCreateTask, chi
 			dispatch(todoActions.editTask(data))
 			reset()
 			setCreateTask(!createTask)
-			console.log(data);
-			
 		},
 	})
 

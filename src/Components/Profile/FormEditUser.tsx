@@ -1,7 +1,7 @@
 import style from './ProfilePageStyle.module.scss'
 import { FormProvider, useForm } from 'react-hook-form'
 import { UseMutateFunction } from '@tanstack/react-query'
-import { TypeAxiosErrorResponse } from 'utils/getErrorMessageOnResponse'
+import { type TypeAxiosErrorResponse } from 'utils/getErrorMessageOnResponse'
 
 import InputFieldsEditUser from './InputFieldsEditUser'
 import FormEditUserButtons from './FormEditUserButtons'

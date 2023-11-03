@@ -1,7 +1,7 @@
 import { ITodo } from 'Redux/slices/todo/typesTodo'
 import { useMutation } from '@tanstack/react-query'
 import todoService from 'services/todo.service'
-import { TypeAxiosErrorResponse } from 'utils/getErrorMessageOnResponse'
+import { type TypeAxiosErrorResponse } from 'utils/getErrorMessageOnResponse'
 import { keyTodoRemove, keyTodoUpdate } from 'consts/queryKeys'
 import { TypeCompleted } from 'types'
 

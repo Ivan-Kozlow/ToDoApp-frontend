@@ -11,7 +11,7 @@ import { validations } from 'consts/validationsForm'
 import { useAppDispatch } from 'hooks/redux'
 import { IUserQueryResult } from 'services/types'
 import userService from 'services/user.service'
-import { TypeAxiosErrorResponse, getErrorMessageForResponse } from 'utils/getErrorMessageOnResponse'
+import { type TypeAxiosErrorResponse, getErrorMessageForResponse } from 'utils/getErrorMessageOnResponse'
 
 // components
 import { TextField } from '@mui/material'

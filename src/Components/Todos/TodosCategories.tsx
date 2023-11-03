@@ -1,6 +1,6 @@
-import { EnumTodoTitle } from 'consts/enums'
 import { useAppSelector } from 'hooks/redux'
-import { TypeCompleted } from 'types'
+import type { TypeCompleted } from 'types'
+import { EnumTodoTitle } from 'consts/enums'
 import CreateTasks from './CreateTasks'
 import TodoBox from './TodoBox'
 
@@ -14,7 +14,6 @@ const TodosCategories: React.FC = () => {
 
 	return tasks?.length ? (
 		<>
-			
 			<TodoBox title={EnumTodoTitle.start} tasks={filterTasksByProgress(0)} />
 			{filterTasksByProgress(1).length ? (
 				<TodoBox title={EnumTodoTitle.inProgress} tasks={filterTasksByProgress(1)} />

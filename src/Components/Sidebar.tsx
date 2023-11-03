@@ -21,7 +21,7 @@ const icons = [
 ]
 const paths = ['/', profilePath, calendarPath]
 
-const BtnStyle = `p-3 md:my-3 my-2 flex justify-center items-center transition-all duration-150 hover:bg-primary hover:rounded-full active:bg-box`
+const BtnStyle = 'p-3 md:my-3 my-2 flex justify-center items-center transition-all duration-150 hover:bg-primary hover:rounded-full active:bg-box'
 const Sidebar: React.FC = () => {
 	const navigate = useNavigate()
 	const { pathname } = useLocation()
