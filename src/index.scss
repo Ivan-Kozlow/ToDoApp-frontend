@@ -4,13 +4,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Exo+2:wght@300;500;600;700&display=swap');
 @import './styles/nullstyle.scss';
 
-:root {
-	--light-primary: #ffffff;
-	--light-titleText: #1c1d22;
-	--light-sutTitle: #1c1d2280;
-}
 body {
-	@apply bg-primary;
+	@apply dark:bg-primary;
 	font-family: 'Exo 2', sans-serif;
 	height: 100lvh;
 	width: 100vw;
@@ -22,21 +17,4 @@ body {
 .open {
 	transform: translate(-100%);
 	visibility: hidden;
-}
-.border-view {
-	display: flex;
-	align-items: center;
-	column-gap: 8px;
-}
-.border-view-border {
-	border-bottom: 2px solid #ffffff1a;
-}
-.border-view-border-2 {
-	border-bottom: 2px solid #757888;
-	width: 100%;
-	max-width: 137px;
-}
-.todo-text {
-	color: #ffffff80;
-	font-size: 14px;
 }

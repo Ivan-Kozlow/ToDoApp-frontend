@@ -10,9 +10,9 @@ const TodoProgressBar: React.FC<{ completed: TypeCompleted }> = ({ completed }) 
 			<div
 				className={`h-1 ${
 					completed === 0
-						? 'bg-title'
+						? 'dark:bg-title bg-[#1C1D2214]'
 						: completed === 1
-						? 'bg-progressCenter'
+						? 'bg-[#FFA048] dark:bg-progressCenter'
 						: completed === 2
 						? 'bg-progressFull'
 						: ''
@@ -20,7 +20,9 @@ const TodoProgressBar: React.FC<{ completed: TypeCompleted }> = ({ completed }) 
 			></div>
 			<RadioButtonCheckedOutlinedIcon sx={{ fontSize: 20 }} />
 			<div
-				className={`h-1 ${completed === 2 ? 'bg-progressFull' : 'bg-title'} w-full max-w-[99px] rounded-full`}
+				className={`h-1 ${
+					completed === 2 ? 'bg-progressFull' : 'dark:bg-title bg-[#1C1D2214]'
+				} w-full max-w-[99px] rounded-full`}
 			></div>
 			<img src={CheckBox} alt='Checkbox' />
 		</div>

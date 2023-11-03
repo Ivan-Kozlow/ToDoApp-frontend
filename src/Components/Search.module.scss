@@ -1,5 +1,5 @@
 .input {
-	@apply text-[#fff] bg-title outline-none p-2 rounded-md rounded-r-none w-full max-w-[200px];
+	@apply outline-none p-2 rounded-md rounded-r-none w-full max-w-[150px] md:max-w-[200px];
 	position: absolute;
 	top: -2px;
 	right: -3px;

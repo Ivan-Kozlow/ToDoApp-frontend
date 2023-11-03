@@ -13,43 +13,68 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined'
 import HeaderPopup from './HeaderPopup'
 import Search from '../Search'
+import { baseURL } from '../../../axios'
 
 type ThemeType = 'dark' | 'light'
 
 const Header: FC<{ full?: boolean }> = ({ full = true }) => {
 	const nickname = useAppSelector((state) => state.user.user?.nickname)
+	const avatarImg = useAppSelector((state) => state.user.user?.avatar)
 	const date = new Date().toLocaleString('ru-RU', { day: 'numeric', month: 'short', year: 'numeric' })
 	const [theme, setTheme] = useState<ThemeType>(() => (localStorage.getItem('theme') as ThemeType) || 'dark')
-	useEffect(() => localStorage.setItem('theme', theme), [theme])
+
+	useEffect(() => {
+		localStorage.setItem('theme', theme)
+		theme === 'dark'
+			? document.documentElement.classList.add('dark')
+			: document.documentElement.classList.remove('dark')
+	}, [theme])
+
 	const { pathname } = useLocation()
 
 	const notifications = (
 		<div className='relative'>
 			<div className='w-2 h-2 rounded-full bg-[#FFA048] absolute top-[2px] right-[2px]'></div>
-			<NotificationsOutlinedIcon />
+			<NotificationsOutlinedIcon sx={{ color: '#1C1D22 dark:white' }} />
 		</div>
 	)
-	const avatar = <div className='w-[36px] h-[36px] rounded-full bg-title relative'></div>
+	const avatar = (
+		<img
+			src={`${baseURL + 'uploads/' + avatarImg}`}
+			className={`w-[36px] h-[36px] rounded-full ${!avatarImg && 'dark:bg-title bg-[#2A2B2F]'} object-cover`}
+		/>
+	)
 
 	return (
 		<header className='md:py-7 py-4 text-[#FFFFFF80] flex items-center flex-wrap gap-y-3'>
-			{full && <h1 className='text-[#fff] text-xl font-bold'>Добро пожаловать{nickname && `, ${nickname}`}</h1>}
-			<div className='flex gap-x-2 sm:gap-x-5 items-center ml-auto'>
+			{full && (
+				<>
+					<h1 className='text-[#1C1D22] dark:text-[#fff] text-lg sm:text-xl font-bold'>
+						<span className='hidden md:inline-block'>Добро пожаловать, </span>
+						{nickname && ` ${nickname}`}
+					</h1>
+				</>
+			)}
+			<div className='flex gap-x-3 md:gap-x-4 items-center ml-auto'>
 				{full && <Search />}
 
 				<HeaderPopup buttonClick={notifications}>
-					<span className='p-3 block bg-taskBox text-[#fff]'>У вас нет уведомлений!</span>
+					<span className='p-3 block bg-[#FFFFFF] dark:bg-taskBox text-[#1C1D22] dark:text-[#fff]'>
+						У вас нет уведомлений!
+					</span>
 				</HeaderPopup>
 
 				<div className='flex items-center gap-2'>
 					<Link to={calendarPath}>
-						<CalendarTodayOutlinedIcon />
+						<CalendarTodayOutlinedIcon sx={{ color: '#1C1D22 dark:white' }} />
 					</Link>
-					<p className='font-[600]'>{date}</p>
+					<p className='hidden sm:block font-[600] text-[#1C1D22] dark:text-[#FFFFFF80]'>{date}</p>
 				</div>
 
 				<HeaderPopup buttonClick={avatar}>
-					<section className={`flex flex-col md:flex-ro gap-2 p-2 bg-taskBox text-[#fff]`}>
+					<section
+						className={`flex flex-col md:flex-ro gap-2 p-2 bg-[#FFFFFF] dark:bg-taskBox text-[#1C1D22] dark:text-[#fff]`}
+					>
 						{pathname === profilePath ? (
 							<Link to={'/'}>
 								<HomeOutlinedIcon />

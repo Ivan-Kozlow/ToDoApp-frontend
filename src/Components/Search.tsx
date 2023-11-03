@@ -30,38 +30,42 @@ const Search: React.FC = () => {
 					}}
 					type='text'
 					placeholder='Поиск...'
-					className={`${style.input} ${search && style.visible}`}
+					className={`${style.input} ${
+						search && style.visible
+					} bg-[#888DA71A] dark:bg-title dark:text-[#fff] text-[#1C1D22]`}
 				/>
 				<button
 					onClick={() => clearSearchValue()}
-					className={`bg-title rounded-md rounded-l-none opacity-0 transition-all invisible ${
+					className={`dark:bg-title bg-[#888DA71A] rounded-md text-[#1C1D22] dark:text-[#fff] rounded-l-none opacity-0 transition-all invisible ${
 						search && 'opacity-100 !visible'
 					}`}
 				>
 					<ClearOutlinedIcon />
 				</button>
 			</div>
-			<button onClick={inputSearch} title='Search'>
-				<SearchOutlinedIcon />
+			<button onClick={inputSearch} title='Поиск'>
+				<SearchOutlinedIcon sx={{ color: '#1C1D22 dark:white' }} />
 			</button>
 			{!search ||
 				(value !== '' && (
-					<section className='bg-box absolute top-12 overflow-y-auto rounded-md p-2 max-h-[22vh] w-[200px] flex flex-col gap-y-2'>
+					<section className='dark:bg-box bg-[#fff] shadow-xl absolute top-12 overflow-y-auto rounded-md p-2 max-h-[22vh] w-[200px] flex flex-col gap-y-2'>
 						{tasks
 							?.filter((task) => task.title.trim().toLowerCase().includes(value.trim().toLowerCase()))
 							.map(({ title, _id, createdAt, completed }) => (
 								<button
 									key={_id}
-									className='p-2 bg-taskBox hover:bg-title text-start transition-all duration-150 rounded-md text-[#fff]'
+									className='p-2 dark:bg-taskBox bg-[#888DA71A] hover:bg-[#f7f7f7] dark:hover:bg-title text-start transition-all duration-150 rounded-md text-[#1C1D22] dark:text-[#fff]'
 								>
 									<p className='mb-[6px] truncate font-semibold'>{title}</p>
-									<span className='text-[#FFFFFF80] mb-1 text-sm block'>{getLocalDateNumbers(createdAt)}</span>
+									<span className='dark:text-[#ffffff80] text-[#1C1D2280] mb-1 text-sm block'>
+										{getLocalDateNumbers(createdAt)}
+									</span>
 									<div
 										className={`h-1 ${
 											completed === 0
-												? 'bg-title'
+												? 'dark:bg-title bg-[#1C1D2214]'
 												: completed === 1
-												? 'bg-progressCenter'
+												? 'bg-[#FFA048] dark:bg-progressCenter'
 												: completed === 2
 												? 'bg-progressFull'
 												: ''

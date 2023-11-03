@@ -29,12 +29,12 @@ const FormInput: React.FC<TypeFormInput> = ({ require = false, name, textColor, 
 			<TextareaAutosize
 				{...register(name, require ? validations.withRequiredField.title : undefined)}
 				placeholder={placeholder}
-				className={`text-${textColor} w-full lg:max-w-[200px] max-w-[180px] font-semibold bg-title outline-none p-1 rounded-md rounded-r-none max-h-14 resize-none leading-5 overflow-y-scroll`}
+				className={`dark:text-${textColor} w-full lg:max-w-[200px] max-w-[170px] font-semibold dark:bg-title bg-[#888DA71A] outline-none p-1 rounded-md rounded-r-none max-h-14 resize-none leading-5 overflow-y-scroll`}
 			/>
 			<button
 				type='button'
 				onClick={() => focusInput(name)}
-				className={`bg-title flex items-center cursor-pointer rounded-md rounded-l-none`}
+				className={`dark:bg-title bg-[#888DA71A] flex items-center cursor-pointer rounded-md rounded-l-none`}
 			>
 				<ClearOutlinedIcon />
 			</button>
