@@ -2,5 +2,5 @@ export const LSKeys = {
 	userId: 'userId',
 	todoId: 'todoId',
 	token: 'token',
-	sidebarIsOpen: 'sidebarIsOpen',
+	sidebarIsClose: 'sidebarIsClose',
 } as const

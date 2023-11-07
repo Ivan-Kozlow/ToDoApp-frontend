@@ -21,12 +21,13 @@ const icons = [
 ]
 const paths = ['/', profilePath, calendarPath]
 
-const BtnStyle = 'p-3 md:my-3 my-2 flex justify-center items-center transition-all duration-150 hover:bg-primary hover:rounded-full active:bg-box'
+const BtnStyle =
+	'p-3 md:my-3 my-2 flex justify-center items-center transition-all duration-150 hover:bg-primary hover:rounded-full active:bg-box'
 const Sidebar: React.FC = () => {
 	const navigate = useNavigate()
 	const { pathname } = useLocation()
 	const dispatch = useAppDispatch()
-	const [open, setOpen] = React.useState<boolean>(JSON.parse(localStorage.getItem(LSKeys.sidebarIsOpen) || 'false'))
+	const [open, setOpen] = React.useState<boolean>(JSON.parse(localStorage.getItem(LSKeys.sidebarIsClose) || 'false'))
 	const [isActive, setIsActive] = React.useState<number>(() => {
 		if (pathname === profilePath) return 1
 		else if (pathname === calendarPath) return 2
@@ -34,7 +35,7 @@ const Sidebar: React.FC = () => {
 	})
 
 	React.useEffect(() => {
-		localStorage.setItem(LSKeys.sidebarIsOpen, JSON.stringify(open))
+		localStorage.setItem(LSKeys.sidebarIsClose, JSON.stringify(open))
 	}, [open])
 
 	const handlerLogout = () => {
