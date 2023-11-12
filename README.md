@@ -4,7 +4,7 @@
 
 ---
 
-<span style="font-weight:700; font-size:20px"> 
+<span style="font-weight:700; font-size:19px"> 
 	🛠 Технологии
 </span>
 
