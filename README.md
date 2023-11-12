@@ -1,12 +1,6 @@
-<span style="font-weight:700; font-size:24px"> 
-	ToDoApp-frontend
-</span>
+# ToDoApp-frontend
 
----
-
-<span style="font-weight:700; font-size:19px"> 
-	🛠 Технологии
-</span>
+## 🛠 Технологии
 
 -  **React query**
 
