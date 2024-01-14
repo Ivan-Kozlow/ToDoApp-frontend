@@ -1,17 +1,16 @@
-import style from 'components/Profile/ProfilePageStyle.module.scss'
-import React from 'react'
+import { baseURL } from '../../axios'
 import { Navigate, useNavigate } from 'react-router-dom'
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-
 // utils
 import { shallowEqual } from 'react-redux'
-import { keyUserAvatarUpdate, keyUserGetMe } from 'consts/queryKeys'
-import { authLoginPath } from 'consts/URL'
-import { LSKeys } from 'consts/localStorKey'
-import { useAppSelector } from 'hooks/redux'
+import React from 'react'
+import style from 'components/Profile/ProfilePageStyle.module.scss'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+
 import userService from 'services/user.service'
-import { baseURL } from '../../axios'
-import type { TypeAxiosErrorResponse } from 'utils/getErrorMessageOnResponse'
+import { useAppSelector } from 'hooks/redux'
+import { authLoginPath } from 'consts/URL'
+import { keyUserAvatarUpdate, keyUserGetMe } from 'consts/queryKeys'
+import { LSKeys } from 'consts/localStorKey'
 
 import BrushOutlinedIcon from '@mui/icons-material/BrushOutlined'
 import { Container } from '@mui/material'
@@ -19,6 +18,8 @@ import Header from 'components/Header/Header'
 import Loader from 'components/Loader'
 import { Sidebar } from 'components/Sidebar'
 import MutateEditUserContainer from 'components/Profile/MutateEditUserContainer'
+
+import type { TypeAxiosErrorResponse } from 'utils/getErrorMessageOnResponse'
 
 const ProfilePage: React.FC = () => {
 	const navigate = useNavigate()
@@ -73,7 +74,7 @@ const ProfilePage: React.FC = () => {
 								accept='image/*'
 								name='avatar'
 								className='hidden'
-								onChange={(e) => mutate(e.target.files![0])}
+								onChange={(e) => e.target.files?.length && mutate(e.target.files![0])}
 							/>
 							<BrushOutlinedIcon
 								fontSize='large'
