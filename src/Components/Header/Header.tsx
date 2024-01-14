@@ -16,8 +16,6 @@ import Search from '../Search'
 
 type ThemeType = 'dark' | 'light'
 
-// TODO долгая загрузка без backend (белый экран)
-
 const Header: FC<{ full?: boolean }> = ({ full = true }) => {
 	const nickname = useAppSelector((state) => state.user.user?.nickname)
 	const avatarImg = useAppSelector((state) => state.user.user?.avatar)
@@ -46,7 +44,7 @@ const Header: FC<{ full?: boolean }> = ({ full = true }) => {
 	)
 
 	return (
-		<header className='md:py-7 py-4 text-[#FFFFFF80] flex items-center flex-wrap gap-y-3'>
+		<header className='md:py-7 py-4 text-[#FFFFFF80] flex items-center flex-wrap gap-y-3 px-3'>
 			{full && (
 				<>
 					<h1 className='text-[#1C1D22] dark:text-[#fff] text-lg sm:text-xl font-bold'>
