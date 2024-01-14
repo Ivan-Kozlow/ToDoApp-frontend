@@ -44,7 +44,7 @@ const Search: React.FC = () => {
 				</button>
 			</div>
 			<button onClick={inputSearch} title='Поиск'>
-				<SearchOutlinedIcon sx={{ color: '#1C1D22 dark:white' }} />
+				<SearchOutlinedIcon className='!fill-taskBox dark:!fill-[#FFFFFF80]' />
 			</button>
 			{!search ||
 				(value !== '' && (
