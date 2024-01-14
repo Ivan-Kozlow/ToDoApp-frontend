@@ -4,10 +4,11 @@ import { Navigate, useNavigate } from 'react-router-dom'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 // utils
+import { shallowEqual } from 'react-redux'
 import { keyUserAvatarUpdate, keyUserGetMe } from 'consts/queryKeys'
 import { authLoginPath } from 'consts/URL'
-import { useAppSelector } from 'hooks/redux'
 import { LSKeys } from 'consts/localStorKey'
+import { useAppSelector } from 'hooks/redux'
 import userService from 'services/user.service'
 import { baseURL } from '../../axios'
 import type { TypeAxiosErrorResponse } from 'utils/getErrorMessageOnResponse'
@@ -22,10 +23,9 @@ import MutateEditUserContainer from 'components/Profile/MutateEditUserContainer'
 const ProfilePage: React.FC = () => {
 	const navigate = useNavigate()
 	const RefInput = React.useRef<HTMLInputElement | null>(null)
-	const user = useAppSelector((state) => state.user.user)
+	const user = useAppSelector((state) => state.user.user, shallowEqual)
 	const createdDate = (user && new Date(user.createdAt).toLocaleDateString()) || 'Нет информации'
 	const updateDate = (user && new Date(user.updatedAt).toLocaleDateString()) || 'Нет информации'
-
 	const queryClient = useQueryClient()
 	const { mutate } = useMutation<string, TypeAxiosErrorResponse, Blob | undefined>({
 		mutationKey: [keyUserAvatarUpdate],
@@ -33,6 +33,7 @@ const ProfilePage: React.FC = () => {
 		onSuccess: () => queryClient.invalidateQueries([keyUserGetMe]),
 	})
 
+	// if (user not auth) return on main page
 	React.useEffect(() => {
 		if (user?._id) return
 		const t = setTimeout(() => {

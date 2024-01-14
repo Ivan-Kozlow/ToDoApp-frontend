@@ -42,6 +42,7 @@ const Header: FC<{ full?: boolean }> = ({ full = true }) => {
 		<img
 			src={avatarImg && baseURL + 'uploads/' + avatarImg}
 			className={`w-[36px] h-[36px] rounded-full ${!avatarImg && 'dark:bg-title bg-[#2A2B2F]'} object-cover`}
+			alt='Аватар'
 		/>
 	)
 
@@ -73,7 +74,9 @@ const Header: FC<{ full?: boolean }> = ({ full = true }) => {
 
 				<HeaderPopup buttonClick={avatar}>
 					<section
-						className={`flex flex-col md:flex-ro gap-2 p-2 bg-[#FFFFFF] dark:bg-taskBox text-[#1C1D22] dark:text-[#fff]`}
+						className={
+							'flex flex-col md:flex-ro gap-2 p-2 bg-[#FFFFFF] dark:bg-taskBox text-[#1C1D22] dark:text-[#fff]'
+						}
 					>
 						{pathname === profilePath ? (
 							<Link to={'/'}>
