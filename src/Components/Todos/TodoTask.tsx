@@ -1,11 +1,12 @@
 import { FC, useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
+
+import { getLocalDateNumbers } from 'utils/getLocalDate'
+import todoService from 'services/todo.service'
 import { ITodo } from 'Redux/slices/todo/typesTodo'
 import { todoActions } from 'Redux/slices/todo/todoSlice'
 import { useAppDispatch } from 'hooks/redux'
-import { getLocalDateNumbers } from 'utils/getLocalDate'
 import { keyTodoUpdate } from 'consts/queryKeys'
-import todoService from 'services/todo.service'
 
 import MoreTodoMenu from 'components/Todos/MorePopover'
 import TodoProgressBar from './Form/TodoProgressBar'
@@ -60,7 +61,7 @@ const TodoTask: FC<TypeTodoTaskProps> = ({ title, body, completed, createdAt, _i
 						<p className='mb-1 text-sm text-[#1C1D2280] dark:text-[#FFFFFF80]'>Статус</p>
 						<TodoProgressBar completed={completed} />
 					</div>
-					<div className='flex items-center justify-between'>
+					<div className='flex items-center justify-between mr-[-2px]'>
 						<p className='text-sm dark:text-[#FFFFFF80] px-4 py-1 bg-[#888DA71A] !text-[#989CAA] dark:bg-[#FFFFFF0F] rounded-full'>
 							{date}
 						</p>
