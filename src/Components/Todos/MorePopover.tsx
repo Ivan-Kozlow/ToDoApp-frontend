@@ -14,7 +14,7 @@ import { todoActions } from 'Redux/slices/todo/todoSlice'
 import { EnumTodoTitle } from 'consts/enums'
 import { useAppDispatch } from 'hooks/redux'
 import { Dispatch, FC, SetStateAction, useState } from 'react'
-import MySnackbar from 'components/MySnackbar'
+import MySnackbar from 'Components/MySnackbar'
 
 const MoveTodo: { title: EnumTodoTitle; completed: TypeCompleted }[] = [
 	{

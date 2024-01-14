@@ -1,9 +1,9 @@
 import React from 'react'
 import DnsOutlinedIcon from '@mui/icons-material/DnsOutlined'
-import Header from 'components/Header/Header'
-import Loader from 'components/Loader'
-import { Sidebar } from 'components/Sidebar'
-import TodosCategories from 'components/Todos/TodosCategories'
+import Header from 'Components/Header/Header'
+import Loader from 'Components/Loader'
+import { Sidebar } from 'Components/Sidebar'
+import TodosCategories from 'Components/Todos/TodosCategories'
 
 interface IMainPageProps {
 	authChecking: boolean

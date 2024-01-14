@@ -7,7 +7,7 @@ import { IFormUserFields } from 'pages/AuthPage'
 import { useAppSelector } from 'hooks/redux'
 
 import { TextField } from '@mui/material'
-import ErrorField from 'components/auth/ErrorField'
+import ErrorField from 'Components/auth/ErrorField'
 import InputField from './InputFIeld'
 
 const InputFieldsEditUser: React.FC = () => {

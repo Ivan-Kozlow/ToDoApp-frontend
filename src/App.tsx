@@ -11,8 +11,8 @@ import { useAppDispatch } from './hooks/redux'
 import { keyTodoGetAll, keyUserGetMe } from 'consts/queryKeys'
 import { authLoginPath, authRegisterPath, calendarPath, profilePath } from 'consts/URL'
 
-import Loader from 'components/Loader'
-import MySnackbar from 'components/MySnackbar'
+import Loader from 'Components/Loader'
+import MySnackbar from 'Components/MySnackbar'
 import ProfilePage from 'pages/ProfilePage'
 import MainPage from 'pages/MainPage'
 

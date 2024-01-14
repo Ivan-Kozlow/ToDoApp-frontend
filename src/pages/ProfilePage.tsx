@@ -15,10 +15,10 @@ import type { TypeAxiosErrorResponse } from 'utils/getErrorMessageOnResponse'
 
 import BrushOutlinedIcon from '@mui/icons-material/BrushOutlined'
 import { Container } from '@mui/material'
-import Header from 'components/Header/Header'
-import Loader from 'components/Loader'
-import { Sidebar } from 'components/Sidebar'
-import MutateEditUserContainer from 'components/Profile/MutateEditUserContainer'
+import Header from 'Components/Header/Header'
+import Loader from 'Components/Loader'
+import { Sidebar } from 'Components/Sidebar'
+import MutateEditUserContainer from 'Components/Profile/MutateEditUserContainer'
 
 const ProfilePage: React.FC = () => {
 	const navigate = useNavigate()
