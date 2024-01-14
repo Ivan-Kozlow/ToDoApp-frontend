@@ -1,15 +1,14 @@
-import { useQuery } from '@tanstack/react-query'
-import React, { Suspense } from 'react'
 import { Route, Routes } from 'react-router-dom'
+import React, { Suspense } from 'react'
+import { useQuery } from '@tanstack/react-query'
 
-// utils
+import userService from './services/user.service'
+import { useAppDispatch } from './hooks/redux'
+import todoService from 'services/todo.service'
 import { userActions } from 'Redux/slices/user/userSlice'
 import { todoActions } from 'Redux/slices/todo/todoSlice'
-import userService from './services/user.service'
-import todoService from 'services/todo.service'
-import { useAppDispatch } from './hooks/redux'
-import { keyTodoGetAll, keyUserGetMe } from 'consts/queryKeys'
 import { authLoginPath, authRegisterPath, calendarPath, profilePath } from 'consts/URL'
+import { keyTodoGetAll, keyUserGetMe } from 'consts/queryKeys'
 
 import Loader from 'components/Loader'
 import MySnackbar from 'components/MySnackbar'

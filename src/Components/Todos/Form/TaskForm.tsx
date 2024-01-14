@@ -1,14 +1,16 @@
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
+
+import { getLocalDateNumbers } from 'utils/getLocalDate'
+import { TypeAxiosErrorResponse, getErrorMessageForResponse } from 'utils/getErrorMessageOnResponse'
+import { TypeCreateTodo } from 'services/types'
+import todoService from 'services/todo.service'
 import { ITodo } from 'Redux/slices/todo/typesTodo'
 import { todoActions } from 'Redux/slices/todo/todoSlice'
-import { keyTodoCreate, keyTodoGetAll, keyTodoUpdate } from 'consts/queryKeys'
 import { useAppDispatch, useAppSelector } from 'hooks/redux'
-import todoService from 'services/todo.service'
-import { getLocalDateNumbers } from 'utils/getLocalDate'
+import { keyTodoCreate, keyTodoGetAll, keyTodoUpdate } from 'consts/queryKeys'
+
 import { IFormInput, TypeForm } from 'types'
-import { type TypeCreateTodo } from 'services/types'
-import { type TypeAxiosErrorResponse, getErrorMessageForResponse } from 'utils/getErrorMessageOnResponse'
 import MySnackbar from 'components/MySnackbar'
 import FormInput from './FormInput'
 
@@ -75,3 +77,6 @@ const TaskForm: React.FC<TypeForm> = ({ createTask, isCreate, setCreateTask, chi
 }
 
 export default TaskForm
+
+// TODO При отмене редактирования сбрасывается прогресс до 0 (0, 1 или 2 - выполнено)
+// TODO Ширина блока (Board view) не растягивается при горизонтальном скроле на мобилках

@@ -44,7 +44,7 @@ const Header: FC<{ full?: boolean }> = ({ full = true }) => {
 	)
 
 	return (
-		<header className='md:py-7 py-4 text-[#FFFFFF80] flex items-center flex-wrap gap-y-3 px-3'>
+		<header className='md:py-7 py-4 text-[#FFFFFF80] flex items-center flex-wrap gap-y-3 px-3 max-w-[100vw]'>
 			{full && (
 				<>
 					<h1 className='text-[#1C1D22] dark:text-[#fff] text-lg sm:text-xl font-bold'>

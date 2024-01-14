@@ -1,0 +1,30 @@
+{
+	"importSorter.generalConfiguration.sortOnBeforeSave": true,
+	"importSorter.importStringConfiguration.tabType": "tab",
+	"importSorter.importStringConfiguration.tabSize": 3,
+	"importSorter.importStringConfiguration.hasSemicolon": false,
+	"importSorter.importStringConfiguration.maximumNumberOfImportExpressionsPerLine.count": 120,
+	"importSorter.importStringConfiguration.maximumNumberOfImportExpressionsPerLine.type": "newLineEachExpressionAfterCountLimitExceptIfOnlyOne",
+	"importSorter.importStringConfiguration.trailingComma": "multiLine",
+	"importSorter.sortConfiguration.customOrderingRules.defaultOrderLevel": 40,
+	"importSorter.sortConfiguration.customOrderingRules.disableDefaultOrderSort": true,
+	"importSorter.sortConfiguration.importMembers.order": "lowercaseLast",
+	"importSorter.sortConfiguration.importMembers.direction": "asc",
+	"importSorter.sortConfiguration.importPaths.order": "caseInsensitive",
+	"importSorter.sortConfiguration.importPaths.direction": "desc",
+	"importSorter.sortConfiguration.joinImportPaths": true,
+	"importSorter.sortConfiguration.customOrderingRules.rules": [
+		{
+			"regex": "tanstack|react|next|nest|express|mongoose|prisma|.module|.css|jsonwebtoken|cors|axios",
+			"orderLevel": 10
+		},
+		{
+			"regex": "[S|s]ervice|[R|r]edux|[H|h]ook|[C|c]onst|[U|u]til",
+			"orderLevel": 30
+		},
+		{
+			"regex": "^[.]",
+			"orderLevel": 40
+		}
+	]
+}

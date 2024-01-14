@@ -25,7 +25,9 @@ const MainPage: React.FC<IMainPageProps> = React.memo(({ authChecking, isFetchin
 							<span>Board view</span>
 						</div>
 					</section>
-					<div className='flex gap-5 mb-4 pb-4'>{isLoading ? <Loader /> : <TodosCategories />}</div>
+					<div className='flex gap-5 mb-4 pb-4 overflow-x-auto'>
+						{isLoading ? <Loader /> : <TodosCategories />}
+					</div>
 				</main>
 			</div>
 		</div>
