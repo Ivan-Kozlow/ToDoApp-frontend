@@ -53,7 +53,7 @@ const TodoTask: FC<TypeTodoTaskProps> = ({ title, body, completed, createdAt, _i
 						<MoreTodoMenu _id={_id} setCreateTask={setCreateTask} />
 					</div>
 					{body && (
-						<p className='text-sm font-medium text-[#1C1D2280] dark:text-[#FFFFFF80] max-w-[250px] truncate'>
+						<p className='text-sm font-medium text-[#1C1D2280] dark:text-[#FFFFFF80] max-w-[250px] overflow-hidden line-clamp-2'>
 							{body}
 						</p>
 					)}
