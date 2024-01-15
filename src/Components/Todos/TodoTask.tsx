@@ -33,20 +33,11 @@ const TodoTask: FC<TypeTodoTaskProps> = ({ title, body, completed, createdAt, _i
 	const date = getLocalDateNumbers(createdAt)
 	return (
 		<article className='dark:bg-taskBox rounded-md p-3 lg:p-5 border-solid border-[2px] border-[#1C1D220F]'>
-			{createTask && (
-				<TaskForm
-					btnName='Сохранить'
-					isCreate={false}
-					_id={_id}
-					createTask={createTask}
-					setCreateTask={setCreateTask}
-				/>
-			)}
+			{createTask && <TaskForm btnName='Сохранить' isCreate={false} _id={_id} setCreateTask={setCreateTask} />}
 
 			{!createTask && (
 				<>
 					<div className='flex items-start gap-x-1 justify-between'>
-						{/* TODO add ellipse on 2 string */}
 						<h2 className='font-bold text-base truncate' title={title}>
 							{title}
 						</h2>

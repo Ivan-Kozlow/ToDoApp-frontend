@@ -38,9 +38,9 @@ const Header: FC<{ full?: boolean }> = ({ full = true }) => {
 		</div>
 	)
 	const avatar = (
-		<button className={'w-[36px] h-[36px] rounded-full dark:bg-title bg-[#2A2B2F] object-cover overflow-hidden'}>
+		<div className={'w-[36px] h-[36px] rounded-full dark:bg-title bg-[#2A2B2F] object-cover overflow-hidden'}>
 			{avatarImg && <img src={`${baseURL + 'uploads/' + avatarImg}`} alt='Аватар' />}
-		</button>
+		</div>
 	)
 
 	return (
