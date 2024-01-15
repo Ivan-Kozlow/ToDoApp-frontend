@@ -10,7 +10,7 @@ export const todoSlice = createSlice({
 	name: 'todo',
 	initialState,
 	reducers: {
-		addTask: (state, action: PayloadAction<Omit<ITodo, 'updatedAt' | 'user'>>) => {
+		addTask: (state, action: PayloadAction<ITodo>) => {
 			const todo = { ...action.payload }
 			state.todos?.unshift(todo)
 		},

@@ -1,11 +1,10 @@
-import { FC, useEffect, useState } from 'react'
+import { todoActions } from 'Redux/slices/todo/todoSlice'
 import { ITodo } from 'Redux/slices/todo/typesTodo'
 import { EnumTodoTitle } from 'consts/enums'
-import FilterIcon from 'assets/FilterIcon.svg'
+import { useAppDispatch } from 'hooks/redux'
+import { FC, useState } from 'react'
 import CreateTasks from './CreateTasks'
 import TodoTask from './TodoTask'
-import { useAppDispatch } from 'hooks/redux'
-import { todoActions } from 'Redux/slices/todo/todoSlice'
 
 type TypeTodoBox = {
 	title: string

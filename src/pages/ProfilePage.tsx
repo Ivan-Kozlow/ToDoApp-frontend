@@ -1,4 +1,4 @@
-import style from 'components/Profile/ProfilePageStyle.module.scss'
+import style from 'Components/Profile/ProfilePageStyle.module.scss'
 import React from 'react'
 import { Navigate, useNavigate } from 'react-router-dom'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
