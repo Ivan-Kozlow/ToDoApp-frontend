@@ -1,4 +1,4 @@
-import style from 'components/auth/FormRegister.module.scss'
+import style from 'Components/auth/FormRegister.module.scss'
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
 import AuthForm from 'Components/auth/AuthForm'
 import { Navigate } from 'react-router-dom'
