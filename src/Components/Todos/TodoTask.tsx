@@ -1,13 +1,14 @@
 import { FC, useState } from 'react'
 import { useMutation } from '@tanstack/react-query'
+
+import { getLocalDateNumbers } from 'utils/getLocalDate'
+import todoService from 'services/todo.service'
 import { ITodo } from 'Redux/slices/todo/typesTodo'
 import { todoActions } from 'Redux/slices/todo/todoSlice'
 import { useAppDispatch } from 'hooks/redux'
-import { getLocalDateNumbers } from 'utils/getLocalDate'
 import { keyTodoUpdate } from 'consts/queryKeys'
-import todoService from 'services/todo.service'
 
-import MoreTodoMenu from 'Components/Todos/MorePopover'
+import MoreTodoMenu from 'components/Todos/MorePopover'
 import TodoProgressBar from './Form/TodoProgressBar'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import RemoveCircleOutlineOutlinedIcon from '@mui/icons-material/RemoveCircleOutlineOutlined'

@@ -1,15 +1,14 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query'
-import React from 'react'
 import { useDispatch } from 'react-redux'
+import React from 'react'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-// utils
-import { keyUserGetMe, keyUserDataUpdate } from 'consts/queryKeys'
+import { TypeAxiosErrorResponse, getErrorMessageForResponse } from 'utils/getErrorMessageOnResponse'
 import userService from 'services/user.service'
-import { type TypeAxiosErrorResponse, getErrorMessageForResponse } from 'utils/getErrorMessageOnResponse'
 import { userActions } from 'Redux/slices/user/userSlice'
+import { keyUserDataUpdate, keyUserGetMe } from 'consts/queryKeys'
 
-import Loader from 'Components/Loader'
-import MySnackbar from 'Components/MySnackbar'
+import Loader from 'components/Loader'
+import MySnackbar from 'components/MySnackbar'
 import { IFormUserFields } from 'pages/AuthPage'
 import FormEditUser from './FormEditUser'
 

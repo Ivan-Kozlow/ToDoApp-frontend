@@ -1,25 +1,24 @@
-import style from 'Components/Profile/ProfilePageStyle.module.scss'
-import React from 'react'
+import { baseURL } from '../../axios'
 import { Navigate, useNavigate } from 'react-router-dom'
+import { shallowEqual } from 'react-redux'
+import React from 'react'
+import style from 'components/Profile/ProfilePageStyle.module.scss'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-// utils
-import { shallowEqual } from 'react-redux'
-import { keyUserAvatarUpdate, keyUserGetMe } from 'consts/queryKeys'
-import { authLoginPath } from 'consts/URL'
-import { LSKeys } from 'consts/localStorKey'
-import { useAppSelector } from 'hooks/redux'
 import userService from 'services/user.service'
-import { baseURL } from '../../axios'
-import type { TypeAxiosErrorResponse } from 'utils/getErrorMessageOnResponse'
+import { useAppSelector } from 'hooks/redux'
+import { authLoginPath } from 'consts/URL'
+import { keyUserAvatarUpdate, keyUserGetMe } from 'consts/queryKeys'
+import { LSKeys } from 'consts/localStorKey'
 
 import BrushOutlinedIcon from '@mui/icons-material/BrushOutlined'
 import { Container } from '@mui/material'
-import Header from 'Components/Header/Header'
-import Loader from 'Components/Loader'
-import { Sidebar } from 'Components/Sidebar'
-import MutateEditUserContainer from 'Components/Profile/MutateEditUserContainer'
+import Header from 'components/Header/Header'
+import { Sidebar } from 'components/Sidebar'
+import MutateEditUserContainer from 'components/Profile/MutateEditUserContainer'
+import Loader from 'components/Loader'
 
+import type { TypeAxiosErrorResponse } from 'utils/getErrorMessageOnResponse'
 const ProfilePage: React.FC = () => {
 	const navigate = useNavigate()
 	const RefInput = React.useRef<HTMLInputElement | null>(null)
@@ -33,7 +32,6 @@ const ProfilePage: React.FC = () => {
 		onSuccess: () => queryClient.invalidateQueries([keyUserGetMe]),
 	})
 
-	// if (user not auth) return on main page
 	React.useEffect(() => {
 		if (user?._id) return
 		const t = setTimeout(() => {

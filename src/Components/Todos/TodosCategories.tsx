@@ -1,14 +1,13 @@
 import { useAppSelector } from 'hooks/redux'
-import type { TypeCompleted } from 'types'
 import { EnumTodoTitle } from 'consts/enums'
-import CreateTasks from './CreateTasks'
-import TodoBox from './TodoBox'
 
+import TodoBox from './TodoBox'
+import CreateTasks from './CreateTasks'
+
+import type { TypeCompleted } from 'types'
 const TodosCategories: React.FC = () => {
 	const tasks = useAppSelector((s) => s.todo.todos)
 
-	// TODO create array of tasks completed, which in redux
-	// and map this new array using filterTasksByProgress()
 	const filterTasksByProgress = (completed: TypeCompleted) =>
 		tasks?.length ? tasks?.filter((task) => task.completed === completed) : []
 

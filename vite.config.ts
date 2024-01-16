@@ -1,4 +1,5 @@
 import react from '@vitejs/plugin-react'
+
 import { defineConfig } from 'vite'
 import svgr from 'vite-plugin-svgr'
 
@@ -7,7 +8,7 @@ export default defineConfig({
 	plugins: [react(), svgr()],
 	resolve: {
 		alias: {
-			Components: '/src/Components/',
+			components: '/src/components/',
 			hooks: '/src/hooks/',
 			pages: '/src/pages/',
 			Redux: '/src/redux/',

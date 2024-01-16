@@ -1,10 +1,12 @@
-import { todoActions } from 'Redux/slices/todo/todoSlice'
-import { ITodo } from 'Redux/slices/todo/typesTodo'
-import { EnumTodoTitle } from 'consts/enums'
-import { useAppDispatch } from 'hooks/redux'
 import { FC, useState } from 'react'
-import CreateTasks from './CreateTasks'
+
+import { ITodo } from 'Redux/slices/todo/typesTodo'
+import { todoActions } from 'Redux/slices/todo/todoSlice'
+import { useAppDispatch } from 'hooks/redux'
+import { EnumTodoTitle } from 'consts/enums'
+
 import TodoTask from './TodoTask'
+import CreateTasks from './CreateTasks'
 
 type TypeTodoBox = {
 	title: string
@@ -13,11 +15,11 @@ type TypeTodoBox = {
 
 const TodoBox: FC<TypeTodoBox> = ({ title, tasks }) => {
 	const dispatch = useAppDispatch()
-	const [sortedByTitile, setSortedByTitile] = useState(false)
+	const [sortedByTitle, setSortedByTitle] = useState(false)
 
 	const sortTodos = () => {
-		dispatch(todoActions.sortTasks(sortedByTitile))
-		setSortedByTitile((p) => !p)
+		dispatch(todoActions.sortTasks(sortedByTitle))
+		setSortedByTitle((p) => !p)
 	}
 
 	return (

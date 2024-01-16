@@ -1,9 +1,9 @@
-import { FC, useEffect, useState } from 'react'
+import { baseURL } from '../../../axios'
 import { Link, useLocation } from 'react-router-dom'
+import { FC, useEffect, useState } from 'react'
 
-// utils
-import { calendarPath, profilePath } from 'consts/URL'
 import { useAppSelector } from 'hooks/redux'
+import { calendarPath, profilePath } from 'consts/URL'
 
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined'
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined'
@@ -13,7 +13,6 @@ import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined'
 import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined'
 import HeaderPopup from './HeaderPopup'
 import Search from '../Search'
-import { baseURL } from '../../../axios'
 
 type ThemeType = 'dark' | 'light'
 

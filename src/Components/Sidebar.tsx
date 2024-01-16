@@ -1,10 +1,9 @@
-import React from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import React from 'react'
 
-// utils
-import { authLoginPath, calendarPath, profilePath } from 'consts/URL'
-import { useAppDispatch } from 'hooks/redux'
 import { userActions } from 'Redux/slices/user/userSlice'
+import { useAppDispatch } from 'hooks/redux'
+import { authLoginPath, calendarPath, profilePath } from 'consts/URL'
 import { LSKeys } from 'consts/localStorKey'
 
 import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined'
