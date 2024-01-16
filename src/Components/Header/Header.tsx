@@ -34,7 +34,7 @@ const Header: FC<{ full?: boolean }> = ({ full = true }) => {
 	const notifications = (
 		<div className='relative'>
 			<div className='w-2 h-2 rounded-full bg-[#FFA048] absolute top-[2px] right-[2px]'></div>
-			<NotificationsOutlinedIcon sx={{ color: '#1C1D22 dark:white' }} />
+			<NotificationsOutlinedIcon className='!fill-taskBox dark:!fill-[#FFFFFF80]' />
 		</div>
 	)
 	const avatar = (
@@ -48,8 +48,8 @@ const Header: FC<{ full?: boolean }> = ({ full = true }) => {
 			{full && (
 				<>
 					<h1 className='text-[#1C1D22] dark:text-[#fff] text-lg sm:text-xl font-bold'>
-						<span className='hidden md:inline-block'>Добро пожаловать, </span>
-						{nickname && ` ${nickname}`}
+						<span className='hidden md:inline-block'>Добро пожаловать</span>
+						{nickname && `, ${nickname}`}
 					</h1>
 				</>
 			)}
@@ -64,7 +64,7 @@ const Header: FC<{ full?: boolean }> = ({ full = true }) => {
 
 				<div className='flex items-center gap-2'>
 					<Link to={calendarPath}>
-						<CalendarTodayOutlinedIcon sx={{ color: '#1C1D22 dark:white' }} />
+						<CalendarTodayOutlinedIcon className='!fill-taskBox dark:!fill-[#FFFFFF80]' />
 					</Link>
 					<p className='hidden sm:block font-[600] text-[#1C1D22] dark:text-[#FFFFFF80]'>{date}</p>
 				</div>

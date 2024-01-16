@@ -36,8 +36,9 @@ export const todoSlice = createSlice({
 			const todo = state.todos?.find((todo) => todo._id === action.payload._id)
 			if (todo) todo.completed = action.payload.completed
 		},
-		sortTasks: (state) => {
-			state.todos?.sort((a, b) => a.title.localeCompare(b.title))
+		sortTasks: (state, action: PayloadAction<boolean>) => {
+			const sorted = action.payload
+			state.todos?.sort((a, b) => (sorted ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title)))
 		},
 	},
 })
