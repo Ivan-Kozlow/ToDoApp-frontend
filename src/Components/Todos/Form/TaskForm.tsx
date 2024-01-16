@@ -1,4 +1,5 @@
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
+import React from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import { getLocalDateNumbers } from 'utils/getLocalDate'
@@ -45,6 +46,19 @@ const TaskForm: React.FC<TypeForm> = ({ isCreate, setCreateTask, children, btnNa
 
 	const fieldsIsEmpty = Object.values(watch()).every((el: string) => el?.trim() === '')
 	const onSubmit: SubmitHandler<IFormInput> = (data) => (isCreate ? mutate(data) : mutateUpdateData(data))
+
+	React.useEffect(() => {
+		const handleSubmitOnClickEnter = (e: KeyboardEvent) => {
+			const formData = watch()
+			if (e.key === 'Enter' && e.shiftKey) return
+			if (e.key === 'Enter' && Object.values(formData).some((el) => !!el)) {
+				isCreate ? mutate(formData) : mutateUpdateData(formData)
+			}
+		}
+
+		document.addEventListener('keydown', handleSubmitOnClickEnter)
+		return () => document.removeEventListener('keydown', handleSubmitOnClickEnter)
+	}, [])
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-2'>
