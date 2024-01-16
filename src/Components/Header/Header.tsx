@@ -38,15 +38,13 @@ const Header: FC<{ full?: boolean }> = ({ full = true }) => {
 		</div>
 	)
 	const avatar = (
-		<img
-			src={avatarImg && baseURL + 'uploads/' + avatarImg}
-			className={`w-[36px] h-[36px] rounded-full ${!avatarImg && 'dark:bg-title bg-[#2A2B2F]'} object-cover`}
-			alt='Аватар'
-		/>
+		<div className={'w-[36px] h-[36px] rounded-full dark:bg-title bg-[#2A2B2F] object-cover overflow-hidden'}>
+			{avatarImg && <img src={`${baseURL + 'uploads/' + avatarImg}`} alt='Аватар' />}
+		</div>
 	)
 
 	return (
-		<header className='md:py-7 py-4 text-[#FFFFFF80] flex items-center flex-wrap gap-y-3'>
+		<header className='md:py-7 py-4 text-[#FFFFFF80] flex items-center flex-wrap gap-y-3 px-3 max-w-[100vw]'>
 			{full && (
 				<>
 					<h1 className='text-[#1C1D22] dark:text-[#fff] text-lg sm:text-xl font-bold'>

@@ -1,5 +1,6 @@
-import { Popover } from '@mui/material'
 import { FC, useState } from 'react'
+
+import { Popover } from '@mui/material'
 
 const HeaderPopup: FC<Record<'children' | 'buttonClick', JSX.Element>> = ({ children, buttonClick }) => {
 	const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)

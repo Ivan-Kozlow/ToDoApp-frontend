@@ -1,9 +1,10 @@
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form'
+import React from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import { getLocalDateNumbers } from 'utils/getLocalDate'
-import { TypeAxiosErrorResponse, getErrorMessageForResponse, type } from 'utils/getErrorMessageOnResponse'
-import { TypeCreateTodo, type } from 'services/types'
+import { TypeAxiosErrorResponse, getErrorMessageForResponse } from 'utils/getErrorMessageOnResponse'
+import { TypeCreateTodo } from 'services/types'
 import todoService from 'services/todo.service'
 import { ITodo } from 'Redux/slices/todo/typesTodo'
 import { todoActions } from 'Redux/slices/todo/todoSlice'
@@ -12,15 +13,15 @@ import { keyTodoCreate, keyTodoGetAll, keyTodoUpdate } from 'consts/queryKeys'
 
 import { IFormInput, TypeForm } from 'types'
 import MySnackbar from 'components/MySnackbar'
-import FormInput from './FormInput'
+import InputTodoForm from './InputTodoForm'
 
-const TaskForm: React.FC<TypeForm> = ({ createTask, isCreate, setCreateTask, children, btnName, _id }) => {
+const TaskForm: React.FC<TypeForm> = ({ isCreate, setCreateTask, children, btnName, _id }) => {
 	const dispatch = useAppDispatch()
 
 	const todos = useAppSelector((s) => s.todo.todos)
 	const todo = todos?.find((t) => t._id === _id)
 
-	const formMethods = useForm<IFormInput>({ defaultValues: { title: todo?.title || '', body: todo?.body || '' } })
+	const formMethods = useForm<IFormInput>({ defaultValues: { title: '', body: '' } })
 	const { handleSubmit, reset, watch } = formMethods
 	const { mutate, isError, error, isLoading } = useMutation<ITodo, TypeAxiosErrorResponse, TypeCreateTodo>({
 		mutationKey: [keyTodoCreate],
@@ -28,7 +29,7 @@ const TaskForm: React.FC<TypeForm> = ({ createTask, isCreate, setCreateTask, chi
 		onSuccess: (data) => {
 			dispatch(todoActions.addTask(data))
 			reset()
-			setCreateTask(!createTask)
+			setCreateTask((v) => !v)
 		},
 	})
 	const queryClient = useQueryClient()
@@ -39,18 +40,31 @@ const TaskForm: React.FC<TypeForm> = ({ createTask, isCreate, setCreateTask, chi
 			queryClient.invalidateQueries([keyTodoGetAll])
 			dispatch(todoActions.editTask(data))
 			reset()
-			setCreateTask(!createTask)
+			setCreateTask((v) => !v)
 		},
 	})
 
-	const fieldsIsEmpty = Object.values(watch()).every((el: string) => el.trim() === '')
+	const fieldsIsEmpty = Object.values(watch()).every((el: string) => el?.trim() === '')
 	const onSubmit: SubmitHandler<IFormInput> = (data) => (isCreate ? mutate(data) : mutateUpdateData(data))
+
+	React.useEffect(() => {
+		const handleSubmitOnClickEnter = (e: KeyboardEvent) => {
+			const formData = watch()
+			if (e.key === 'Enter' && e.shiftKey) return
+			if (e.key === 'Enter' && Object.values(formData).some((el) => !!el)) {
+				isCreate ? mutate(formData) : mutateUpdateData(formData)
+			}
+		}
+
+		document.addEventListener('keydown', handleSubmitOnClickEnter)
+		return () => document.removeEventListener('keydown', handleSubmitOnClickEnter)
+	}, [])
 
 	return (
 		<form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-2'>
 			<FormProvider {...formMethods}>
-				<FormInput require name={'title'} textColor='fff' placeholder='Название' />
-				<FormInput name={'body'} textColor='[#FFFFFF90]' placeholder='Описание' />
+				<InputTodoForm require name={'title'} placeholder='Название' defaultValue={todo?.title} />
+				<InputTodoForm name={'body'} placeholder='Описание' />
 			</FormProvider>
 
 			{isError && (

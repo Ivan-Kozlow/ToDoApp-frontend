@@ -1,9 +1,11 @@
+import style from './Search.module.scss'
+import { useRef, useState } from 'react'
+
+import { getLocalDateNumbers } from 'utils/getLocalDate'
+import { useAppSelector } from 'hooks/redux'
+
 import ClearOutlinedIcon from '@mui/icons-material/ClearOutlined'
 import SearchOutlinedIcon from '@mui/icons-material/SearchOutlined'
-import { useRef, useState } from 'react'
-import style from './Search.module.scss'
-import { useAppSelector } from 'hooks/redux'
-import { getLocalDateNumbers } from 'utils/getLocalDate'
 
 const Search: React.FC = () => {
 	const tasks = useAppSelector((s) => s.todo.todos)

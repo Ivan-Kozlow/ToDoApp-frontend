@@ -33,27 +33,18 @@ const TodoTask: FC<TypeTodoTaskProps> = ({ title, body, completed, createdAt, _i
 	const date = getLocalDateNumbers(createdAt)
 	return (
 		<article className='dark:bg-taskBox rounded-md p-3 lg:p-5 border-solid border-[2px] border-[#1C1D220F]'>
-			{createTask && (
-				<TaskForm
-					btnName='Сохранить'
-					isCreate={false}
-					_id={_id}
-					createTask={createTask}
-					setCreateTask={setCreateTask}
-				/>
-			)}
+			{createTask && <TaskForm btnName='Сохранить' isCreate={false} _id={_id} setCreateTask={setCreateTask} />}
 
 			{!createTask && (
 				<>
 					<div className='flex items-start gap-x-1 justify-between'>
-						{/* TODO add ellipse on 2 string */}
 						<h2 className='font-bold text-base truncate' title={title}>
 							{title}
 						</h2>
 						<MoreTodoMenu _id={_id} setCreateTask={setCreateTask} />
 					</div>
 					{body && (
-						<p className='text-sm font-medium text-[#1C1D2280] dark:text-[#FFFFFF80] max-w-[250px] truncate'>
+						<p className='text-sm font-medium text-[#1C1D2280] dark:text-[#FFFFFF80] max-w-[250px] overflow-hidden line-clamp-2'>
 							{body}
 						</p>
 					)}
@@ -61,7 +52,7 @@ const TodoTask: FC<TypeTodoTaskProps> = ({ title, body, completed, createdAt, _i
 						<p className='mb-1 text-sm text-[#1C1D2280] dark:text-[#FFFFFF80]'>Статус</p>
 						<TodoProgressBar completed={completed} />
 					</div>
-					<div className='flex items-center justify-between'>
+					<div className='flex items-center justify-between mr-[-2px]'>
 						<p className='text-sm dark:text-[#FFFFFF80] px-4 py-1 bg-[#888DA71A] !text-[#989CAA] dark:bg-[#FFFFFF0F] rounded-full'>
 							{date}
 						</p>

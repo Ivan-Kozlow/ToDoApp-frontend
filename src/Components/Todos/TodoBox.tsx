@@ -23,7 +23,7 @@ const TodoBox: FC<TypeTodoBox> = ({ title, tasks }) => {
 	}
 
 	return (
-		<section className='dark:bg-box p-4 w-full min-w-[280px] max-w-[352px] overflow-y-auto rounded-md max-h-[675px] border-dashed border-[2px] border-[#1C1D2214]'>
+		<section className='dark:bg-box p-4 w-full min-w-[280px] basis-[33%] overflow-y-auto rounded-md max-h-[675px] border-dashed border-[2px] border-[#1C1D2214]'>
 			<div className='flex justify-between items-center pb-4'>
 				<h3 className='dark:text-[#ffffff80] text-[#1C1D2280] text-sm font-semibold'>
 					{title} ({tasks.length})
