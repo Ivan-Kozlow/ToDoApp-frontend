@@ -1,6 +1,6 @@
 import { useFormContext } from 'react-hook-form'
 import React, { HTMLInputTypeAttribute } from 'react'
-import style from 'components/Profile/ProfilePageStyle.module.scss'
+import style from 'Components/Profile/ProfilePageStyle.module.scss'
 
 import { validations } from 'consts/validationsForm'
 

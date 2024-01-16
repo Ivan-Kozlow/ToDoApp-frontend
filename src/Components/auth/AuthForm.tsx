@@ -13,7 +13,7 @@ import { validations } from 'consts/validationsForm'
 import { keyUserAuth, keyUserGetMe } from 'consts/queryKeys'
 
 import { TextField } from '@mui/material'
-import MySnackbar from 'components/MySnackbar'
+import MySnackbar from 'Components/MySnackbar'
 import { IFormUserFields } from 'pages/AuthPage'
 import ErrorField from './ErrorField'
 import FormButtons from './FormButtons'

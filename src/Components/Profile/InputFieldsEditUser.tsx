@@ -6,7 +6,7 @@ import { validations } from 'consts/validationsForm'
 
 import { IFormUserFields } from 'pages/AuthPage'
 import { TextField } from '@mui/material'
-import ErrorField from 'components/auth/ErrorField'
+import ErrorField from 'Components/auth/ErrorField'
 import InputField from './InputFIeld'
 
 const InputFieldsEditUser: React.FC = () => {

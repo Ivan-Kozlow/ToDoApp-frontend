@@ -12,7 +12,7 @@ import { useAppDispatch, useAppSelector } from 'hooks/redux'
 import { keyTodoCreate, keyTodoGetAll, keyTodoUpdate } from 'consts/queryKeys'
 
 import { IFormInput, TypeForm } from 'types'
-import MySnackbar from 'components/MySnackbar'
+import MySnackbar from 'Components/MySnackbar'
 import InputTodoForm from './InputTodoForm'
 
 const TaskForm: React.FC<TypeForm> = ({ isCreate, setCreateTask, children, btnName, _id }) => {
@@ -78,7 +78,7 @@ const TaskForm: React.FC<TypeForm> = ({ isCreate, setCreateTask, children, btnNa
 				</p>
 				<button
 					type={fieldsIsEmpty ? 'button' : 'submit'}
-					className={`p-2 bg-[#888DA71A] text-[#1C1D22] dark:text-[#fff] dark:bg-[#FFFFFF0F] rounded-md`}
+					className={'p-2 bg-[#888DA71A] text-[#1C1D22] dark:text-[#fff] dark:bg-[#FFFFFF0F] rounded-md'}
 					onClick={() => fieldsIsEmpty && setCreateTask((val) => !val)}
 					disabled={isLoading}
 					aria-disabled={isLoading}

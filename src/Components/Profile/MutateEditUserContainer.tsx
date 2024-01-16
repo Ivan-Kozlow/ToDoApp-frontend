@@ -7,8 +7,8 @@ import userService from 'services/user.service'
 import { userActions } from 'Redux/slices/user/userSlice'
 import { keyUserDataUpdate, keyUserGetMe } from 'consts/queryKeys'
 
-import Loader from 'components/Loader'
-import MySnackbar from 'components/MySnackbar'
+import Loader from 'Components/Loader'
+import MySnackbar from 'Components/MySnackbar'
 import { IFormUserFields } from 'pages/AuthPage'
 import FormEditUser from './FormEditUser'
 

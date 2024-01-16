@@ -8,7 +8,7 @@ export default defineConfig({
 	plugins: [react(), svgr()],
 	resolve: {
 		alias: {
-			components: '/src/components/',
+			components: '/src/Components/',
 			hooks: '/src/hooks/',
 			pages: '/src/pages/',
 			Redux: '/src/redux/',

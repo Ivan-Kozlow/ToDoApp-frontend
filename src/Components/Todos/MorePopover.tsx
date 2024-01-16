@@ -15,7 +15,7 @@ import EditOutlinedIcon from '@mui/icons-material/EditOutlined'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
 import MultipleStopOutlinedIcon from '@mui/icons-material/MultipleStopOutlined'
 import { Popover } from '@mui/material'
-import MySnackbar from 'components/MySnackbar'
+import MySnackbar from 'Components/MySnackbar'
 
 const MoveTodo: { title: EnumTodoTitle; completed: TypeCompleted }[] = [
 	{

@@ -1,10 +1,10 @@
 import { Navigate } from 'react-router-dom'
-import style from 'components/auth/FormRegister.module.scss'
+import style from 'Components/auth/FormRegister.module.scss'
 
 import { LSKeys } from 'consts/localStorKey'
 
 import AccountCircleIcon from '@mui/icons-material/AccountCircle'
-import AuthForm from 'components/auth/AuthForm'
+import AuthForm from 'Components/auth/AuthForm'
 
 export interface IFormUserFields {
 	nickname: string

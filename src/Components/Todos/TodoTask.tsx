@@ -8,7 +8,7 @@ import { todoActions } from 'Redux/slices/todo/todoSlice'
 import { useAppDispatch } from 'hooks/redux'
 import { keyTodoUpdate } from 'consts/queryKeys'
 
-import MoreTodoMenu from 'components/Todos/MorePopover'
+import MoreTodoMenu from 'Components/Todos/MorePopover'
 import TodoProgressBar from './Form/TodoProgressBar'
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline'
 import RemoveCircleOutlineOutlinedIcon from '@mui/icons-material/RemoveCircleOutlineOutlined'

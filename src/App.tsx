@@ -12,8 +12,8 @@ import { keyTodoGetAll, keyUserGetMe } from 'consts/queryKeys'
 
 import ProfilePage from 'pages/ProfilePage'
 import MainPage from 'pages/MainPage'
-import Loader from 'components/Loader'
-import MySnackbar from 'components/MySnackbar'
+import Loader from 'Components/Loader'
+import MySnackbar from 'Components/MySnackbar'
 
 const ErrorPage = React.lazy(() => import('pages/ErrorPage/ErrorPage'))
 const AuthPage = React.lazy(() => import('pages/AuthPage'))
