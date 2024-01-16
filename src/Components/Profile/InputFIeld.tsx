@@ -1,4 +1,4 @@
-import style from 'components/Profile/ProfilePageStyle.module.scss'
+import style from 'Components/Profile/ProfilePageStyle.module.scss'
 import React, { HTMLInputTypeAttribute } from 'react'
 import { useFormContext } from 'react-hook-form'
 

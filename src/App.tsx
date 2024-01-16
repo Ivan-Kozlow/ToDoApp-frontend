@@ -65,7 +65,6 @@ const App: React.FC = () => {
 			</Routes>
 		</Suspense>
 	)
-
 }
 
-export default App;
+export default App

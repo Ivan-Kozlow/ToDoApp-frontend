@@ -1,11 +1,11 @@
-import React from 'react'
 import { useFormContext } from 'react-hook-form'
+import React from 'react'
 
+import { useAppSelector } from 'hooks/redux'
 // utils
 import { validations } from 'consts/validationsForm'
-import { IFormUserFields } from 'pages/AuthPage'
-import { useAppSelector } from 'hooks/redux'
 
+import { IFormUserFields } from 'pages/AuthPage'
 import { TextField } from '@mui/material'
 import ErrorField from 'components/auth/ErrorField'
 import InputField from './InputFIeld'
