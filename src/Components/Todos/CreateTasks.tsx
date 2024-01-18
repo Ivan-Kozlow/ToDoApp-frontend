@@ -18,7 +18,7 @@ const CreateTasks = () => {
 				</button>
 			) : (
 				<div className='dark:bg-taskBox rounded-md w-full max-w-[320px] sm:p-5 p-3 mb-3 border-solid border-[2px] border-[#1C1D220F]'>
-					<TaskForm btnName='Создать' isCreate createTask={createTask} setCreateTask={setCreateTask}>
+					<TaskForm btnName='Создать' isCreate setCreateTask={setCreateTask}>
 						<p className='text-sm text-[#1C1D2280] dark:text-[#FFFFFF80]'>Прогресс</p>
 						<TodoProgressBar completed={0} />
 					</TaskForm>
