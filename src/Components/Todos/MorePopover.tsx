@@ -61,7 +61,7 @@ const MorePopover: FC<TypeMorePopover> = ({ setCreateTask, _id }) => {
 	const open = Boolean(anchorEl)
 	// FIXME jumping snackbar on rerender component
 	const btnStyle =
-		'flex items-center justify-between gap-1 dark:hover:bg-title hover:bg-[#f7f7f7] bg-[#888DA71A] transition-all duration-150 rounded-md p-1 px-2'
+		'flex items-center justify-between gap-1 md:dark:hover:bg-title md:hover:bg-[#f7f7f7] bg-[#888DA71A] transition-all duration-150 rounded-md p-1 px-2'
 	return (
 		<>
 			{isError && (
@@ -76,7 +76,7 @@ const MorePopover: FC<TypeMorePopover> = ({ setCreateTask, _id }) => {
 				onClick={handleClick}
 				title='Больше'
 				aria-label='Button to open more features for todo item'
-				className='transition-all duration-150 dark:hover:bg-title hover:bg-[#f7f7f7] hover:rounded-full'
+				className='transition-all duration-150 md:dark:hover:bg-title md:hover:bg-[#f7f7f7] hover:rounded-full'
 			>
 				<MoreHorizIcon />
 			</button>

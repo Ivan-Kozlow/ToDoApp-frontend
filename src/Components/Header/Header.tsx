@@ -48,8 +48,8 @@ const Header: FC<{ full?: boolean }> = ({ full = true }) => {
 			{full && (
 				<>
 					<h1 className='text-[#1C1D22] dark:text-[#fff] text-lg sm:text-xl font-bold'>
-						<span className='hidden md:inline-block'>Добро пожаловать</span>
-						{nickname && `, ${nickname}`}
+						<span className='hidden md:inline-block'>Добро пожаловать{nickname && ','}</span>
+						{nickname && ` ${nickname}`}
 					</h1>
 				</>
 			)}

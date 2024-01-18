@@ -21,7 +21,6 @@ const TodoProgressBar: React.FC<{ completed: TypeCompleted }> = ({ completed }) 
 					</clipPath>
 				</defs>
 			</svg>
-			{/* <img src={TaskIcon} alt='TaskIcon' /> */}
 			<div
 				className={`h-1 ${
 					completed === 0
@@ -48,7 +47,6 @@ const TodoProgressBar: React.FC<{ completed: TypeCompleted }> = ({ completed }) 
 			>
 				<path d='M13.75 3.75H16.875V18.125H3.125V3.75H6.25125V5H13.75V3.75ZM6.08625 10.4938L5.20125 11.3775L8.7375 14.9125L14.925 8.725L14.04 7.8425L8.7375 13.145L6.08625 10.4938ZM7.5 3.75V1.875H12.5V3.75H7.5Z' />
 			</svg>
-			{/* <img src={CheckBox} className='dark:fill-box' alt='Checkbox' /> */}
 		</div>
 	)
 }
