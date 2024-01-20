@@ -2,7 +2,7 @@ import { useDispatch } from 'react-redux'
 import React from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-import { TypeAxiosErrorResponse, getErrorMessageForResponse } from 'utils/getErrorMessageOnResponse'
+import { TypeAxiosErrorResponse, getErrorMessageFromResponse } from 'utils/getErrorMessageOnResponse'
 import userService from 'services/user.service'
 import { userActions } from 'Redux/slices/user/userSlice'
 import { keyUserDataUpdate, keyUserGetMe } from 'consts/queryKeys'
@@ -32,7 +32,7 @@ const MutateEditUserContainer: React.FC = React.memo(() => {
 					slideDirection='right'
 					type={isSuccess ? 'success' : 'error'}
 					position={{ vertical: 'bottom', horizontal: 'left' }}
-					message={getErrorMessageForResponse(error) || 'Данные успешно обновлены'}
+					message={getErrorMessageFromResponse(error) || 'Данные успешно обновлены'}
 				/>
 			)}
 

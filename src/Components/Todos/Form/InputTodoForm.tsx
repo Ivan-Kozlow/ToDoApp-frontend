@@ -26,8 +26,9 @@ const InputTodoForm: React.FC<TypeFormInput> = ({ require = false, name, placeho
 	}
 
 	return (
-		<div className='flex flex-wrap'>
+		<div className='flex'>
 			<TextareaAutosize
+				autoFocus={require}
 				{...formMethod.register(name, require ? validations.withRequiredField.title : undefined)}
 				placeholder={placeholder}
 				className={

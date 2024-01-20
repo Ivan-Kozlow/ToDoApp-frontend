@@ -3,7 +3,7 @@ import React from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import { getLocalDateNumbers } from 'utils/getLocalDate'
-import { TypeAxiosErrorResponse, getErrorMessageForResponse } from 'utils/getErrorMessageOnResponse'
+import { TypeAxiosErrorResponse, getErrorMessageFromResponse } from 'utils/getErrorMessageOnResponse'
 import { TypeCreateTodo } from 'services/types'
 import todoService from 'services/todo.service'
 import { ITodo } from 'Redux/slices/todo/typesTodo'
@@ -68,7 +68,7 @@ const TaskForm: React.FC<TypeForm> = ({ isCreate, setCreateTask, children, btnNa
 			</FormProvider>
 
 			{isError && (
-				<MySnackbar message={getErrorMessageForResponse(error) || 'Не удалось создать заметку'} type={'error'} />
+				<MySnackbar message={getErrorMessageFromResponse(error) || 'Не удалось создать заметку'} type={'error'} />
 			)}
 
 			{children}
