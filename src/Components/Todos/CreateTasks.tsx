@@ -1,6 +1,7 @@
 import { useState } from 'react'
-import TaskForm from './Form/TaskForm'
+
 import TodoProgressBar from './Form/TodoProgressBar'
+import TaskForm from './Form/TaskForm'
 
 const CreateTasks = () => {
 	const [createTask, setCreateTask] = useState(true)

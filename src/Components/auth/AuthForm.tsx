@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form'
 import React from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 
-import { TypeAxiosErrorResponse, getErrorMessageForResponse } from 'utils/getErrorMessageOnResponse'
+import { TypeAxiosErrorResponse, getErrorMessageFromResponse } from 'utils/getErrorMessageOnResponse'
 import userService from 'services/user.service'
 import { IUserQueryResult } from 'services/types'
 import { userActions } from 'Redux/slices/user/userSlice'
@@ -84,7 +84,7 @@ const AuthForm: React.FC<{ isRegistration: boolean }> = ({ isRegistration }) => 
 					type='warning'
 					position={{ vertical: 'top', horizontal: 'center' }}
 					message={
-						getErrorMessageForResponse(error) ||
+						getErrorMessageFromResponse(error) ||
 						'Ой, попробуйте введите другие данные. Если ошибка повториться, попробуйте позже'
 					}
 				/>
