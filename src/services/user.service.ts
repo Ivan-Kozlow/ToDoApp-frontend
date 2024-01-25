@@ -17,7 +17,7 @@ const userService = {
 		return (await axios.post<IUserQueryResult>(authLoginPath, body)).data
 	},
 
-	async update(body: Partial<Pick<IUser, 'nickname' | 'email'> & { password: string; avatar: Blob }>) {
+	async update(body: Partial<Pick<IUser, 'nickname' | 'email'> & { password: string; avatar: Blob | string }>) {
 		const userId = localStorage.getItem(LSKeys.userId) || ''
 		let i: keyof typeof body
 		for (i in body) body[i] === '' && delete body[i]
