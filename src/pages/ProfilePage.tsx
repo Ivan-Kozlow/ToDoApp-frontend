@@ -26,7 +26,7 @@ const ProfilePage: React.FC = () => {
 	const createdDate = (user && new Date(user.createdAt).toLocaleDateString()) || 'Нет информации'
 	const updateDate = (user && new Date(user.updatedAt).toLocaleDateString()) || 'Нет информации'
 	const queryClient = useQueryClient()
-	const { mutate } = useMutation<string, TypeAxiosErrorResponse, Blob | undefined>({
+	const { mutate } = useMutation<string, TypeAxiosErrorResponse, Blob | undefined | string>({
 		mutationKey: [keyUserAvatarUpdate],
 		mutationFn: (avatar) => userService.update({ avatar }),
 		onSuccess: () => queryClient.invalidateQueries([keyUserGetMe]),
@@ -84,7 +84,7 @@ const ProfilePage: React.FC = () => {
 								}}
 							/>
 						</button>
-						{user.avatar && <button onClick={() => mutate(undefined)}>Удалить аватар</button>}
+						{user.avatar && <button onClick={() => mutate(user.avatar)}>Удалить аватар</button>}
 					</div>
 					<div className={style.right__block}>
 						<h2>
