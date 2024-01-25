@@ -1,0 +1,83 @@
+.header__underline {
+  display: block;
+  height: 1px;
+  width: 100%;
+  margin-top: -15px;
+}
+@media (max-width: 768px) {
+  .header__underline {
+    margin-top: -5px;
+  }
+}
+
+.profile {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 50px;
+  padding: 62px 0 2px 0;
+  overflow: auto;
+  height: 85lvh;
+}
+.profile .btn_avatar {
+  position: relative;
+  border-radius: 50%;
+  width: 130px;
+  height: 130px;
+  background-color: #404144;
+  transition: all 0.3s ease 0s;
+  box-shadow: 1px 4px 27px -5px black;
+  overflow: hidden;
+}
+.profile .btn_avatar:hover {
+  background-color: rgb(61, 61, 61);
+}
+.profile .btn_avatar:active, .profile .btn_avatar:focus {
+  background-color: #333;
+}
+.profile .right__block h2 {
+  font-size: 22px;
+  font-weight: 300;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+}
+.profile .right__block .form {
+  padding: 85px 0;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+.profile .right__block .form input {
+  align-self: start;
+  font-size: 18px;
+  font-weight: 300;
+  background-color: transparent;
+  outline: none;
+  color: rgba(255, 255, 255, 0.8);
+  padding-right: 14px;
+}
+.profile .right__block .form label {
+  color: rgba(255, 255, 255, 0.5);
+}
+.profile .right__block .form label::first-letter {
+  text-transform: uppercase;
+}
+.profile .right__block .form__elem {
+  display: grid;
+  grid-template-columns: max-content auto max-content;
+}
+@media (max-width: 768px) {
+  .profile .right__block .form__elem img {
+    display: none;
+  }
+}
+.profile .right__block .form__elem span {
+  font-size: 20px;
+  font-weight: 600;
+  margin-right: 5px;
+}
+.profile .right__block .form__elem span:first-letter {
+  text-transform: uppercase;
+}/*# sourceMappingURL=ProfilePageStyle.module.css.map */

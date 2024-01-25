@@ -1,0 +1,15 @@
+.input {
+  @apply outline-none p-2 rounded-md rounded-r-none w-full max-w-[150px] md:max-w-[200px];
+  position: absolute;
+  top: -2px;
+  right: -3px;
+  z-index: -1;
+  opacity: 0;
+  padding: 5px 8px;
+  transition: all 0.3s ease 0s;
+}
+.input.visible {
+  position: static;
+  z-index: 0;
+  opacity: 100;
+}/*# sourceMappingURL=Search.module.css.map */

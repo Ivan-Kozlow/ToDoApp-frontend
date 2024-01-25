@@ -1,0 +1,40 @@
+.page {
+  @apply flex flex-col items-center pt-[18vh];
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 15px 0 15px;
+}
+.wrapper .form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  overflow: auto;
+  height: 100dvh;
+  padding: 10px 0 220px;
+  margin: 25px 0 30px;
+  min-width: 250px;
+}
+@media (min-width: 330px) {
+  .wrapper .form {
+    min-width: 300px;
+  }
+}
+.wrapper .form input {
+  color: rgba(255, 255, 255, 0.8);
+}
+.wrapper .form label {
+  color: gray;
+}
+.wrapper .form .buttons {
+  @apply mt-8 flex justify-between;
+}
+.wrapper .form .buttons button {
+  border-radius: 5px;
+  text-transform: uppercase;
+  background-color: rgba(255, 255, 255, 0.13);
+  color: gainsboro;
+}/*# sourceMappingURL=FormRegister.module.css.map */

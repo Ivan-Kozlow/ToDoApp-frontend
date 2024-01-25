@@ -13,7 +13,7 @@ const PageInDev: React.FC<IPropsErrorPage> = ({ title, subTitle }) => {
 				{title}
 				<span>{subTitle}</span>
 			</div>
-			<Link to={'/'}>Back</Link>
+			<Link to={'/'}>Назад</Link>
 		</div>
 	)
 }

@@ -2,7 +2,7 @@
 	display: block;
 	height: 1px;
 	width: 100%;
-	background-color: rgba(255, 255, 255, 0.1);
+	// background-color: #ffffff1a;
 	margin-top: -15px;
 	@media (max-width: 768px) {
 		margin-top: -5px;
@@ -14,7 +14,6 @@
 	flex-wrap: wrap;
 	justify-content: space-around;
 	gap: 50px;
-	color: white;
 	padding: 62px 0 2px 0;
 	overflow: auto;
 	height: 85lvh;
@@ -46,10 +45,6 @@
 			flex-direction: column;
 			align-items: center;
 			gap: 26px;
-
-			span {
-				color: rgba(255, 255, 255, 0.5);
-			}
 		}
 
 		.form {
