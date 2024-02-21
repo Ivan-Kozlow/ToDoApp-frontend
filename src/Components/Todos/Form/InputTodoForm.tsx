@@ -26,24 +26,26 @@ const InputTodoForm: React.FC<TypeFormInput> = ({ require = false, name, placeho
 	}
 
 	return (
-		<div className='flex'>
-			<TextareaAutosize
-				autoFocus={require}
-				{...formMethod.register(name, require ? validations.withRequiredField.title : undefined)}
-				placeholder={placeholder}
-				className={
-					'dark:text-[#fff] w-full lg:max-w-[200px] max-w-[170px] font-semibold dark:bg-title bg-[#888DA71A] outline-none p-1 rounded-md rounded-r-none max-h-14 resize-none leading-5 overflow-y-scroll'
-				}
-			/>
-			<button
-				type='button'
-				onClick={() => focusInput()}
-				className={'dark:bg-title bg-[#888DA71A] flex items-center cursor-pointer rounded-md rounded-l-none'}
-			>
-				<ClearOutlinedIcon />
-			</button>
-			{inputErrors[name] && <p className='mb-1 text-[red]'>{inputErrors[name]?.message}</p>}
-		</div>
+		<>
+			<div className='flex'>
+				<TextareaAutosize
+					autoFocus={require}
+					{...formMethod.register(name, require ? validations.withRequiredField.title : undefined)}
+					placeholder={placeholder}
+					className={
+						'dark:text-[#fff] w-full lg:max-w-[200px] max-w-[170px] font-semibold dark:bg-title bg-[#888DA71A] outline-none p-1 rounded-md rounded-r-none max-h-14 resize-none leading-5 overflow-y-scroll'
+					}
+				/>
+				<button
+					type='button'
+					onClick={() => focusInput()}
+					className={'dark:bg-title bg-[#888DA71A] flex items-center cursor-pointer rounded-md rounded-l-none'}
+				>
+					<ClearOutlinedIcon />
+				</button>
+			</div>
+			{inputErrors[name] && <p className='mb-1 -mt-1 text-[red]'>{inputErrors[name]?.message}</p>}
+		</>
 	)
 }
 
